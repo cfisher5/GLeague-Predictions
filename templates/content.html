@@ -1,0 +1,184 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container" id="page_data">
+        <div class="row center">
+            <div class="col-sm-12 col-md-4" style="display:inline-block">
+                <div class="row center padding-top-bottom">
+                    <a href="http://stats.gleague.nba.com{{ player.gleague_id }}" target="_blank">
+                        <h2 style="display:inline;color:black;" class="center">{{ player.name }}</h2>
+                    </a>
+                    <h2 style="display:inline;"><img class="logo" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="row">
+                            <img class="main-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ player.pic_id }}.png">
+                        </div>
+                        <div class="row center padding-20">
+                            <details>
+                                <summary id="cluster-no-blue">
+                                    <span>G League Clusters:<br>{{ player.gnb_cluster }} (GNB)</span><br>
+                                     <span>{{ player.knn_cluster }} (knn)</span>
+                                </summary>
+                                <p class="padding-top">Based on the RCC framework which uses a Gaussian Naive Bayes model for classification. Refer to the diagram on the right to discover the role-transformations {{ player.cluster }}s typically make once they get to the NBA. </p>
+                            </details>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 padding-20">
+{#                        <div class="row center">#}
+{#                            <div class="col-xs-6">#}
+{#                                <p>Height: <br> {{ player.height }}</p>#}
+{#                            </div>#}
+{#                            <div class="col-xs-6">#}
+{#                                <p>Weight: <br> {{ player.weight }}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <div class="row center">
+                            <strong>2017-2018 G League Stats per 36 Min:</strong>
+                            <p style="padding-top:10px;"> GP: {{ player.gp }}</p>
+                            <p>PTS: {{ player.pts }}</p>
+                            <p>FGA: {{ player.fga }}</p>
+                            <p>3PM: {{ player.threepm }}</p>
+                            <p>REB: {{ player.reb }}</p>
+                            <p>AST: {{ player.ast }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12 col-md-8" style="display:inline-block">
+                <div class="row" style="text-align:center !important;">
+                    <img style="width:90%;" src="{{ url_for('static', filename='cluster_alluvial.png') }}">
+                </div>
+                <div class="row">
+                    <span> Use this flow chart to visualize the role-transformations that exist between the G League and the NBA </span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row center padding-20">
+                <div class="row padding-top-bottom">
+                    <h3>Three G League Player Comparisons using k-nearest neighbors:</h3>
+                </div>
+                <div class="row padding-20">
+                {% for n in player.neighbors %}
+                    <div class="col-sm-12 col-md-4">
+                        <div class="row center">
+                            <img class="neighbor-headshot center comparisons"
+                                 src="https://d2cwpp38twqe55.cloudfront.net/req/201712064/images/players/{{ n.pic_id }}.jpg">
+                            <h4 class="center">{{ n.name }}</h4>
+                        </div>
+                        <div class="row">
+                            <strong>G League Cluster: {{ n.gleague_cluster }}</strong><br>
+                            <strong>NBA Cluster: {{ n.nba_cluster }}</strong>
+                        </div>
+                        <div class="row padding-20">
+
+                                <table class="table table-striped table-bordered table-hover table-responsive stats">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>G League</th>
+                                        <th>NBA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            GP
+                                        </td>
+                                        <td>
+                                           {{ n.gl_g }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_g }}
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td>
+                                            PTS
+                                        </td>
+                                        <td>
+                                           {{ n.gl_pts }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_pts}}
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td>
+                                            FGA
+                                        </td>
+                                        <td>
+                                           {{ n.gl_fga }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_fga }}
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td>
+                                            3PM
+                                        </td>
+                                        <td>
+                                           {{ n.gl_threepm }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_threepm }}
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td>
+                                            REB
+                                        </td>
+                                        <td>
+                                           {{ n.gl_reb }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_reb }}
+                                        </td>
+                                    </tr>
+                                   <tr>
+                                        <td>
+                                            AST
+                                        </td>
+                                        <td>
+                                           {{ n.gl_ast }}
+                                        </td>
+                                        <td>
+                                            {{ n.nba_ast }}
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                                </table>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+<script>
+
+
+{#    var loading;#}
+{#    window.onload = function(){#}
+{#        console.log("hellO!!!");#}
+{#        loading = setTimeout(showPage, 3000);#}
+{##}
+{#    };#}
+{#function showPage() {#}
+{#    console.log("about to show page");#}
+{#    document.getElementById("loader").style.display = "none";#}
+{#    document.getElementById("page_data").style.display = "block";#}
+
+</script>

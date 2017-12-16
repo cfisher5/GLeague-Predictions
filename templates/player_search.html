@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css">
+<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+    var availableTags = {{ players_json|safe }};
+
+    $( "#player_list" ).autocomplete({
+        source: availableTags,
+        maxShowItems:6,
+        focus: function( event, ui ) {
+            $(this).val(ui.item.label);
+            return false;
+        },
+        select: function( event, ui ) {
+            var player = ui.item.value;
+            $(this).val(ui.item.label);
+            console.log(player);
+            $("#player_id").val(player);
+            return false
+        }
+    });
+
+ });
+</script>
+
+<div class="header">
+    <div class="row">
+        <div class="col-xs-6 title">
+            <a style="text-decoration:none;color:black;" href="{{ url_for('begin') }}">
+            <h3 class="white-color">RCC Framework's G League To NBA Predictor</h3>
+            </a>
+        </div>
+        <div class="col-xs-6 input-bar no-blue">
+            <form method="get" action="{{ url_for('show_info')}}" >
+                <div class="ui-widget no-blue">
+                    <label class="white-color" for="player_list">Select a Player: </label>
+                    <input type='text' name="player_list" id="player_list">
+                    <input type="text" name="player_id" id="player_id" style="display:none">
+                    <input id='go-button' class="ui-button ui-widget ui-corner-all no-blue" type="submit" value="Go">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

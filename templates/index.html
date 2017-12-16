@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>G League to NBA Predictions</title>
+    <link rel="icon" href="{{ url_for('static', filename='ball.png')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+
+<body>
+
+    {% include 'player_search.html' %}
+
+    {% block content %}
+        <div class="container">
+            <div class="row padding-20">
+                <h4 style="color:red" class="center padding-top">{{ error_msg }}</h4>
+            </div>
+            <div class="row padding-20 center">
+                <h3>Welcome to the G League Player Predictor App!</h3>
+                <h4>Either type in a G League player of your choosing, or select one of the randomly chosen prospects below.</h4>
+            </div>
+            <div class="row padding-20">
+                {% for prospect in prospects %}
+                <div class="col-sm-12 col-md-4">
+                    <div class="row center">
+                        <a href="/get?player_list={{ prospect.name }}&player_id=%2Fplayer%2F%23%21%2F{{ prospect.pic_id }}%2Fstats%2F%3Fp%3D{{ prospect.name }}">
+                            <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png">
+                        </a>
+                    </div>
+                    <div class="row center padding-top-bottom">
+                        <a href="/get?player_list={{ prospect.name }}&player_id=%2Fplayer%2F%23%21%2F{{ prospect.pic_id }}%2Fstats%2F%3Fp%3D{{ prospect.name }}">
+                            <h4 style="display:inline;color:black;" class="center">{{ prospect.name }}</h4>
+                        </a>
+                        <h4 style="display:inline;"><img class="logo-mainpage" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ prospect.team }}.svg">Age: {{ prospect.age }}</h4>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    {% endblock %}
+
+    </body>
+</html>

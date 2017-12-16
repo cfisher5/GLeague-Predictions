@@ -1,0 +1,139 @@
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #000000;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+* html .ui-autocomplete {
+    height: 100px;
+}
+
+.main-headshot {
+  width:100%;
+}
+
+.index-headshot{
+  width:245px;
+}
+
+.neighbor-headshot {
+  width:100px;
+}
+
+.container{
+  width:80% !important;
+  padding-top:30px;
+}
+
+.center{
+  text-align: center;
+}
+
+.header{
+  vertical-align: middle;
+  padding:30px;
+  background-color: rgb(0, 0, 0);
+}
+
+.padding-20{
+  padding:20px;
+}
+
+.bottom_parent{
+  position:relative;
+  height:200px;
+}
+.bottom{
+  position: absolute;
+  bottom:0;
+}
+.padding-top-bottom{
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+.title{
+  text-align: left;
+}
+.input-bar{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.half-width{
+  width:70%;
+}
+
+#cluster-no-blue{
+  color: darkblue;
+  font-size:16px;
+  outline:none !important;
+}
+
+.no-blue {
+    outline:none !important;
+}
+
+.padding-top{
+  padding-top:15px;
+}
+
+#go-button{
+  bottom:2px;
+}
+
+.logo{
+  width:120px;
+  padding: 5px 10px;
+}
+
+.logo-mainpage{
+  width:80px;
+  padding: 5px 10px;
+  padding-left:0px !important;
+}
+
+.stats{
+  width:70%;
+  margin:0 auto;
+}
+
+.white-color{
+  color:white;
+}
