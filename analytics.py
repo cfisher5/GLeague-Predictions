@@ -1,14 +1,5 @@
 import pandas as pd
-import numpy as np
-import statsmodels.formula.api as smf
-from sklearn import linear_model
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn import metrics
-from sklearn.metrics import accuracy_score
-from sklearn import tree, neighbors, naive_bayes, preprocessing
-from sklearn.ensemble import RandomForestClassifier
+from sklearn import neighbors, naive_bayes, preprocessing
 from sklearn.svm import SVC
 
 clusters = {
