@@ -4,7 +4,7 @@ import os
 player_json = []
 print(os.getcwd())
 
-gleague_ids = open('data/gleague_data.csv', 'w')
+gleague_ids = open('GLeaguePredictions/GLeague-Predictions/data/gleague_data.csv', 'w')
 gleague_ids.write('Name,ID,Team,Age,GP,FGA,3PM,REB,AST,PTS\n')
 
 url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
@@ -35,6 +35,6 @@ for obj in data:
 
     gleague_ids.write(name + "," + href + "," + team + "," + age + "," + gp + "," + fga + "," + threepm + "," + reb + "," + ast + "," + pts + "\n")
 
-players_file = open('data/players_json.txt', 'w')
+players_file = open('GLeaguePredictions/GLeague-Predictions/data/players_json.txt', 'w')
 players_file.write(str(player_json))
 players_file.close()
