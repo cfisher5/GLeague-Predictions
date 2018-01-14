@@ -1,6 +1,9 @@
 import requests
+import os
 
 player_json = []
+print(os.getcwd())
+
 gleague_ids = open('data/gleague_data.csv', 'w')
 gleague_ids.write('Name,ID,Team,Age,GP,FGA,3PM,REB,AST,PTS\n')
 
