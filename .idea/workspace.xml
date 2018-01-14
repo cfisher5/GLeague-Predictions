@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b4a25e9-4ce5-4dc3-b04c-9cd357b87fb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_gleague_data.py" afterPath="$PROJECT_DIR$/get_gleague_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/content.html" afterPath="$PROJECT_DIR$/templates/content.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -65,7 +65,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="get_gleague_data.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="get_gleague_data.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/get_gleague_data.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="605">
@@ -87,11 +87,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="content.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/content.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="23" column="73" lean-forward="false" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -220,7 +220,6 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/scripts.js" />
         <option value="$PROJECT_DIR$/GLeague-Predictions.py" />
-        <option value="$PROJECT_DIR$/templates/content.html" />
         <option value="$PROJECT_DIR$/analytics.py" />
         <option value="$PROJECT_DIR$/templates/player_search.html" />
         <option value="$PROJECT_DIR$/static/styles/style.css" />
@@ -228,6 +227,7 @@
         <option value="$PROJECT_DIR$/GLeague_Predictions.py" />
         <option value="$PROJECT_DIR$/Player.py" />
         <option value="$PROJECT_DIR$/get_gleague_data.py" />
+        <option value="$PROJECT_DIR$/templates/content.html" />
       </list>
     </option>
   </component>
@@ -702,14 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="73" lean-forward="false" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -763,6 +755,14 @@
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
