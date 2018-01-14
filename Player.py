@@ -29,7 +29,7 @@ class Player:
         self.knn_cluster = None
         self.neighbors = []
         self.gleague_id = self.get_data()
-        self.pic_id = self.split_id()
+        self.pic_id = id
 
 
     def get_analytics(self):
@@ -52,9 +52,8 @@ class Player:
             players = csv.reader(gleague_file, delimiter=',')
             next(players, None)
             for p in players:
-                if self.id == p[1] or self.id.split('/')[3] == p[1].split('/')[3]:
+                if self.id == p[1]:
                     gleague_id = p[1]
-                    print(gleague_id)
                     self.team = p[2]
                     self.name = p[0]
                     self.age = p[3]

@@ -64,8 +64,9 @@ def page_not_found(e):
 @app.route('/get', methods=['get'])
 def show_info():
     player_id = request.args.get('player_id')
+    if "/" in player_id:
+        player_id = player_id.split("/")[3]
     player_name = request.args.get('player_list')
-    print(player_name)
     player_obj = Player(player_id, player_name)
     # player_obj.get_height_weight()
     player_obj.get_analytics()
