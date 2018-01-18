@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from Player import *
 import csv
+import requests
+import json
 from random import randint
 app = Flask(__name__)
 
@@ -68,12 +70,28 @@ def show_info():
         player_id = player_id.split("/")[3]
     player_name = request.args.get('player_list')
     player_obj = Player(player_id, player_name)
+    print(player_id)
+    # game_log = get_five_game_log(player_id)
     # player_obj.get_height_weight()
     player_obj.get_analytics()
     with open('data/players_json.txt', 'r') as infile:
         players_json = infile.read()
     return render_template('content.html', player=player_obj, players_json=players_json)
 
+
+
+def get_five_game_log(player_id):
+    five_games = []
+    try:
+        response = requests.get("http://stats.gleague.nba.com/stats/playergamelog?LeagueID=20&PlayerID=" + str(player_id) + "&Season=2017-18&SeasonType=Regular+Season")
+        data = response.json()['resultSets'][0]['rowSet']
+        for i in range(0, 5):
+            five_games.append(data[i])
+
+    except json.JSONDecodeError:
+        print("couldnt access api")
+        five_games = None
+    return five_games
 
 if __name__ == '__main__':
     app.run()

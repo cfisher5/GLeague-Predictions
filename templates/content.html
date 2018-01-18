@@ -57,6 +57,14 @@
                 </div>
             </div>
 
+            <div>
+                {% if game_log != None %}
+                {% for game in game_log %}
+                <span>{{ game[3] }}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
+
         </div>
 
 

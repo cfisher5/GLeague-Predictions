@@ -1,6 +1,8 @@
 import requests
 import os
 import json
+from fake_useragent import UserAgent
+
 
 player_json = []
 wd = os.getcwd()
@@ -23,7 +25,11 @@ gleague_ids.write('Name,ID,Team,Age,GP,FGA,3PM,REB,AST,PTS\n')
 url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
 
 try:
-    response = requests.get(url)
+    ua = UserAgent()
+    header = {'User-Agent': str(ua.random)}
+    print(header)
+    response = requests.get(url, headers=header)
+    print(response)
     data = response.json()['resultSets'][0]['rowSet']
 except json.JSONDecodeError:
     print("unable to reach API")
