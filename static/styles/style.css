@@ -77,7 +77,7 @@ body {
 
 .header{
   vertical-align: middle;
-  padding:30px;
+  padding:15px 30px;
   background-color: rgb(0, 0, 0);
 }
 
@@ -216,6 +216,12 @@ body {
 	line-height: 35px;
 
 	margin-left: 3px;
+}
+
+.name{
+    padding-right:6px !important;
+    color:dimgrey !important;
+    top:0 !important;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */

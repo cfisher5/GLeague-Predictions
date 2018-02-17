@@ -72,7 +72,6 @@ def show_info():
     player_obj = Player(player_id, player_name)
     print(player_id)
     # game_log = get_five_game_log(player_id)
-    # player_obj.get_height_weight()
     player_obj.get_analytics()
     with open('data/players_json.txt', 'r') as infile:
         players_json = infile.read()

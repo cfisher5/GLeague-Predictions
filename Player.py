@@ -3,10 +3,9 @@ from bs4 import BeautifulSoup
 from analytics import *
 import csv
 from Neighbor import *
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
-import time
+from fake_useragent import UserAgent
+import requests
+import json
 
 
 class Player:
@@ -15,10 +14,11 @@ class Player:
         self.name = name
         self.team = None
         self.id = id
-        self.height = "N/A"
-        self.weight = "N/A"
-        self.position = "N/A"
-        self.age = "N/A"
+        self.height = None
+        self.weight = None
+        self.position = None
+        self.bg = None
+        self.age = None
         self.gp = None
         self.threepm = None
         self.ast = None
@@ -30,6 +30,7 @@ class Player:
         self.neighbors = []
         self.gleague_id = self.get_data()
         self.pic_id = id
+        self.get_misc_data()
 
 
     def get_analytics(self):
@@ -67,37 +68,23 @@ class Player:
                     return gleague_id
         print("Unable to find " + self.name)
 
-
-    def get_height_weight(self):
-        url = "http://stats.gleague.nba.com" + self.gleague_id
-        options = webdriver.ChromeOptions()
-        options.add_argument("disable-infobars")
-        options.add_argument("--headless")
-        options.add_argument("--disable-extensions")
-        options.add_argument("--disable-logging")
-        driver_player = webdriver.Chrome(chrome_options=options)
-
-        driver_player.set_page_load_timeout(8)
+    def get_misc_data(self):
+        url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(self.id) + "&SeasonType=Regular+Season"
+        data = None
         try:
-            driver_player.get(url)
-            time.sleep(5)
-        except TimeoutException:
-            driver_player.execute_script("window.stop();")
-            print("window stopped")
+            ua = UserAgent()
+            header = {'User-Agent': str(ua.random)}
+            response = requests.get(url, headers=header)
+            data = response.json()['resultSets'][0]['rowSet']
+        except json.JSONDecodeError:
+            print("unable to reach API")
 
-        source_player = driver_player.page_source
-        soup_player = BeautifulSoup(source_player, "html.parser")
-        driver_player.quit()
-        div = soup_player.find("div", {'class': 'player-summary__bio'}).find('div').string
-
-        try:
-            weight, height = div.strip().split(" / ")
-        except ValueError:
-            weight = "N/A"
-            height = "N/A"
-
-        self.weight = weight
-        self.height = height
+        for obj in data:
+            self.bg = obj[9]
+            self.height = obj[10]
+            print(self.height)
+            self.weight = obj[11]
+            self.position = obj[14]
 
     def split_id(self):
         pic_id = self.gleague_id.split("/")[3]

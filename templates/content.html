@@ -5,10 +5,26 @@
         <div class="row center">
             <div class="col-sm-12 col-md-4" style="display:inline-block">
                 <div class="row center padding-top-bottom">
-                    <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
-                        <h2 style="display:inline;color:black;" class="center">{{ player.name }}</h2>
-                    </a>
-                    <h2 style="display:inline;"><img class="logo" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h2>
+                    <div class="row">
+                        <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
+                        <h3 style="display:inline;color:black;" class="center">{{ player.name }}</h3>
+                        </a>
+                        <h4 style="display:inline;"><img class="logo" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h4>
+                    </div>
+                    <div class="row">
+                        {% if player.height != "" %}
+                        <h4 style="display:inline;"> {{ player.height }} | </h4>
+                        {% endif %}
+                        {% if player.weight != "" %}
+                        <h4 style="display:inline;"> {{ player.weight }} lbs | </h4>
+                        {% endif %}
+                         {% if player.bg != "" %}
+                        <h4 style="display:inline;"> {{ player.bg }}</h4>
+                        {% endif %}
+                        {% if player.position != "" %}
+                        <h4 style="display:inline;">| {{ player.position }} </h4>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
@@ -36,12 +52,12 @@
 {#                        </div>#}
                         <div class="row center">
                             <strong>2017-2018 G League Stats per 36 Min:</strong>
-                            <p style="padding-top:10px;"> GP: {{ player.gp }}</p>
-                            <p>PTS: {{ player.pts }}</p>
-                            <p>FGA: {{ player.fga }}</p>
-                            <p>3PM: {{ player.threepm }}</p>
-                            <p>REB: {{ player.reb }}</p>
-                            <p>AST: {{ player.ast }}</p>
+                            <p style="padding-top:10px;"><sup class="name">GP</sup>{{ player.gp }}</p>
+                            <p><sup class="name">PTS</sup>{{ player.pts }}</p>
+                            <p><sup class="name">FGA</sup>{{ player.fga }}</p>
+                            <p><sup class="name">3PM</sup>{{ player.threepm }}</p>
+                            <p><sup class="name">REB</sup>{{ player.reb }}</p>
+                            <p><sup class="name">AST</sup>{{ player.ast }}</p>
                         </div>
                     </div>
                 </div>
