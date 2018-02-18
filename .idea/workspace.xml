@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b4a25e9-4ce5-4dc3-b04c-9cd357b87fb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GLeague_Predictions.py" afterPath="$PROJECT_DIR$/GLeague_Predictions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Player.py" afterPath="$PROJECT_DIR$/Player.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/styles/style.css" afterPath="$PROJECT_DIR$/static/styles/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/content.html" afterPath="$PROJECT_DIR$/templates/content.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,14 +16,14 @@
     <SUITE FILE_PATH="coverage/GLeague_Predictions$GLeague_Predictions.coverage" NAME="GLeague-Predictions Coverage Results" MODIFIED="1518987334306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5651751">
+    <splitter split-orientation="horizontal" split-proportion="0.5751634">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="715">
-                  <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="5" />
+                <state relative-caret-position="175">
+                  <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
                   <folding>
                     <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
@@ -44,17 +41,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.gitignore">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Player.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Player.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Player.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="645">
@@ -108,14 +95,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="content.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/content.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-49">
-                  <caret line="84" column="33" lean-forward="false" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+                <state relative-caret-position="529">
+                  <caret line="118" column="39" lean-forward="true" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
                   <folding>
-                    <element signature="e#214#1443#0#HTML" expanded="false" />
-                    <element signature="e#274#723#0#HTML" expanded="false" />
                     <element signature="e#430#465#0#HTML" expanded="true" />
                     <element signature="e#553#576#0#HTML" expanded="true" />
                     <element signature="e#835#858#0#HTML" expanded="true" />
@@ -124,6 +109,8 @@
                     <element signature="e#1316#1339#0#HTML" expanded="true" />
                     <element signature="e#1460#3786#0#HTML" expanded="false" />
                     <element signature="e#3844#3872#0#HTML" expanded="true" />
+                    <element signature="e#3903#3958#0#HTML" expanded="true" />
+                    <element signature="e#5786#5813#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -155,14 +142,24 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GLeague_Predictions.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GLeague_Predictions.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GLeague_Predictions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="444">
-                  <caret line="76" column="7" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="7" />
+                <state relative-caret-position="240">
+                  <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/styles/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="233">
+                  <caret line="152" column="17" lean-forward="false" selection-start-line="152" selection-start-column="17" selection-end-line="152" selection-end-column="17" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -215,9 +212,9 @@
         <option value="$PROJECT_DIR$/get_gleague_data.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/GLeague_Predictions.py" />
+        <option value="$PROJECT_DIR$/Player.py" />
         <option value="$PROJECT_DIR$/static/styles/style.css" />
         <option value="$PROJECT_DIR$/templates/content.html" />
-        <option value="$PROJECT_DIR$/Player.py" />
       </list>
     </option>
   </component>
@@ -230,7 +227,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="y" value="48" />
-    <option name="width" value="1244" />
+    <option name="width" value="1287" />
     <option name="height" value="751" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -267,6 +264,12 @@
               <item name="GLeague-Predictions" type="b2602c69:ProjectViewProjectNode" />
               <item name="GLeague-Predictions" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GLeague-Predictions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GLeague-Predictions" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GLeague-Predictions" type="b2602c69:ProjectViewProjectNode" />
@@ -345,7 +348,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="48" width="1244" height="751" extended-state="0" />
+    <frame x="-7" y="48" width="1287" height="751" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -354,7 +357,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14475873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13975903" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24939467" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -399,7 +402,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -409,8 +412,6 @@
         <state relative-caret-position="345">
           <caret line="23" column="73" lean-forward="false" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
           <folding>
-            <element signature="e#214#1443#0#HTML" expanded="false" />
-            <element signature="e#274#723#0#HTML" expanded="false" />
             <element signature="e#430#465#0#HTML" expanded="true" />
             <element signature="e#553#576#0#HTML" expanded="true" />
             <element signature="e#835#858#0#HTML" expanded="true" />
@@ -419,6 +420,8 @@
             <element signature="e#1316#1339#0#HTML" expanded="true" />
             <element signature="e#1460#3786#0#HTML" expanded="false" />
             <element signature="e#3844#3872#0#HTML" expanded="true" />
+            <element signature="e#3903#3958#0#HTML" expanded="true" />
+            <element signature="e#5786#5813#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -490,8 +493,6 @@
         <state relative-caret-position="990">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <element signature="e#214#1443#0#HTML" expanded="false" />
-            <element signature="e#274#723#0#HTML" expanded="false" />
             <element signature="e#430#465#0#HTML" expanded="true" />
             <element signature="e#553#576#0#HTML" expanded="true" />
             <element signature="e#835#858#0#HTML" expanded="true" />
@@ -500,6 +501,8 @@
             <element signature="e#1316#1339#0#HTML" expanded="true" />
             <element signature="e#1460#3786#0#HTML" expanded="false" />
             <element signature="e#3844#3872#0#HTML" expanded="true" />
+            <element signature="e#3903#3958#0#HTML" expanded="true" />
+            <element signature="e#5786#5813#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -708,48 +711,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="237" column="16" lean-forward="false" selection-start-line="237" selection-start-column="16" selection-end-line="237" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="151" column="14" lean-forward="false" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49">
-          <caret line="84" column="33" lean-forward="false" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
-          <folding>
-            <element signature="e#214#1443#0#HTML" expanded="false" />
-            <element signature="e#274#723#0#HTML" expanded="false" />
-            <element signature="e#430#465#0#HTML" expanded="true" />
-            <element signature="e#553#576#0#HTML" expanded="true" />
-            <element signature="e#835#858#0#HTML" expanded="true" />
-            <element signature="e#997#1020#0#HTML" expanded="true" />
-            <element signature="e#1159#1182#0#HTML" expanded="true" />
-            <element signature="e#1316#1339#0#HTML" expanded="true" />
-            <element signature="e#1460#3786#0#HTML" expanded="false" />
-            <element signature="e#3844#3872#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,22 +737,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GLeague_Predictions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="76" column="7" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Player.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GLeague_Predictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="152" column="17" lean-forward="false" selection-start-line="152" selection-start-column="17" selection-end-line="152" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="118" column="39" lean-forward="true" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
+          <folding>
+            <element signature="e#430#465#0#HTML" expanded="true" />
+            <element signature="e#553#576#0#HTML" expanded="true" />
+            <element signature="e#835#858#0#HTML" expanded="true" />
+            <element signature="e#997#1020#0#HTML" expanded="true" />
+            <element signature="e#1159#1182#0#HTML" expanded="true" />
+            <element signature="e#1316#1339#0#HTML" expanded="true" />
+            <element signature="e#1460#3786#0#HTML" expanded="false" />
+            <element signature="e#3844#3872#0#HTML" expanded="true" />
+            <element signature="e#3903#3958#0#HTML" expanded="true" />
+            <element signature="e#5786#5813#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
