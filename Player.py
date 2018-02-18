@@ -1,7 +1,4 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 from analytics import *
-import csv
 from Neighbor import *
 from fake_useragent import UserAgent
 import requests
@@ -31,7 +28,7 @@ class Player:
         self.gleague_id = self.get_data()
         self.pic_id = id
         self.get_misc_data()
-
+        self.gamelog = self.get_game_log()
 
     def get_analytics(self):
         test_data = [[self.threepm, self.ast, self.fga, self.pts, self.reb]]
@@ -82,10 +79,28 @@ class Player:
         for obj in data:
             self.bg = obj[9]
             self.height = obj[10]
-            print(self.height)
             self.weight = obj[11]
             self.position = obj[14]
 
     def split_id(self):
         pic_id = self.gleague_id.split("/")[3]
         return pic_id
+
+    def get_game_log(self):
+        log = []
+        try:
+            ua = UserAgent()
+            header = {"User-Agent": str(ua.random)}
+            response = requests.get("http://stats.gleague.nba.com/stats/playergamelog?LeagueID=20&PlayerID=" + str(
+                self.id) + "&Season=2017-18&SeasonType=Regular+Season", headers=header)
+            data = response.json()['resultSets'][0]['rowSet']
+            try:
+                for i in range(0, 10):
+                    log.append(data[i])
+            except IndexError:
+                pass
+
+        except json.JSONDecodeError:
+            print("couldnt access api")
+            log = None
+        return log

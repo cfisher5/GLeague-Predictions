@@ -148,6 +148,14 @@ body {
   margin:0 auto;
 }
 
+#shotchart{
+    width: 466px;
+    height:516px;
+}
+
+#game_log{
+    width:50%;
+}
 .white-color{
   color:white;
 }
