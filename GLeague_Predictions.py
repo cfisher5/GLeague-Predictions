@@ -65,15 +65,20 @@ def page_not_found(e):
 
 @app.route('/get', methods=['get'])
 def show_info():
-    player_id = request.args.get('player_id')
-    if "/" in player_id:
-        player_id = player_id.split("/")[3]
-    player_name = request.args.get('player_list')
-    player_obj = Player(player_id, player_name)
-    print(player_id)
-    player_obj.get_analytics()
+
     with open('data/players_json.txt', 'r') as infile:
         players_json = infile.read()
+
+    player_id = request.args.get('player_id')
+    print("the player id: " + player_id)
+    player_name = request.args.get('player_list')
+
+    if "/" in player_id:
+        player_id = player_id.split("/")[3]
+    print("player name " + player_name)
+    player_obj = Player(player_id, player_name)
+    player_obj.get_analytics()
+
     return render_template('content.html', player=player_obj, players_json=players_json)
 
 

@@ -16,7 +16,6 @@ $( function() {
         select: function( event, ui ) {
             var player = ui.item.value;
             $(this).val(ui.item.label);
-            console.log(player);
             $("#player_id").val(player);
             return false
         }

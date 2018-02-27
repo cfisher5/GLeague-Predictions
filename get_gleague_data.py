@@ -48,8 +48,8 @@ for obj in data:
     ast = str(obj[22])
     pts = str(obj[29])
 
-    player['label'] = name
-    player['value'] = href
+    player["label"] = name
+    player["value"] = href
 
     if player_json.__contains__(player):
         print("ALREADY INSIDE")

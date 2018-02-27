@@ -46,6 +46,7 @@ class Player:
                         self.neighbors.append(neigh)
 
     def get_data(self):
+
         with open('data/gleague_data.csv', 'r') as gleague_file:
             players = csv.reader(gleague_file, delimiter=',')
             next(players, None)
