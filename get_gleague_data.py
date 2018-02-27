@@ -6,7 +6,6 @@ from fake_useragent import UserAgent
 
 player_json = []
 wd = os.getcwd()
-print(wd)
 
 if wd == "/home/cfisher5":
     csv_filename = "GLeaguePredictions/GLeague-Predictions/data/gleague_data_new.csv"

@@ -31,3 +31,14 @@ setTimeout(function() {
         }
     }
 }, 6000);
+
+function usePlaceholder(img){
+    img.src = "../static/placeholder.png";
+    if(img.className === "neighbor-headshot"){
+         img.style.width = "100px";
+    }
+    else{
+        img.style.width = "126.6px";
+    }
+
+}

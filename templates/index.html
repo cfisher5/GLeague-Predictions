@@ -32,7 +32,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="row center">
                         <a href="/get?player_list={{ prospect.name }}&player_id=%2Fplayer%2F%23%21%2F{{ prospect.pic_id }}%2Fstats%2F%3Fp%3D{{ prospect.name }}">
-                            <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png">
+                            <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png" onerror="usePlaceholder(this)">
                         </a>
                     </div>
                     <div class="row center padding-top-bottom">
@@ -44,8 +44,44 @@
                 </div>
                 {% endfor %}
             </div>
+            <hr style="">
+            <h4 style="text-align: center;padding-top: 20px;">The Regress, Cluster, Classify (RCC) Framework</h4>
+            <ul class="timeline">
 
+                <!-- Item 1 -->
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Regress</span>
+                        </div>
+                        <div class="desc">Use linear regression to determine which boxscore stats are predictable from the G League to the NBA</div>
+                    </div>
+                </li>
 
+                <!-- Item 2 -->
+                <li>
+                    <div class="direction-l">
+                        <div class="flag-wrapper">
+                            <span class="flag">Cluster</span>
+                        </div>
+                        <div class="desc">Cluster the players using the stats determined in the "Regress" step. Label clusters in both G League domain and NBA domain</div>
+                    </div>
+                </li>
+
+                <!-- Item 3 -->
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Classify</span>
+                        </div>
+                        <div class="desc">Label unseen G League players with their G League cluster, then use the role-transformation chart to deduce realistic NBA career types</div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <h4 style="text-align: center;padding:20px;">View Cole Fisher's UWO undergraduate thesis: <a href="../static/ColeFisher_4490_FinalReport.pdf" target="_blank"> "Regress, Cluster, Classify: A Framework for Domain-to-Domain Prediction"</a> </h4>
+        
         </div>
     {% endblock %}
 
