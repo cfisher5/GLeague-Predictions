@@ -12,13 +12,12 @@ setTimeout(function() {
     var elems = document.getElementsByClassName('index-headshot');
     for (var i = 0; i < elems.length; i++){
         var height = elems[i].clientHeight;
-        if(height <= 1){
+        if(height < 167){
             console.log("foundone");
-            elems[i].src = "../static/placeholder.png";
-            elems[i].style.width = "126.6px";
+            elems[i].style.height = "167px";
         }
     }
-}, 6000);
+}, 3000);
 
 setTimeout(function() {
     var elems = document.getElementsByClassName('main-headshot');
@@ -38,7 +37,7 @@ function usePlaceholder(img){
          img.style.width = "100px";
     }
     else{
-        img.style.width = "126.6px";
+        img.style.height = "167px";
     }
 
 }
