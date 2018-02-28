@@ -158,8 +158,8 @@ hr{
 }
 
 #shotchart{
-    width: 375px;
-    height:436px;
+    max-width: 100%;
+    /*height: 436px;*/
 }
 
 #game_log{
