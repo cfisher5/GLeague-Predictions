@@ -9,6 +9,12 @@ $( function() {
     $( "#player_list" ).autocomplete({
         source: availableTags,
         maxShowItems:6,
+        focus: function( event, ui ) {
+            var player = ui.item.value;
+            $(this).val(ui.item.label);
+            $("#player_id").val(player);
+            return false;
+        },
         select: function( event, ui ) {
             var player = ui.item.value;
             $(this).val(ui.item.label);
