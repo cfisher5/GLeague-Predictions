@@ -24,7 +24,7 @@ setTimeout(function() {
     for (var i = 0; i < elems.length; i++){
         var height = elems[i].clientHeight;
         if(height <= 1){
-            console.log("foundone");
+            console.log("found one");
             elems[i].src = "../static/placeholder.png";
             elems[i].style.width = "126.6px";
         }
@@ -36,8 +36,13 @@ function usePlaceholder(img){
     if(img.className === "neighbor-headshot"){
          img.style.width = "100px";
     }
-    else{
+    else if(img.className === "index-headshot"){
         img.style.height = "167px";
     }
+    else{
+        img.style.height = "157px";
+        img.style.width = "125px";
+    }
+
 
 }

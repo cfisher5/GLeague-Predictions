@@ -52,7 +52,7 @@ h3{
 }
 
 .main-headshot {
-  width:100%;
+  max-width:230px;
 }
 
 .index-headshot{
@@ -158,8 +158,8 @@ hr{
 }
 
 #shotchart{
-    width: 466px;
-    height:516px;
+    width: 375px;
+    height:436px;
 }
 
 #game_log{
@@ -266,7 +266,7 @@ table{
 
 .timeline {
   position: relative;
-  width: 660px;
+  width: 500px;
   margin: 0 auto;
   margin-top: 20px;
   padding: 1em 0;
@@ -307,14 +307,14 @@ table{
 
 .direction-l {
   position: relative;
-  width: 300px;
+  width: 219px;
   float: left;
   text-align: right;
 }
 
 .direction-r {
   position: relative;
-  width: 300px;
+  width: 219px;
   float: right;
 }
 

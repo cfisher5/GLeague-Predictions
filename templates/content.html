@@ -26,7 +26,7 @@
                     {% endif %}
                 </div>
             </div>
-                <div class="row">
+                <div class="row" style="text-align:center;">
                 <div class="col-xs-12 col-sm-6 col-md-8">
                     <div class="row">
                         <img class="main-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ player.pic_id }}.png" onerror="usePlaceholder(this)">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-20">
 
-                    <div class="row center">
+                    <div class="row center" style="font-size: 12px;">
                         <strong>2017-2018 G League Stats per 36 Min:</strong>
                         <p style="padding-top:10px;"><sup class="name">GP</sup>{{ player.gp }}</p>
                         <p><sup class="name">PTS</sup>{{ player.pts }}</p>
@@ -58,16 +58,16 @@
         </div>
 
         <div class="col-sm-12 col-md-8" style="display:inline-block">
-            <div class="row" style="text-align:center !important;padding-top: 50px;">
+            <div class="row" style="text-align:center !important;padding-top: 40px;">
                 <img style="width:90%;" src="{{ url_for('static', filename='cluster_alluvial.png') }}">
             </div>
             <div class="row">
-                <span> Use this flow chart to visualize the role-transformations that exist between the G League and the NBA </span>
+                <span style="font-size: 11px;"> Use this flow chart to visualize the role-transformations that exist between the G League and the NBA </span>
             </div>
         </div>
     </div>
 
-        <div class="row padding-top-bottom">
+        <div class="row padding-top-bottom" >
         {% if player.gamelog != None %}
             <div class="col-sm-12 col-md-6">
                 <h3>Last 10 Games Log</h3>
@@ -103,7 +103,7 @@
                 </table>
             </div>
             {% endif %}
-            <div class="col-sm-12 col-md-6" style="padding-right: 40px">
+            <div class="col-sm-12 col-md-5" >
                 <h3>2017-18 Shot Chart</h3>
                 <iframe id="shotchart" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
             </div>

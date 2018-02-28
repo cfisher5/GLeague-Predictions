@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b4a25e9-4ce5-4dc3-b04c-9cd357b87fb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GLeague_Predictions.py" afterPath="$PROJECT_DIR$/GLeague_Predictions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Player.py" afterPath="$PROJECT_DIR$/Player.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/gleague_data.csv" afterPath="$PROJECT_DIR$/data/gleague_data.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/players_json.txt" afterPath="$PROJECT_DIR$/data/players_json.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_gleague_data.py" afterPath="$PROJECT_DIR$/get_gleague_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cluster_alluvial.png" afterPath="$PROJECT_DIR$/static/cluster_alluvial.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scripts.js" afterPath="$PROJECT_DIR$/static/scripts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/styles/style.css" afterPath="$PROJECT_DIR$/static/styles/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/player_search.html" afterPath="$PROJECT_DIR$/templates/player_search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/content.html" afterPath="$PROJECT_DIR$/templates/content.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +18,7 @@
     <SUITE FILE_PATH="coverage/GLeague_Predictions$GLeague_Predictions.coverage" NAME="GLeague-Predictions Coverage Results" MODIFIED="1519764692109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.39898476">
+    <splitter split-orientation="horizontal" split-proportion="0.8071298">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
@@ -37,7 +34,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GLeague_Predictions.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GLeague_Predictions.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GLeague_Predictions.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="523">
@@ -113,13 +110,18 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="content.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/content.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="149">
-                  <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+                <state relative-caret-position="447">
+                  <caret line="109" column="14" lean-forward="true" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
                   <folding>
                     <element signature="e#168#196#0#HTML" expanded="true" />
+                    <element signature="e#1477#1503#0#HTML" expanded="true" />
+                    <element signature="e#2650#2674#0#HTML" expanded="true" />
+                    <element signature="e#3417#3472#0#HTML" expanded="true" />
+                    <element signature="e#3495#3513#0#HTML" expanded="true" />
+                    <element signature="e#3649#3673#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -144,8 +146,8 @@
           <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/styles/style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="381" column="1" lean-forward="true" selection-start-line="381" selection-start-column="1" selection-end-line="381" selection-end-column="1" />
+                <state relative-caret-position="81">
+                  <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -154,8 +156,8 @@
           <file leaf-file-name="scripts.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/scripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
-                  <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+                <state relative-caret-position="364">
+                  <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -208,13 +210,13 @@
         <option value="$PROJECT_DIR$/analytics.py" />
         <option value="$PROJECT_DIR$/data/gleague_data.csv" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/content.html" />
-        <option value="$PROJECT_DIR$/static/scripts.js" />
         <option value="$PROJECT_DIR$/templates/player_search.html" />
         <option value="$PROJECT_DIR$/Player.py" />
         <option value="$PROJECT_DIR$/get_gleague_data.py" />
         <option value="$PROJECT_DIR$/GLeague_Predictions.py" />
+        <option value="$PROJECT_DIR$/static/scripts.js" />
         <option value="$PROJECT_DIR$/static/styles/style.css" />
+        <option value="$PROJECT_DIR$/templates/content.html" />
       </list>
     </option>
   </component>
@@ -356,7 +358,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20436187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11631664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24939467" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -474,6 +476,11 @@
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="e#168#196#0#HTML" expanded="true" />
+            <element signature="e#1477#1503#0#HTML" expanded="true" />
+            <element signature="e#2650#2674#0#HTML" expanded="true" />
+            <element signature="e#3417#3472#0#HTML" expanded="true" />
+            <element signature="e#3495#3513#0#HTML" expanded="true" />
+            <element signature="e#3649#3673#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -553,11 +560,6 @@
     <entry file="file://$PROJECT_DIR$/get_players.py" />
     <entry file="file://$PROJECT_DIR$/data/prospects_to_watch.csv" />
     <entry file="file://$PROJECT_DIR$/static/placeholder.jpg" />
-    <entry file="file://$PROJECT_DIR$/static/cluster_alluvial.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/placeholder.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -623,26 +625,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/block.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3555">
-          <caret line="237" column="16" lean-forward="false" selection-start-line="237" selection-start-column="16" selection-end-line="237" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/training_data.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/2010-17_dataset_clustered.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -658,29 +644,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/web-forms.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="90" column="22" lean-forward="false" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -692,16 +660,6 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
-          <folding>
-            <element signature="e#168#196#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -760,11 +718,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/analytics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/cluster_alluvial.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="237" column="16" lean-forward="false" selection-start-line="237" selection-start-column="16" selection-end-line="237" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/2010-17_dataset_clustered.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="381" column="1" lean-forward="true" selection-start-line="381" selection-start-column="1" selection-end-line="381" selection-end-column="1" />
+        <state relative-caret-position="81">
+          <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="109" column="14" lean-forward="true" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
+          <folding>
+            <element signature="e#168#196#0#HTML" expanded="true" />
+            <element signature="e#1477#1503#0#HTML" expanded="true" />
+            <element signature="e#2650#2674#0#HTML" expanded="true" />
+            <element signature="e#3417#3472#0#HTML" expanded="true" />
+            <element signature="e#3495#3513#0#HTML" expanded="true" />
+            <element signature="e#3649#3673#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
