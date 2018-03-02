@@ -185,6 +185,11 @@ table{
 
 }
 
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #002b54;
+    color:white;
+}
+
 .blue_hover:hover{
     color:dodgerblue !important;
 }
