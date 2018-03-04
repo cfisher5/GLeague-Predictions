@@ -61,6 +61,7 @@ h3{
 
 .neighbor-headshot {
   width:100px;
+    min-height:150px;
 }
 
 .container{
@@ -161,9 +162,6 @@ hr{
     max-width: 100%;
 }
 
-#game_log{
-    width:50%;
-}
 .white-color{
   color:white;
 }
@@ -185,8 +183,8 @@ table{
 
 }
 
-.table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: #002b54;
+#gamelog_table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: black;
     color:white;
 }
 
