@@ -1,4 +1,6 @@
 import csv
+import math
+
 
 class Neighbor:
 
@@ -7,8 +9,8 @@ class Neighbor:
         self.bref_id = None
         self.gleague_cluster = None
         self.nba_cluster = None
-        self.height = "N/A"
-        self.weight = "N/A"
+        self.height = None
+        self.weight = None
         self.position = "N/A"
         self.gl_threepm = None
         self.gl_g = None
@@ -25,6 +27,16 @@ class Neighbor:
         self.pic_id = self.get_data(realgm_id)
 
     def get_data(self, realgm_id):
+
+        with open('data/training_data.csv', 'r') as training:
+            players = csv.reader(training, delimiter=',')
+            next(players, None)
+            for player in players:
+                if player[2] == realgm_id:
+                    self.height = str(math.floor(int(player[9]) / 12)) + "-" + str(int(player[9]) % 12)
+                    self.weight = player[10]
+                    break
+
         with open('data/2010-17_dataset_clustered.csv', 'r') as database:
             rows = csv.reader(database, delimiter=",")
             next(rows, None)
@@ -48,4 +60,5 @@ class Neighbor:
                     self.nba_reb = player[139]
                     pic_id = self.bref_id.split("/")[3].split(".")[0]
                     return pic_id
+
         return None

@@ -28,11 +28,17 @@ class Player:
         self.gleague_id = self.get_data()
         self.pic_id = id
         self.get_misc_data()
+        self.height_inches = self.convert_height()
         self.gamelog = self.get_game_log()
 
     def get_analytics(self):
-        test_data = [[self.threepm, self.ast, self.fga, self.pts, self.reb]]
-        X_train, y, test = format_data(test_data)
+        if self.height != "":
+            test_data = [[self.threepm, self.ast, self.fga, self.pts, self.reb, self.height_inches, self.weight]]
+            X_train, y, test = format_data(test_data, True)
+        else:
+            test_data = [[self.threepm, self.ast, self.fga, self.pts, self.reb]]
+            X_train, y, test = format_data(test_data, False)
+
         pred = gaussian_nb(X_train, y, test)
         self.gnb_cluster = pred
         self.knn_cluster, comps = knn(X_train, y, test)
@@ -82,6 +88,14 @@ class Player:
             self.height = obj[10]
             self.weight = obj[11]
             self.position = obj[14]
+
+    def convert_height(self):
+        height = self.height
+        if height == "":
+            return None
+        feet, inches = height.split("-")
+        height_inches = int(feet) * 12 + int(inches)
+        return height_inches
 
     def split_id(self):
         pic_id = self.gleague_id.split("/")[3]

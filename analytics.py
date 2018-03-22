@@ -16,9 +16,13 @@ def get_cluster_name(num):
     return clusters[num]
 
 
-def format_data(test):
+def format_data(test, hw_flag):
     data = pd.read_csv("data/training_data.csv", sep=",")
-    data = data[['Gl 3Pmpg', 'Gl Astpg', 'Gl Fgapg', 'Gl Ptspg', 'Gl Rebpg', 'GLeague Clusters']]
+    if hw_flag:
+        data = data[['Gl 3Pmpg', 'Gl Astpg', 'Gl Fgapg', 'Gl Ptspg', 'Gl Rebpg', 'GLeague Clusters', 'Height', 'Weight']]
+    else:
+        data = data[['Gl 3Pmpg', 'Gl Astpg', 'Gl Fgapg', 'Gl Ptspg', 'Gl Rebpg', 'GLeague Clusters']]
+
     data['GLeague Clusters'] = data['GLeague Clusters'].map(
         {'Low Usage Defenders': 0, 'Inside Scoring Bigs ': 1, 'Facilitators': 2,
          'Swiss Army Knives': 3, 'Sweet-Shooting Bucket Getters': 4, 'High Usage Scoring Bigs': 5})
