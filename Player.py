@@ -73,6 +73,7 @@ class Player:
         print("Unable to find " + self.name)
 
     def get_misc_data(self):
+        print(self.id)
         url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(self.id) + "&SeasonType=Regular+Season"
         data = None
         try:
