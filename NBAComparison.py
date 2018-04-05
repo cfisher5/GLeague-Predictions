@@ -30,16 +30,16 @@ class NBAComparison:
                     self.team_id = row[3]
                     self.team = row[4]
                     self.nba_g = row[5]
-                    self.nba_min = row[6]
-                    self.nba_pts = row[7]
-                    self.nba_reb = row[8]
-                    self.nba_ast = row[9]
-                    self.nba_stl = row[10]
-                    self.nba_blk = row[11]
-                    self.nba_tov = row[12]
-                    self.nba_fgper = row[13]
-                    self.nba_threeper = row[14]
-                    self.nba_ftper = row[15]
+                    self.nba_min = round(float(row[6]), 0)
+                    self.nba_pts = round(float(row[7]), 1)
+                    self.nba_reb = round(float(row[8]), 1)
+                    self.nba_ast = round(float(row[9]), 1)
+                    self.nba_stl = round(float(row[10]), 1)
+                    self.nba_blk = round(float(row[11]), 1)
+                    self.nba_tov = round(float(row[12]), 1)
+                    self.nba_fgper = round(float(row[13]) * 100, 1)
+                    self.nba_threeper = round(float(row[14]) * 100, 1)
+                    self.nba_ftper = round(float(row[15]) * 100, 1)
                     break
 
 

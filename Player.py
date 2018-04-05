@@ -61,24 +61,24 @@ class Player:
             for row in preds:
                 if self.id == row[0]:
                     data = [row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]]
-                    print([data])
                     return [data]
+        return None
 
     def getNBANeighbors(self):
+        if self.predicted_nba_stats is None:
+            return None
+
         comps = get_nba_comps(self.predicted_nba_stats)
         players = []
         for num in comps:
-            print("abcd" + str(num))
             with open("data/nba36.csv", 'r') as nba:
                 nba_file = csv.reader(nba, delimiter=",")
                 next(nba_file, None)
                 for row in nba_file:
                     if str(num) == row[0]:
-                        print("FOUND NBA match: " + row[1])
                         nba_comp = NBAComparison(row[1], row[2])
                         nba_comp.populate()
                         players.append(nba_comp)
-                        print(nba_comp)
 
         return players
 
@@ -104,7 +104,6 @@ class Player:
         print("Unable to find " + self.name)
 
     def get_misc_data(self):
-        print(self.id)
         url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(self.id) + "&SeasonType=Regular+Season"
         data = None
         try:

@@ -113,7 +113,7 @@
 
     <div class="row center padding-20">
     <div class="row padding-top-bottom">
-        <h3>Three G League Player Comparisons using k-nearest neighbors:</h3>
+        <h3>G League Player Comparisons:</h3>
     </div>
     <div class="row padding-20">
         {% for n in player.neighbors %}
@@ -214,13 +214,37 @@
             </div>
         {% endfor %}
     </div>
+    {% if player.nba_comps != None %}
+    <div class="row padding-top-bottom">
+        <h3>NBA player comparisons using the <a href="http://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
+            <h4>These NBA comparisons are based on pace-adjusted per 36 minute boxscore stats and each player is required to have played >= 300 min.</h4>
+    </div>
     <div class="row padding-20">
         {% for nba_comp in player.nba_comps %}
             <div class="col-sm-12 col-md-4">
                 <div class="row center">
                     <img class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ nba_comp.team_id }}/2017/260x190/{{ nba_comp.id }}.png" onerror="usePlaceholder(this)">
-                    <h4 class="center">{{ nba_comp.name }} | {{ nba_comp.team }}</h4>
+                    <h4 class="center">{{ nba_comp.name }}<img class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ nba_comp.team }}_logo.svg"></h4>
+                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
+
+                    <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
+                        <div class="col-xs-6">
+                            <p style="padding-top:10px;"><sup class="name">GP</sup>{{ nba_comp.nba_g }}</p>
+                            <p><sup class="name">MIN</sup>{{ nba_comp.nba_min }}</p>
+                            <p><sup class="name">FG%</sup>{{ nba_comp.nba_fgper }}</p>
+                            <p><sup class="name">3P%</sup>{{ nba_comp.nba_threeper }}</p>
+                            <p><sup class="name">FT%</sup>{{ nba_comp.nba_ftper }}</p>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <p style="padding-top:10px;"><sup class="name">PTS</sup>{{ nba_comp.nba_pts }}</p>
+                            <p><sup class="name">REB</sup>{{ nba_comp.nba_reb }}</p>
+                            <p><sup class="name">AST</sup>{{ nba_comp.nba_ast }}</p>
+                            <p><sup class="name">STL</sup>{{ nba_comp.nba_stl }}</p>
+                            <p><sup class="name">BLK</sup>{{ nba_comp.nba_blk }}</p>
+                        </div>
+                    </div>
                 </div>
 {#                <div class="row padding-20">#}
 {##}
@@ -308,6 +332,7 @@
             </div>
         {% endfor %}
     </div>
+    {% endif %}
 </div>
 </div>
 {% endblock %}
