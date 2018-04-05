@@ -10,7 +10,7 @@ with open('data/training_data2.csv','w') as newFile:
         for row in rows:
             realgm_id = row[2]
             url = "https://basketball.realgm.com" + realgm_id
-            page = urlopen(url)
+            page = urlopen(url, timeout=10)
             soup = BeautifulSoup(page, "html.parser")
             pdivs = soup.find('div', attrs={'class': 'profile-box'}).div.find('div', attrs={'class': 'half-column-left'}).findAll('p')
             for p in pdivs:

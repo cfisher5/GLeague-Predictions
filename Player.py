@@ -3,6 +3,7 @@ from Neighbor import *
 from fake_useragent import UserAgent
 import requests
 import json
+from NBAComparison import *
 
 
 class Player:
@@ -30,6 +31,8 @@ class Player:
         self.get_misc_data()
         self.height_inches = self.convert_height()
         self.gamelog = self.get_game_log()
+        self.predicted_nba_stats = self.get_predictions()
+        self.nba_comps = self.getNBANeighbors()
 
     def get_analytics(self):
         if self.height != "":
@@ -39,8 +42,7 @@ class Player:
             test_data = [[self.threepm, self.ast, self.fga, self.pts, self.reb]]
             X_train, y, test = format_data(test_data, False)
 
-        pred = gaussian_nb(X_train, y, test)
-        self.gnb_cluster = pred
+        self.gnb_cluster = gaussian_nb(X_train, y, test)
         self.knn_cluster, comps = knn(X_train, y, test)
         for neighbor in comps:
             with open("data/training_data.csv", "r") as player_file:
@@ -50,6 +52,35 @@ class Player:
                     if str(neighbor) == str(p[0]):
                         neigh = Neighbor(p[2],p[1])
                         self.neighbors.append(neigh)
+
+
+    def get_predictions(self):
+        with open('data/gleague_projections.csv', 'r') as predictions:
+            preds = csv.reader(predictions, delimiter=",")
+            next(preds, None)
+            for row in preds:
+                if self.id == row[0]:
+                    data = [row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]]
+                    print([data])
+                    return [data]
+
+    def getNBANeighbors(self):
+        comps = get_nba_comps(self.predicted_nba_stats)
+        players = []
+        for num in comps:
+            print("abcd" + str(num))
+            with open("data/nba36.csv", 'r') as nba:
+                nba_file = csv.reader(nba, delimiter=",")
+                next(nba_file, None)
+                for row in nba_file:
+                    if str(num) == row[0]:
+                        print("FOUND NBA match: " + row[1])
+                        nba_comp = NBAComparison(row[1], row[2])
+                        nba_comp.populate()
+                        players.append(nba_comp)
+                        print(nba_comp)
+
+        return players
 
     def get_data(self):
 

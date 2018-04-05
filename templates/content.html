@@ -213,5 +213,101 @@
 
             </div>
         {% endfor %}
-    </div></div></div>
+    </div>
+    <div class="row padding-20">
+        {% for nba_comp in player.nba_comps %}
+            <div class="col-sm-12 col-md-4">
+                <div class="row center">
+                    <img class="nba-comp-headshot center comparisons"
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ nba_comp.team_id }}/2017/260x190/{{ nba_comp.id }}.png" onerror="usePlaceholder(this)">
+                    <h4 class="center">{{ nba_comp.name }} | {{ nba_comp.team }}</h4>
+                </div>
+{#                <div class="row padding-20">#}
+{##}
+{#                    <table class="table table-striped table-bordered table-hover table-responsive stats">#}
+{#                        <thead>#}
+{#                        <tr>#}
+{#                            <th></th>#}
+{#                            <th>G League</th>#}
+{#                            <th>NBA</th>#}
+{#                        </tr>#}
+{#                        </thead>#}
+{#                        <tbody>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                GP#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_g }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_g }}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                PTS#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_pts }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_pts}}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                FGA#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_fga }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_fga }}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                3PM#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_threepm }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_threepm }}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                REB#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_reb }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_reb }}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>#}
+{#                                AST#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.gl_ast }}#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                {{ n.nba_ast }}#}
+{#                            </td>#}
+{#                        </tr>#}
+{##}
+{##}
+{#                        </tbody>#}
+{#                    </table>#}
+{#                </div>#}
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
 {% endblock %}
