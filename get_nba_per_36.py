@@ -76,4 +76,9 @@ def scrape():
                      ast + "," + stl + "," + blk + "," + tov + "," + fgper + "," + threeper + "," + ftper + "\n")
         index += 1
     nba_36.close()
+    return True
 
+
+done = False
+while not done:
+    done = scrape()
