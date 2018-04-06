@@ -149,6 +149,7 @@ def scrape():
 
     nba_36 = open(nba_per_36, 'w')
     nba_36.write('index,ID,Name,TeamID,Team,GP,TotalMin,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
+
     url = "http://stats.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=" \
           "&Division=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=00&Location=&" \
           "MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Per36&Period=0" \
@@ -164,7 +165,7 @@ def scrape():
             'origin': 'http://stats.nba.com'}
         response = requests.get(url, headers=header, timeout=10)
         data = response.json()['resultSets'][0]['rowSet']
-    except json.JSONDecodeError:
+    except requests.ReadTimeout:
         print("unable to reach API")
         return False
     index = 0
