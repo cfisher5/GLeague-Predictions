@@ -33,7 +33,7 @@ def scrape():
         height = str(row['heightFeet']) + "-" + str(row['heightInches'])
         height_inches = int(row['heightFeet']) * 12 + int(row['heightInches'])
         weight = str(row['weightPounds'])
-        pos = row['pos']
+        pos = row['posExpanded']
 
         nba_data.write(id + "," + height + "," + str(height_inches) + "," + weight + "," + pos + "\n")
 
