@@ -52,20 +52,20 @@ h3{
 }
 
 .main-headshot {
-  max-width:230px;
+    max-width:230px;
 }
 
 .index-headshot{
-  height:167px !important;
+    height:167px !important;
 }
 
 .neighbor-headshot {
-  width:100px;
+    width:100px;
     min-height:150px;
 }
 
 .nba-comp-headshot{
-    max-width:200px;
+    max-height:157px;
 }
 .container{
     width:80% !important;

@@ -60,7 +60,7 @@ class Player:
             next(preds, None)
             for row in preds:
                 if self.id == row[0]:
-                    data = [row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]]
+                    data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9], int(self.height_inches), int(self.weight)]
                     return [data]
         return None
 
@@ -71,12 +71,12 @@ class Player:
         comps = get_nba_comps(self.predicted_nba_stats)
         players = []
         for num in comps:
-            with open("data/nba36.csv", 'r') as nba:
+            with open("data/nba_merge.csv", 'r') as nba:
                 nba_file = csv.reader(nba, delimiter=",")
                 next(nba_file, None)
                 for row in nba_file:
                     if str(num) == row[0]:
-                        nba_comp = NBAComparison(row[1], row[2])
+                        nba_comp = NBAComparison(row[1])
                         nba_comp.populate()
                         players.append(nba_comp)
 
@@ -119,6 +119,17 @@ class Player:
             self.height = obj[10]
             self.weight = obj[11]
             self.position = obj[14]
+
+            if self.height == "":
+                with open("data/nba_player_data.csv", "r") as nba_data:
+                    players = csv.reader(nba_data)
+                    next(players, None)
+                    for player in players:
+                        if self.id == player[0]:
+                            self.height = player[1]
+                            self.weight = player[3]
+                            self.position = player[4]
+                            break
 
     def convert_height(self):
         height = self.height

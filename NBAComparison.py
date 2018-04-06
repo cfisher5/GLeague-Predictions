@@ -3,8 +3,8 @@ import csv
 
 class NBAComparison:
 
-    def __init__(self, id, name):
-        self.name = name
+    def __init__(self, id):
+        self.name = None
         self.id = id
         self.team_id = None
         self.team = None
@@ -19,7 +19,9 @@ class NBAComparison:
         self.nba_stl = None
         self.nba_blk = None
         self.nba_tov = None
-
+        self.height = None
+        self.weight = None
+        self.position = None
 
     def populate(self):
         with open("data/nba36.csv", 'r') as nba:
@@ -27,6 +29,7 @@ class NBAComparison:
             next(nba_file, None)
             for row in nba_file:
                 if self.id == row[1]:
+                    self.name = row[2]
                     self.team_id = row[3]
                     self.team = row[4]
                     self.nba_g = row[5]
@@ -42,7 +45,14 @@ class NBAComparison:
                     self.nba_ftper = round(float(row[15]) * 100, 1)
                     break
 
-
+        with open("data/nba_player_data.csv", "r") as nba_data:
+            players = csv.reader(nba_data)
+            next(players, None)
+            for player in players:
+                if self.id == player[0]:
+                    self.height = player[1]
+                    self.weight = player[3]
+                    self.position = player[4]
 
 
 
