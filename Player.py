@@ -84,7 +84,8 @@ class Player:
         players = []
         num_appended = 0
         for num in comps:
-            with open("data/nba_merge.csv", 'r') as nba:
+            print(num)
+            with open("data/nba_merge.csv", "r") as nba:
                 nba_file = csv.reader(nba, delimiter=",")
                 next(nba_file, None)
                 for row in nba_file:
