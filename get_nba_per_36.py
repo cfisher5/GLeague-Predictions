@@ -24,7 +24,7 @@ def scrape():
                 avg_pace = float(team[1])
                 break
 
-    nba_36 = open(nba_per_36, 'w')
+    nba_36 = open(nba_per_36, "w")
     nba_36.write('index,ID,Name,TeamID,Team,GP,TotalMin,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
 
     url = "http://stats.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=" \
@@ -78,6 +78,7 @@ def scrape():
         threeper = str(float(row[15]) * (avg_pace/float(pace)))
         ftper = str(float(row[18]) * (avg_pace/float(pace)))
 
+        print("writing row for player " + id)
         nba_36.write(str(index) + "," + id + "," + name + "," + teamID + "," + team + "," + gp + "," + min + "," + pts+ "," + reb + "," +
                      ast + "," + stl + "," + blk + "," + tov + "," + fgper + "," + threeper + "," + ftper + "\n")
         index += 1
