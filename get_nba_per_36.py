@@ -1,7 +1,7 @@
 import requests
 import os
 import csv
-
+import json
 
 def scrape():
     wd = os.getcwd()
@@ -9,8 +9,10 @@ def scrape():
     if wd == "/home/cfisher5":
         pace_csv = "GLeaguePredictions/GLeague-Predictions/data/pace.csv"
         nba_per_36 = "GLeaguePredictions/GLeague-Predictions/data/nba36.csv"
+        per36_json = "GLeaguePredictions/GLeague-Predictions/data/nbaper36.json"
     else:
         nba_per_36 = "data/nba36.csv"
+        per36_json = "data/nbaper36.json"
         pace_csv = "data/pace.csv"
 
     avg_pace = None
@@ -21,8 +23,6 @@ def scrape():
             if team[0] == "avg":
                 avg_pace = float(team[1])
                 break
-
-
 
     nba_36 = open(nba_per_36, 'w')
     nba_36.write('index,ID,Name,TeamID,Team,GP,TotalMin,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
@@ -42,15 +42,17 @@ def scrape():
             'origin': 'http://stats.nba.com'}
         response = requests.get(url, headers=header, timeout=10)
         data = response.json()['resultSets'][0]['rowSet']
+        print("using API")
     except requests.ReadTimeout:
-        print("unable to reach API")
-        return False
+        print("unable to reach API, so using old json")
+        data = json.load(open(per36_json))['resultSets'][0]['rowSet']
+
     index = 0
     print("grabbing nba per 36")
+
     for row in data:
         min = row[9]
         if min < 300:
-            print("did not pass min threshold of 300 min")
             continue
         id = str(row[0])
         name = str(row[1])
@@ -80,6 +82,7 @@ def scrape():
                      ast + "," + stl + "," + blk + "," + tov + "," + fgper + "," + threeper + "," + ftper + "\n")
         index += 1
     nba_36.close()
+
     return True
 
 
