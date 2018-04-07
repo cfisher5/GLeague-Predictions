@@ -13,6 +13,7 @@
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+*:focus {outline:none}
 html,
 body {
     height:100%;
@@ -507,6 +508,7 @@ table{
 	float: none;
 }
 
+
 .direction-r .time-wrapper {
 	float: none;
 }
@@ -542,3 +544,24 @@ table{
 }
 
 }
+
+.pad{
+    padding:10px;
+    padding-left:3px !important;
+}
+
+.button-style{
+    font-size:11px;
+    margin:7px;
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+:checked + label{
+    color: green;
+    font-weight:bold;
+}
+

@@ -4,9 +4,17 @@ import csv
 
 
 def scrape():
+    wd = os.getcwd()
+
+    if wd == "/home/cfisher5":
+        pace_csv = "GLeaguePredictions/GLeague-Predictions/data/pace.csv"
+        nba_per_36 = "GLeaguePredictions/GLeague-Predictions/data/nba36.csv"
+    else:
+        nba_per_36 = "data/nba36.csv"
+        pace_csv = "data/pace.csv"
 
     avg_pace = None
-    with open("data/pace.csv", "r") as pace_file:
+    with open(pace_csv, "r") as pace_file:
         pace = csv.reader(pace_file)
         next(pace, None)
         for team in pace:
@@ -14,11 +22,7 @@ def scrape():
                 avg_pace = float(team[1])
                 break
 
-    wd = os.getcwd()
-    if wd == "/home/cfisher5":
-        nba_per_36 = "GLeaguePredictions/GLeague-Predictions/data/nba36.csv"
-    else:
-        nba_per_36 = "data/nba36.csv"
+
 
     nba_36 = open(nba_per_36, 'w')
     nba_36.write('index,ID,Name,TeamID,Team,GP,TotalMin,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
@@ -52,7 +56,7 @@ def scrape():
         name = str(row[1])
         teamID = str(row[2])
         team = str(row[3])
-        with open("data/pace.csv", 'r') as pace_file:
+        with open(pace_csv, 'r') as pace_file:
             rows = csv.reader(pace_file, delimiter=",")
             next(rows, None)
             for t in rows:

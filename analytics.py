@@ -36,18 +36,23 @@ def format_data(test, hw_flag):
     return X_train, y, X_test
 
 
-def get_nba_comps(test):
+def get_nba_comps(test, data_given=None):
     data = pd.read_csv("data/nba_merge.csv")
-    data = data[['PTS', 'REB', 'AST', 'STL', 'BLK', 'FGper', 'threeper', 'FTper', 'height_inches', 'weight']]
+    if data_given is not None:
+        data = data[data_given]
+        print("using custom nba data")
+    else:
+        data = data[['PTS', 'REB', 'AST', 'STL', 'BLK', 'FGper', 'threeper', 'FTper', 'height_inches', 'weight']]
+
     std_scale = preprocessing.StandardScaler().fit(data)
     X_train = std_scale.transform(data)
     X_test = std_scale.transform(test)
-    neigh = NearestNeighbors(n_neighbors=3, algorithm="brute")
+    neigh = NearestNeighbors(n_neighbors=4, algorithm="brute")
     neigh.fit(X_train)
     comps = None
     for player in X_test:
-        comps = neigh.kneighbors([player], 3)
-    print(comps[1][0])
+        comps = neigh.kneighbors([player], 4)
+    print(comps)
     return comps[1][0]
 
 

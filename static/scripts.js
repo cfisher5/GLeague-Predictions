@@ -41,8 +41,12 @@ function usePlaceholder(img){
     }
     else{
         img.style.height = "157px";
-        img.style.width = "125px";
+        // img.style.width = "125px";
     }
-
-
+}
+function check_uncheck_all(btn){
+    console.log("pressed!!!");
+    var d = $(btn).data(); // access the data object of the button
+    $(':checkbox').prop('checked', d.checked); // set all checkboxes 'checked' property using '.prop()'
+    d.checked = !d.checked; // set the new 'checked' opposite value to the button's data object
 }

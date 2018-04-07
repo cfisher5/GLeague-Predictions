@@ -15,6 +15,7 @@ def scrape():
         old_csv_filename = "GLeaguePredictions/GLeague-Predictions/data/gleague_data.csv"
         old_json_filename = "GLeaguePredictions/GLeague-Predictions/data/players_json.txt"
         gleague_projections_csv = "GLeaguePredictions/GLeague-Predictions/data/gleague_projections.csv"
+        pace_json = "GLeaguePredictions/GLeague-Predictions/data/pace.json"
         pace_csv = "GLeaguePredictions/GLeague-Predictions/data/pace.csv"
     else:
         csv_filename = "data/gleague_data_new.csv"
@@ -23,6 +24,7 @@ def scrape():
         old_json_filename = "data/players_json.txt"
         gleague_projections_csv = "data/gleague_projections.csv"
         pace_csv = "data/pace.csv"
+        pace_json = "data/pace.json"
 
 
     gleague_ids = open(csv_filename, 'w')

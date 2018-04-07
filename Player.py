@@ -8,8 +8,8 @@ from NBAComparison import *
 
 class Player:
 
-    def __init__(self, id, name):
-        self.name = name
+    def __init__(self, id):
+        self.name = None
         self.team = None
         self.id = id
         self.height = None
@@ -54,32 +54,47 @@ class Player:
                         self.neighbors.append(neigh)
 
 
-    def get_predictions(self):
+    def get_predictions(self, data_given=None, height=None, weight=None):
         with open('data/gleague_projections.csv', 'r') as predictions:
             preds = csv.reader(predictions, delimiter=",")
             next(preds, None)
             for row in preds:
                 if self.id == row[0]:
-                    data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9], int(self.height_inches), int(self.weight)]
-                    return [data]
+                    if data_given is not None:
+                        print("grabbing custom data")
+                        data = []
+                        for item in data_given:
+                            data.append(row[item])
+                        if height is not None:
+                            data.append(int(self.height_inches))
+                        if weight is not None:
+                            data.append(int(self.weight))
+                        self.predicted_nba_stats = [data]
+                        return [data]
+                    else:
+                        data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9], int(self.height_inches), int(self.weight)]
+                        return [data]
         return None
 
-    def getNBANeighbors(self):
+    def getNBANeighbors(self, data_given=None):
         if self.predicted_nba_stats is None:
             return None
 
-        comps = get_nba_comps(self.predicted_nba_stats)
+        comps = get_nba_comps(self.predicted_nba_stats, data_given=data_given)
         players = []
+        num_appended = 0
         for num in comps:
             with open("data/nba_merge.csv", 'r') as nba:
                 nba_file = csv.reader(nba, delimiter=",")
                 next(nba_file, None)
                 for row in nba_file:
                     if str(num) == row[0]:
-                        nba_comp = NBAComparison(row[1])
-                        nba_comp.populate()
-                        players.append(nba_comp)
-
+                        if row[1] != self.id and num_appended < 3:
+                            num_appended += 1
+                            nba_comp = NBAComparison(row[1])
+                            nba_comp.populate()
+                            players.append(nba_comp)
+                            break
         return players
 
     def get_data(self):
@@ -89,6 +104,7 @@ class Player:
             next(players, None)
             for p in players:
                 if self.id == p[1]:
+                    self.name = p[0]
                     gleague_id = p[1]
                     self.team = p[2]
                     self.name = p[0]

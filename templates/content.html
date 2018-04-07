@@ -1,6 +1,50 @@
 {% extends "index.html" %}
 
 {% block content %}
+    <script>
+    $(function() {
+        var nbaCompsReset = false;
+        var submit_form = function(e) {
+            var data_items = [];
+            $("input:checkbox[class=pad]:checked").each(function () {
+                data_items.push($(this).val());
+            });
+
+            $.getJSON($SCRIPT_ROOT + '/_getComps', {
+                data: JSON.stringify({ data_selected: data_items }),
+                playerID: {{ player.id }}
+            }, function(data){
+                nbaCompsReset = true;
+                var json = data.result;
+                for (var i = 0; i < json.length; i++) {
+                    var player = json[i];
+                    var q = i + 1;
+                    $("#img" + q.toString()).attr("src", "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/" + player['team_id'] + "/2017/260x190/" + player['id'] + ".png");
+                    $("#name" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['name']);
+                    $("#logo" + q.toString()).attr("src", "http://stats.nba.com/media/img/teams/logos/" + player['team'] + "_logo.svg");
+                    $("#hwpos" + q.toString()).text(player['height'] + " | " + player['weight'] +" lbs | " + player['position']);
+                    $("#gp" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_g']);
+
+                    $("#min" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_min']);
+                    $("#fgper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_fgper']);
+                    $("#threeper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_threeper']);
+                    $("#ftper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ftper']);
+                    $("#pts" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_pts']);
+                    $("#reb" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_reb']);
+                    $("#ast" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ast']);
+                    $("#stl" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_stl']);
+                    $("#blk" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_blk']);
+
+                }
+            });
+        return false;
+        };
+
+        $('#getCompsButton').bind('click', submit_form);
+    });
+
+    </script>
+
     <div class="container" id="page_data">
         <div class="row center">
             <div class="col-sm-12 col-md-4" style="display:inline-block">
@@ -42,7 +86,6 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-20">
-
                     <div class="row center" style="font-size: 12px;">
                         <strong>2017-2018 G League Stats per 36 Min:</strong>
                         <p style="padding-top:10px;"><sup class="name">GP</sup>{{ player.gp }}</p>
@@ -217,36 +260,103 @@
     {% if player.nba_comps != None %}
     <div class="row padding-top-bottom">
         <h3>NBA player comparisons using the <a href="http://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
-            <h4>These NBA comparisons are based on pace-adjusted per 36 minute boxscore stats and each player is required to have played >= 300 min.</h4>
+        <h4>These NBA comparisons are based on pace-adjusted per 36 minute boxscore stats and each player is required to have played >= 300 min.</h4>
+        <h4>Use the checkboxes below to narrow your NBA comparison search!</h4>
     </div>
-    <div class="row padding-20">
-        {% for nba_comp in player.nba_comps %}
+        <button class='button-style' onclick="check_uncheck_all(this)" id='checkall' data-checked='false'>Check/Uncheck All</button>
+        <input class="pad" type="checkbox" id="pts" value="pts" checked/><label for="pts" class="pad">PTS</label>
+        <input class="pad" type="checkbox" id="reb" value="reb" checked/><label for="reb" class="pad">REB</label>
+        <input class="pad" type="checkbox" id="ast" value="ast" checked/><label for="ast" class="pad">AST</label>
+        <input class="pad" type="checkbox" id="stl" value="stl" checked/><label for="stl" class="pad">STL</label>
+        <input class="pad" type="checkbox" id="blk" value="blk" checked/><label for="blk" class="pad">BLK</label>
+        <input class="pad" type="checkbox" id="fgper" value="fgper" checked/><label for="fg[er" class="pad">FG%</label>
+        <input class="pad" type="checkbox" id="threeper" value="threeper" checked/><label for="threeper" class="pad">3P%</label>
+        <input class="pad" type="checkbox" id="ftper" value="ftper" checked/><label for="ftper" class="pad">FT%</label>
+        <input class="pad" type="checkbox" id="height" value="height" checked/><label for="height" class="pad">Height</label>
+        <input class="pad" type="checkbox" id="weight" value="weight" checked/><label for="weight" class="pad">Weight</label>
+        <input class="button-style" id="getCompsButton" type="submit" value="Find NBA Comparisons">
+        <div class="row padding-20">
             <div class="col-sm-12 col-md-4">
                 <div class="row center">
-                    <img class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ nba_comp.team_id }}/2017/260x190/{{ nba_comp.id }}.png" onerror="usePlaceholder(this)">
-                    <h4 class="center">{{ nba_comp.name }}<img class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ nba_comp.team }}_logo.svg"> <span class="center">{{ nba_comp.height }} | {{ nba_comp.weight }} lbs | {{ nba_comp.position }}</span> </h4>
+                    <img id="img1" class="nba-comp-headshot center comparisons"
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[0].team_id }}/2017/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
+                    <h4 id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> <span id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span> </h4>
 
                     <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
 
                     <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
                         <div class="col-xs-6">
-                            <p style="padding-top:10px;"><sup class="name">GP</sup>{{ nba_comp.nba_g }}</p>
-                            <p><sup class="name">MIN</sup>{{ nba_comp.nba_min }}</p>
-                            <p><sup class="name">FG%</sup>{{ nba_comp.nba_fgper }}</p>
-                            <p><sup class="name">3P%</sup>{{ nba_comp.nba_threeper }}</p>
-                            <p><sup class="name">FT%</sup>{{ nba_comp.nba_ftper }}</p>
+                            <p id="gp1" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[0].nba_g }}</p>
+                            <p id="min1"><sup class="name">MIN</sup>{{ player.nba_comps[0].nba_min }}</p>
+                            <p id="fgper1"><sup class="name">FG%</sup>{{ player.nba_comps[0].nba_fgper }}</p>
+                            <p id="threeper1"><sup class="name">3P%</sup>{{ player.nba_comps[0].nba_threeper }}</p>
+                            <p id="ftper1"><sup class="name">FT%</sup>{{ player.nba_comps[0].nba_ftper }}</p>
 
                         </div>
                         <div class="col-xs-6">
-                            <p style="padding-top:10px;"><sup class="name">PTS</sup>{{ nba_comp.nba_pts }}</p>
-                            <p><sup class="name">REB</sup>{{ nba_comp.nba_reb }}</p>
-                            <p><sup class="name">AST</sup>{{ nba_comp.nba_ast }}</p>
-                            <p><sup class="name">STL</sup>{{ nba_comp.nba_stl }}</p>
-                            <p><sup class="name">BLK</sup>{{ nba_comp.nba_blk }}</p>
+                            <p id="pts1" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[0].nba_pts }}</p>
+                            <p id="reb1"><sup class="name">REB</sup>{{ player.nba_comps[0].nba_reb }}</p>
+                            <p id="ast1"><sup class="name">AST</sup>{{ player.nba_comps[0].nba_ast }}</p>
+                            <p id="stl1"><sup class="name">STL</sup>{{ player.nba_comps[0].nba_stl }}</p>
+                            <p id="blk1"><sup class="name">BLK</sup>{{ player.nba_comps[0].nba_blk }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="row center">
+                    <img id="img2" class="nba-comp-headshot center comparisons"
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[1].team_id }}/2017/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
+                    <h4 id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> <span id="hwpos2" class="center">{{ player.nba_comps[1].height }} | {{ player.nba_comps[1].weight }} lbs | {{ player.nba_comps[1].position }}</span> </h4>
+
+                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
+
+                    <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
+                        <div class="col-xs-6">
+                            <p id="gp2" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[1].nba_g }}</p>
+                            <p id="min2"><sup class="name">MIN</sup>{{ player.nba_comps[1].nba_min }}</p>
+                            <p id="fgper2"><sup class="name">FG%</sup>{{ player.nba_comps[1].nba_fgper }}</p>
+                            <p id="threeper2"><sup class="name">3P%</sup>{{ player.nba_comps[1].nba_threeper }}</p>
+                            <p id="ftper2"><sup class="name">FT%</sup>{{ player.nba_comps[1].nba_ftper }}</p>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <p id="pts2" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[1].nba_pts }}</p>
+                            <p id="reb2"><sup class="name">REB</sup>{{ player.nba_comps[1].nba_reb }}</p>
+                            <p id="ast2"><sup class="name">AST</sup>{{ player.nba_comps[1].nba_ast }}</p>
+                            <p id="stl2"><sup class="name">STL</sup>{{ player.nba_comps[1].nba_stl }}</p>
+                            <p id="blk2"><sup class="name">BLK</sup>{{ player.nba_comps[1].nba_blk }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="row center">
+                    <img id="img3" class="nba-comp-headshot center comparisons"
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[2].team_id }}/2017/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
+                    <h4 id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> <span id="hwpos3" class="center">{{ player.nba_comps[2].height }} | {{ player.nba_comps[2].weight }} lbs | {{ player.nba_comps[2].position }}</span> </h4>
+
+                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
+
+                    <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
+                        <div class="col-xs-6">
+                            <p id="gp3" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[2].nba_g }}</p>
+                            <p id="min3"><sup class="name">MIN</sup>{{ player.nba_comps[2].nba_min }}</p>
+                            <p id="fgper3"><sup class="name">FG%</sup>{{ player.nba_comps[2].nba_fgper }}</p>
+                            <p id="threeper3"><sup class="name">3P%</sup>{{ player.nba_comps[2].nba_threeper }}</p>
+                            <p id="ftper3"><sup class="name">FT%</sup>{{ player.nba_comps[2].nba_ftper }}</p>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <p id="pts3" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[2].nba_pts }}</p>
+                            <p id="reb3"><sup class="name">REB</sup>{{ player.nba_comps[2].nba_reb }}</p>
+                            <p id="ast3"><sup class="name">AST</sup>{{ player.nba_comps[2].nba_ast }}</p>
+                            <p id="stl3"><sup class="name">STL</sup>{{ player.nba_comps[2].nba_stl }}</p>
+                            <p id="blk3"><sup class="name">BLK</sup>{{ player.nba_comps[2].nba_blk }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 {#                <div class="row padding-20">#}
 {##}
 {#                    <table class="table table-striped table-bordered table-hover table-responsive stats">#}
@@ -330,8 +440,6 @@
 {#                    </table>#}
 {#                </div>#}
 
-            </div>
-        {% endfor %}
     </div>
     {% endif %}
 </div>
