@@ -141,7 +141,7 @@ h3{
   margin-bottom:5px;
 }
 
-.logo{
+.logo-gleague{
   width:70px;
   padding: 5px 10px;
 }
@@ -572,6 +572,10 @@ label{
     color: green;
     font-weight:bold;
 }
-
+.logo{
+    max-width: 50px;
+    padding-left:10px;
+    padding-right:10px;
+}
 
 

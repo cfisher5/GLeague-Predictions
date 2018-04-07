@@ -53,7 +53,7 @@
                     <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
                         <h3 style="display:inline;color:black;" class="center">{{ player.name }}</h3>
                     </a>
-                    <h4 style="display:inline;"><img class="logo" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h4>
+                    <h4 style="display:inline;"><img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h4>
                 </div>
                 <div class="row">
                     {% if player.height != "" %}
@@ -269,7 +269,7 @@
         <input class="pad" type="checkbox" id="ast" value="ast" checked/><label for="ast" class="pad">AST</label>
         <input class="pad" type="checkbox" id="stl" value="stl" checked/><label for="stl" class="pad">STL</label>
         <input class="pad" type="checkbox" id="blk" value="blk" checked/><label for="blk" class="pad">BLK</label>
-        <input class="pad" type="checkbox" id="fgper" value="fgper" checked/><label for="fg[er" class="pad">FG%</label>
+        <input class="pad" type="checkbox" id="fgper" value="fgper" checked/><label for="fgper" class="pad">FG%</label>
         <input class="pad" type="checkbox" id="threeper" value="threeper" checked/><label for="threeper" class="pad">3P%</label>
         <input class="pad" type="checkbox" id="ftper" value="ftper" checked/><label for="ftper" class="pad">FT%</label>
         <input class="pad" type="checkbox" id="height" value="height" checked/><label for="height" class="pad">Height</label>
@@ -280,9 +280,13 @@
                 <div class="row center">
                     <img id="img1" class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[0].team_id }}/2017/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> <span id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span> </h4>
-
-                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
+                    <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
+                    <div class="row center">
+                        <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span>
+                    </div>
+                    <div class="row center padding-top">
+                        <span style="font-size: 11px;">2017-2018 NBA per 36 min pace-adjusted stats:</span>
+                    </div>
 
                     <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
                         <div class="col-xs-6">
@@ -307,11 +311,14 @@
                 <div class="row center">
                     <img id="img2" class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[1].team_id }}/2017/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> <span id="hwpos2" class="center">{{ player.nba_comps[1].height }} | {{ player.nba_comps[1].weight }} lbs | {{ player.nba_comps[1].position }}</span> </h4>
-
-                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
-
-                    <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
+                    <h4 style="margin-bottom:0;" id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> </h4>
+                    <div class="row center">
+                         <span style="font-size:12px;" id="hwpos2" class="center">{{ player.nba_comps[1].height }} | {{ player.nba_comps[1].weight }} lbs | {{ player.nba_comps[1].position }}</span>
+                    </div>
+                    <div class="row center padding-top">
+                        <span style="font-size: 11px;">2017-2018 NBA per 36 min pace-adjusted stats:</span>
+                    </div>
+                        <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
                         <div class="col-xs-6">
                             <p id="gp2" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[1].nba_g }}</p>
                             <p id="min2"><sup class="name">MIN</sup>{{ player.nba_comps[1].nba_min }}</p>
@@ -334,10 +341,13 @@
                 <div class="row center">
                     <img id="img3" class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[2].team_id }}/2017/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> <span id="hwpos3" class="center">{{ player.nba_comps[2].height }} | {{ player.nba_comps[2].weight }} lbs | {{ player.nba_comps[2].position }}</span> </h4>
-
-                    <strong style="font-size: 12px;">2017-2018 NBA per 36 min pace-adjusted stats:</strong>
-
+                    <h4 style="margin-bottom:0;" id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> </h4>
+                    <div class="row center">
+                         <span style="font-size:12px;" id="hwpos3" class="center">{{ player.nba_comps[2].height }} | {{ player.nba_comps[2].weight }} lbs | {{ player.nba_comps[2].position }}</span>
+                    </div>
+                    <div class="row center padding-top">
+                        <span style="font-size: 11px;">2017-2018 NBA per 36 min pace-adjusted stats:</span>
+                    </div>
                     <div class="row center" style="font-size: 12px; width:60%; margin:0 auto;">
                         <div class="col-xs-6">
                             <p id="gp3" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[2].nba_g }}</p>
@@ -345,7 +355,6 @@
                             <p id="fgper3"><sup class="name">FG%</sup>{{ player.nba_comps[2].nba_fgper }}</p>
                             <p id="threeper3"><sup class="name">3P%</sup>{{ player.nba_comps[2].nba_threeper }}</p>
                             <p id="ftper3"><sup class="name">FT%</sup>{{ player.nba_comps[2].nba_ftper }}</p>
-
                         </div>
                         <div class="col-xs-6">
                             <p id="pts3" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[2].nba_pts }}</p>
