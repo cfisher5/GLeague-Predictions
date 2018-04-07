@@ -19,7 +19,7 @@
                 for (var i = 0; i < json.length; i++) {
                     var player = json[i];
                     var q = i + 1;
-                    $("#img" + q.toString()).attr("src", "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/" + player['team_id'] + "/2017/260x190/" + player['id'] + ".png");
+                    $("#img" + q.toString()).attr("src", "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + player['id'] + ".png");
                     $("#name" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['name']);
                     $("#logo" + q.toString()).attr("src", "http://stats.nba.com/media/img/teams/logos/" + player['team'] + "_logo.svg");
                     $("#hwpos" + q.toString()).text(player['height'] + " | " + player['weight'] +" lbs | " + player['position']);
@@ -279,7 +279,7 @@
             <div class="col-sm-12 col-md-4">
                 <div class="row center">
                     <img id="img1" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[0].team_id }}/2017/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
                     <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
                     <div class="row center">
                         <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span>
@@ -310,7 +310,7 @@
             <div class="col-sm-12 col-md-4">
                 <div class="row center">
                     <img id="img2" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[1].team_id }}/2017/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
                     <h4 style="margin-bottom:0;" id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> </h4>
                     <div class="row center">
                          <span style="font-size:12px;" id="hwpos2" class="center">{{ player.nba_comps[1].height }} | {{ player.nba_comps[1].weight }} lbs | {{ player.nba_comps[1].position }}</span>
@@ -340,7 +340,7 @@
             <div class="col-sm-12 col-md-4">
                 <div class="row center">
                     <img id="img3" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{{ player.nba_comps[2].team_id }}/2017/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
+                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
                     <h4 style="margin-bottom:0;" id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> </h4>
                     <div class="row center">
                          <span style="font-size:12px;" id="hwpos3" class="center">{{ player.nba_comps[2].height }} | {{ player.nba_comps[2].weight }} lbs | {{ player.nba_comps[2].position }}</span>
