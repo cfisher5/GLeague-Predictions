@@ -136,7 +136,7 @@ def scrape():
     #     except requests.exceptions.ReadTimeout:
     #         print("experiencing timeout...")
 
-    pace_data = json.load(open('data/pace.json'))
+    pace_data = json.load(open(pace_json))
 
     print("grabbing pace information")
     for team in pace_data['resultSets'][0]['rowSet']:
