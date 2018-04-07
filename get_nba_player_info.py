@@ -48,20 +48,18 @@ def scrape():
             nba_data.write(id + "," + height + "," + str(height_inches) + "," + weight + "," + pos + "\n")
         except ValueError:
             print("player " + id + " does not have height listed. excluding him.")
+            continue
 
     nba_data.close()
     return True
 
 
-done = False
-while not done:
+done = scrape()
+data = pd.read_csv(per_36, sep=",")
+data = data[['ID', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'FGper', 'threeper', 'FTper']]
+height_weight_data = pd.read_csv(nba_data, sep=",")
+height_weight_data = height_weight_data[['ID', 'height_inches', 'weight']]
 
-    done = scrape()
-    data = pd.read_csv(per_36, sep=",")
-    data = data[['ID', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'FGper', 'threeper', 'FTper']]
-    height_weight_data = pd.read_csv(nba_data, sep=",")
-    height_weight_data = height_weight_data[['ID', 'height_inches', 'weight']]
-
-    merge = pd.merge(left=data, right=height_weight_data, how='inner', on='ID')
-    merge.to_csv(merge_filename)
-    merged = merge.drop('ID', axis=1)
+merge = pd.merge(left=data, right=height_weight_data, how='inner', on='ID')
+merge.to_csv(merge_filename)
+merged = merge.drop('ID', axis=1)
