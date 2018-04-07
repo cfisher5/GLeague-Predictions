@@ -7,9 +7,9 @@ def scrape():
     wd = os.getcwd()
 
     if wd == "/home/cfisher5":
-        pace_csv = "GLeaguePredictions/GLeague-Predictions/data/pace.csv"
-        nba_per_36 = "GLeaguePredictions/GLeague-Predictions/data/nba36.csv"
-        per36_json = "GLeaguePredictions/GLeague-Predictions/data/nbaper36.json"
+        pace_csv = "GLeague-Predictions/data/pace.csv"
+        nba_per_36 = "GLeague-Predictions/data/nba36.csv"
+        per36_json = "GLeague-Predictions/data/nbaper36.json"
     else:
         nba_per_36 = "data/nba36.csv"
         per36_json = "data/nbaper36.json"

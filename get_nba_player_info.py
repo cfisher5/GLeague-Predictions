@@ -7,11 +7,11 @@ import pandas as pd
 wd = os.getcwd()
 
 if wd == "/home/cfisher5":
-    csv_filename = "GLeaguePredictions/GLeague-Predictions/data/nba_player_data.csv"
-    per_36 = "GLeaguePredictions/GLeague-Predictions/data/nba36.csv"
-    merge_filename = "GLeaguePredictions/GLeague-Predictions/data/nba_merge.csv"
-    nba_data = "GLeaguePredictions/GLeague-Predictions/data/nba_player_data.csv"
-    active_json = "GLeaguePredictions/GLeague-Predictions/data/activeplayers.json"
+    csv_filename = "GLeague-Predictions/data/nba_player_data.csv"
+    per_36 = "GLeague-Predictions/data/nba36.csv"
+    merge_filename = "GLeague-Predictions/data/nba_merge.csv"
+    nba_data = "GLeague-Predictions/data/nba_player_data.csv"
+    active_json = "GLeague-Predictions/data/activeplayers.json"
 
 else:
     csv_filename = "data/nba_player_data.csv"

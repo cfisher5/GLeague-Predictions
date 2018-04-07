@@ -10,13 +10,13 @@ def scrape():
     wd = os.getcwd()
 
     if wd == "/home/cfisher5":
-        csv_filename = "GLeaguePredictions/GLeague-Predictions/data/gleague_data_new.csv"
-        json_filename = "GLeaguePredictions/GLeague-Predictions/data/players_json_new.txt"
-        old_csv_filename = "GLeaguePredictions/GLeague-Predictions/data/gleague_data.csv"
-        old_json_filename = "GLeaguePredictions/GLeague-Predictions/data/players_json.txt"
-        gleague_projections_csv = "GLeaguePredictions/GLeague-Predictions/data/gleague_projections.csv"
-        pace_json = "GLeaguePredictions/GLeague-Predictions/data/pace.json"
-        pace_csv = "GLeaguePredictions/GLeague-Predictions/data/pace.csv"
+        csv_filename = "GLeague-Predictions/data/gleague_data_new.csv"
+        json_filename = "GLeague-Predictions/data/players_json_new.txt"
+        old_csv_filename = "GLeague-Predictions/data/gleague_data.csv"
+        old_json_filename = "GLeague-Predictions/data/players_json.txt"
+        gleague_projections_csv = "GLeague-Predictions/data/gleague_projections.csv"
+        pace_json = "GLeague-Predictions/data/pace.json"
+        pace_csv = "GLeague-Predictions/data/pace.csv"
     else:
         csv_filename = "data/gleague_data_new.csv"
         json_filename = "data/players_json_new.txt"
