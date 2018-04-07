@@ -24,7 +24,7 @@ class NBAComparison:
         self.position = None
 
     def populate(self):
-        with open("data/nba36.csv", 'r') as nba:
+        with open("data/nba36.csv", "r") as nba:
             nba_file = csv.reader(nba, delimiter=",")
             next(nba_file, None)
             for row in nba_file:
@@ -53,6 +53,7 @@ class NBAComparison:
                     self.height = player[1]
                     self.weight = player[3]
                     self.position = player[4]
+                    break
 
 
 

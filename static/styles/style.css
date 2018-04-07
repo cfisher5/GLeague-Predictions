@@ -187,10 +187,10 @@ table{
 
 }
 
-#gamelog_table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: black;
-    color:white;
-}
+/*#gamelog_table tbody tr:hover td, .table tbody tr:hover th {*/
+    /*background-color: black;*/
+    /*color:white;*/
+/*}*/
 
 .blue_hover:hover{
     color:dodgerblue !important;
@@ -560,9 +560,18 @@ table{
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+.button-style:hover{
+    background-color:black;
+    color:white;
+}
+label{
+    font-weight:normal;
+}
+
 :checked + label{
     color: green;
     font-weight:bold;
 }
+
 
 
