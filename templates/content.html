@@ -272,8 +272,11 @@
         <input class="pad" type="checkbox" id="fgper" value="fgper" checked/><label for="fgper" class="pad">FG%</label>
         <input class="pad" type="checkbox" id="threeper" value="threeper" checked/><label for="threeper" class="pad">3P%</label>
         <input class="pad" type="checkbox" id="ftper" value="ftper" checked/><label for="ftper" class="pad">FT%</label>
+
+        {% if player.height != "" %}
         <input class="pad" type="checkbox" id="height" value="height" checked/><label for="height" class="pad">Height</label>
         <input class="pad" type="checkbox" id="weight" value="weight" checked/><label for="weight" class="pad">Weight</label>
+        {% endif %}
         <input class="button-style" id="getCompsButton" type="submit" value="Find NBA Comparisons">
         <div class="row padding-20">
             <div class="col-sm-12 col-md-4">

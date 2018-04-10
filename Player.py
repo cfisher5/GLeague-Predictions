@@ -72,7 +72,11 @@ class Player:
                         self.predicted_nba_stats = [data]
                         return [data]
                     else:
-                        data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9], int(self.height_inches), int(self.weight)]
+                        if self.height == "":
+                            data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9]]
+                        else:
+                            data = [row[1], row[2], row[3], row[4], row[5], row[7], row[8], row[9], int(self.height_inches), int(self.weight)]
+
                         return [data]
         return None
 
@@ -80,11 +84,10 @@ class Player:
         if self.predicted_nba_stats is None:
             return None
 
-        comps = get_nba_comps(self.predicted_nba_stats, data_given=data_given)
+        comps = get_nba_comps(self, self.predicted_nba_stats, data_given=data_given)
         players = []
         num_appended = 0
         for num in comps:
-            print(num)
             with open("data/nba_merge.csv", "r") as nba:
                 nba_file = csv.reader(nba, delimiter=",")
                 next(nba_file, None)
@@ -134,6 +137,7 @@ class Player:
         for obj in data:
             self.bg = obj[9]
             self.height = obj[10]
+            print("HEIGHT: " + str(self.height))
             self.weight = obj[11]
             self.position = obj[14]
 

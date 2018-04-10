@@ -33,7 +33,8 @@ class NBAComparison:
                     self.team_id = row[3]
                     self.team = row[4]
                     self.nba_g = row[5]
-                    self.nba_min = round(float(row[6]), 0)
+                    self.nba_min = int(float(row[6]))
+                    print(self.nba_min)
                     self.nba_pts = round(float(row[7]), 1)
                     self.nba_reb = round(float(row[8]), 1)
                     self.nba_ast = round(float(row[9]), 1)

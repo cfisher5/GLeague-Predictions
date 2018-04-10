@@ -33,6 +33,7 @@ def begin():
         for num in random_nums:
             row = players[num]
             player_id = row[1]
+            print(player_id)
             player = Player(player_id)
             prospects.append(player)
 
@@ -53,6 +54,7 @@ def page_not_found(e):
         for num in random_nums:
             row = players[num]
             player_id = row[1]
+            print(player_id)
             player = Player(player_id)
             prospects.append(player)
 
