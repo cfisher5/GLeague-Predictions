@@ -1,9 +1,9 @@
 import requests
 import os
 import json
-from fake_useragent import UserAgent
 import time
-import csv
+import global_items
+
 
 def scrape():
     player_json = []
@@ -32,9 +32,7 @@ def scrape():
     url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Per36&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
 
     try:
-        header = {'user-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-                    }
-        response = requests.get(url, headers=header, timeout=10)
+        response = requests.get(url, headers=global_items.header, timeout=1000)
         data = response.json()['resultSets'][0]['rowSet']
     except json.JSONDecodeError:
         print("unable to reach API")
@@ -77,10 +75,7 @@ def scrape():
     gleague_projections.write('ID,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
     proj_url = "http://stats.gleague.nba.com/stats/dleaguepredictor?DLeagueTeamID=0&LeagueID=20&NBATeamID=0&Season=2017-18"
     try:
-        header = {
-            'user-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-        }
-        response = requests.get(proj_url, headers=header, timeout=10)
+        response = requests.get(proj_url, headers=global_items.header, timeout=1000)
         proj_data = response.json()['resultSets'][0]['rowSet']
     except json.JSONDecodeError:
         print("unable to reach API")

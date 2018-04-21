@@ -8,8 +8,7 @@ response = requests.post(
     'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain}/reload/'.format(
         username=username, domain=my_domain
     ),
-    headers={'Authorization': 'Token {token}'.format(token=token)}, timeout=10
-)
+    headers={'Authorization': 'Token {token}'.format(token=token)}, timeout=100)
 if response.status_code == 200:
     print('All OK')
 else:

@@ -9,7 +9,7 @@ $( function() {
     $( "#player_list" ).autocomplete({
         source: availableTags,
         maxShowItems:6,
-        focus: function( event, ui ) {
+        focus: function() {
             var player = ui.item.value;
             $(this).val(ui.item.label);
             $("#player_id").val(player);
@@ -37,7 +37,7 @@ $( function() {
             <form method="get" action="{{ url_for('show_info')}}" >
                 <div class="ui-widget no-blue">
                     <label class="white-color" for="player_list">Select a Player: </label>
-                    <input type='text' name="player_list" id="player_list">
+                    <input type='text' name="player_list" id="player_list" spellcheck="false">
                     <input type="text" name="player_id" id="player_id" style="display:none">
                     <input id='go-button' class="ui-button ui-widget ui-corner-all no-blue" type="submit" value="Go">
                 </div>
