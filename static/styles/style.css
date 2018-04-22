@@ -676,3 +676,9 @@ label{
 #gamelog_table td{
     padding:2px 3px;
 }
+
+@media only screen and (max-width: 767px) {
+    .explanation{
+        padding-top:0 !important;
+    }
+}
