@@ -221,11 +221,15 @@
                         </tbody>
                     </table>
                 </div>
+                <input class="button-style" style="width:100%;margin:0;text-align:center" id="changeShotChart" type="search" onclick="changeShotChart()" value="View Shot Chart for Last 10 Games Only">
+
             </div>
             {% endif %}
             <div class="col-sm-12 col-md-6" >
                 <h3>2017-18 Shot Chart</h3>
-                <iframe id="shotchart" width="375px" height="436px" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
+                <div id="iframe-container">
+                    <iframe width="375px" height="436px" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
+                </div>
             </div>
         </div>
 
@@ -557,6 +561,13 @@
             else if (class_name === "lud link" && cluster === "Low Usage Defender") {
                 paths[i].style.strokeOpacity = "1";
             }
+        }
+
+        function changeShotChart(){
+            $("#iframe-container").empty();
+            var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+            $("#iframe-container").append("<iframe width=\"375px\" height=\"436px\" src='" + url + "' />");
+
         }
     </script>
 {% endblock %}

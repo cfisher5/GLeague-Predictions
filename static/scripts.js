@@ -30,7 +30,7 @@ setTimeout(function() {
 }, 6000);
 
 function usePlaceholder(img){
-    img.src = "../static/placeholder.png";
+    img.src = "../static/default-headshot.png";
     if(img.className === "neighbor-headshot"){
          img.style.width = "100px";
     }
