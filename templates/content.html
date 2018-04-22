@@ -83,10 +83,10 @@
                 </div>
             </div>
 
-            <div class="col" style="padding-top:10px;">
+            <div class="col" style="padding:10px 0px">
                 <strong>2017-2018 G League Stats per 36 Min:</strong>
-                <div class="row" style="font-size: 13px;padding:15px 0;">
-                    <div class="col-xs-12 col-sm-6 left">
+                <div class="row" style="font-size: 13px;padding:15px 0;margin-left:0;margin-right:0;">
+                    <div class="col-xs-12 col-sm-6 center">
                         <div class="wrapper-w"><p><sup class="name">GP &nbsp;</sup>{{ player.gp }}</p></div>
                         <div class="wrapper-w"><p><sup class="name">PTS</sup>{{ player.pts }}</p></div>
                         <div class="wrapper-w"><p><sup class="name">REB</sup>{{ player.reb }}</p></div>
@@ -94,7 +94,7 @@
                         <div class="wrapper-w"><p><sup class="name">STL&nbsp;</sup>{{ player.stl }}</p></div>
                         <div class="wrapper-w"><p><sup class="name">BLK&nbsp;&nbsp;&nbsp;</sup>{{ player.blk }}</p></div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 left">
+                    <div class="col-xs-12 col-sm-6 center">
                         <div class="wrapper-w"><p><sup class="name">FGM</sup>{{ player.fgm }}</p></div>
                         <div class="wrapper-w"><p><sup class="name">FG%&nbsp;</sup> {{ player.fgper }}</p></div>
                         <div class="wrapper-w"><p><sup class="name">3FG&nbsp;</sup>{{ player.threepm }}</p></div>
@@ -106,11 +106,14 @@
             </div>
         </div>
         <div class="row border-bottom" style="padding-top: 40px;padding-bottom:25px;">
-        <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:20px;padding-left:0;">
+        <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:20px;padding-left:20px;">
             <strong>Use the role-transformation diagram to trace the different paths players take when they go from the G League to the NBA.</strong><br><br>
             <strong>Since the two leagues are so different from a talent standpoint, G League players must adapt and settle into a different role.</strong><br><br>
             <strong> {{ player.name }} is a G League <strong style="color:{{ player.cluster_color }};"> {{ player.gnb_cluster }} </strong> so trace the paths {{ player.gnb_cluster }}s usually take when going from the G League to the NBA.</strong><br><br>
-            <strong>The path thickness represents the number of G League players with that G League role from 2010-2017 who have gone on to the NBA and played that NBA role.</strong>
+            <button class="collapsible">Learn More</button>
+            <div class="collapsible-content">
+                <span>The path thickness represents the number of G League players with that G League role from 2010-2017 who have gone on to the NBA and played that NBA role.</span>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-7" style="display:inline-block">
             <div class="row">
@@ -187,21 +190,32 @@
 
         <div class="row padding-top-bottom" style="text-align: center;" >
         {% if player.gamelog != None %}
-            <div class="col-sm-12 col-md-6">
-                <h3>Last 10 Games Log</h3>
-                <div class="table-responsive">
-                    <table id="gamelog_table" class="table table-striped table-bordered table-hover">
+            <div class="col-sm-12 col-md-7" style="padding:0;">
+                <h3>Game Log</h3>
+                <div class="table-responsive" style="height:400px;margin-bottom:30px;overflow-y:scroll !important;">
+                    <table id="gamelog_table" class="table table-striped table-bordered table-hover" style="padding:5px;">
                         <thead>
                         <tr>
                             <th>Date</th>
                             <th>Matchup</th>
                             <th>Result</th>
-                            <th>Min</th>
-                            <th>PTS</th>
+                            <th>MIN</th>
+                            <th>FGM</th>
                             <th>FGA</th>
-                            <th>3PM</th>
+                            <th>FG%</th>
+                            <th>3FGM</th>
+                            <th>3FGA</th>
+                            <th>3FG%</th>
+                            <th>FTM</th>
+                            <th>FTA</th>
+                            <th>PTS</th>
                             <th>REB</th>
                             <th>AST</th>
+                            <th>STL</th>
+                            <th>BLK</th>
+                            <th>TOV</th>
+                            <th>+/-</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -211,24 +225,34 @@
                                 <td>{{ game[4] }}</td>
                                 <td>{{ game[5] }}</td>
                                 <td>{{ game[6] }}</td>
-                                <td>{{ game[24] }}</td>
+                                <td>{{ game[7] }}</td>
                                 <td>{{ game[8] }}</td>
+                                <td>{{ game[9] }}</td>
                                 <td>{{ game[10] }}</td>
+                                <td>{{ game[11] }}</td>
+                                <td>{{ game[12] }}</td>
+                                <td>{{ game[13] }}</td>
+                                <td>{{ game[14] }}</td>
+                                <td>{{ game[24] }}</td>
                                 <td>{{ game[18] }}</td>
                                 <td>{{ game[19] }}</td>
+                                <td>{{ game[20] }}</td>
+                                <td>{{ game[21] }}</td>
+                                <td>{{ game[22] }}</td>
+                                <td>{{ game[25] }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <input class="button-style" style="width:100%;margin:0;text-align:center" id="changeShotChart" type="search" onclick="changeShotChart()" value="View Shot Chart for Last 10 Games Only">
+                <input class="button-style" style="width:100%;margin:0;text-align:center" id="changeShotChart" type="button" onclick="changeShotChart(this)" value="View Shot Chart for Last 10 Games Only">
 
             </div>
             {% endif %}
-            <div class="col-sm-12 col-md-6" >
-                <h3>2017-18 Shot Chart</h3>
-                <div id="iframe-container">
-                    <iframe width="375px" height="436px" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
+            <div class="col-sm-12 col-md-5" >
+                <h3 id="shotchart-title">2017-18 Shot Chart</h3>
+                <div id="iframe-container" style="height:385px;">
+                    <iframe height="100%" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
                 </div>
             </div>
         </div>
@@ -563,11 +587,37 @@
             }
         }
 
-        function changeShotChart(){
-            $("#iframe-container").empty();
-            var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
-            $("#iframe-container").append("<iframe width=\"375px\" height=\"436px\" src='" + url + "' />");
-
+        function changeShotChart(btn){
+            if(btn.value === "View Shot Chart for Last 10 Games Only") {
+                $("#iframe-container").empty();
+                $("#shotchart-title").html("Last 10 Games Shot Chart");
+                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
+                btn.value = "View Full Season Shot Chart";
+            }
+            else{
+                $("#iframe-container").empty();
+                $("#shotchart-title").html("2017-18 Shot Chart");
+                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
+                btn.value = "View Shot Chart for Last 10 Games Only";
+            }
         }
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
     </script>
 {% endblock %}

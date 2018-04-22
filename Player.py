@@ -195,7 +195,7 @@ class Player:
                 self.id) + "&Season=2017-18&SeasonType=Regular+Season", headers=header)
             data = response.json()['resultSets'][0]['rowSet']
             try:
-                for i in range(0, 10):
+                for i in range(0, len(data)):
                     log.append(data[i])
             except IndexError:
                 pass
