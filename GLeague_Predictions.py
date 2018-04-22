@@ -74,7 +74,7 @@ def show_info():
     if "/" in player_id:
         player_id = player_id.split("/")[3]
     player_obj = Player(player_id)
-    player_obj.get_analytics()
+
 
     return render_template('content.html', player=player_obj, players_json=players_json)
 
@@ -86,7 +86,6 @@ def getNBAComps():
     nba_indexes = []
     playerID = request.args.get('playerID')
     player = Player(playerID)
-    player.get_analytics()
     height = None
     weight = None
     for item in data_comps:

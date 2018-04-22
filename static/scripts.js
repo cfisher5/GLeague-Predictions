@@ -13,7 +13,6 @@ setTimeout(function() {
     for (var i = 0; i < elems.length; i++){
         var height = elems[i].clientHeight;
         if(height < 167){
-            console.log("foundone");
             elems[i].style.height = "167px";
         }
     }
@@ -24,7 +23,6 @@ setTimeout(function() {
     for (var i = 0; i < elems.length; i++){
         var height = elems[i].clientHeight;
         if(height <= 1){
-            console.log("found one");
             elems[i].src = "../static/placeholder.png";
             elems[i].style.width = "126.6px";
         }
@@ -45,8 +43,10 @@ function usePlaceholder(img){
     }
 }
 function check_uncheck_all(btn){
-    console.log("pressed!!!");
     var d = $(btn).data(); // access the data object of the button
     $(':checkbox').prop('checked', d.checked); // set all checkboxes 'checked' property using '.prop()'
     d.checked = !d.checked; // set the new 'checked' opposite value to the button's data object
 }
+
+
+

@@ -18,9 +18,20 @@ class Player:
         self.bg = None
         self.age = None
         self.gp = None
+        self.min = None
         self.threepm = None
+        self.threepa = None
+        self.threeper = None
+        self.ftm = None
+        self.fta = None
+        self.ftper = None
         self.ast = None
+        self.stl = None
+        self.blk = None
+        self.tov = None
+        self.fgm = None
         self.fga = None
+        self.fgper = None
         self.pts = None
         self.reb = None
         self.gnb_cluster = None
@@ -33,6 +44,8 @@ class Player:
         self.gamelog = self.get_game_log()
         self.predicted_nba_stats = self.get_predictions()
         self.nba_comps = self.getNBANeighbors()
+        self.get_analytics()
+        self.cluster_color = self.getColor()
 
     def get_analytics(self):
         if self.height != "":
@@ -119,7 +132,17 @@ class Player:
                     self.reb = p[7]
                     self.ast = p[8]
                     self.pts = p[9]
-
+                    self.min = p[10]
+                    self.fgm = p[11]
+                    self.fgper = round(float(p[12]) * 100, 1)
+                    self.threepa = p[13]
+                    self.threeper = round(float(p[14]) * 100, 1)
+                    self.ftm = p[15]
+                    self.fta = p[16]
+                    self.ftper = round(float(p[17]) * 100, 1)
+                    self.tov = p[18]
+                    self.stl = p[19]
+                    self.blk = p[20]
                     return gleague_id
         print("Unable to find " + self.name)
 
@@ -137,7 +160,6 @@ class Player:
         for obj in data:
             self.bg = obj[9]
             self.height = obj[10]
-            print("HEIGHT: " + str(self.height))
             self.weight = obj[11]
             self.position = obj[14]
 
@@ -182,3 +204,18 @@ class Player:
             print("couldnt access api")
             log = None
         return log
+
+    def getColor(self):
+        if self.gnb_cluster == "Facilitator":
+            color = "#7a69bf"
+        elif self.gnb_cluster == "Inside Scoring Big":
+            color = "#69bf8b"
+        elif self.gnb_cluster == "High Usage Scoring Big":
+            color = "#698bbf"
+        elif self.gnb_cluster == "Swiss Army Knife":
+            color = "#ae69bf"
+        elif self.gnb_cluster == "Sweet-Shooting Bucket Getter":
+            color = "#bf699c"
+        else:
+            color = "#69bfbf"
+        return color

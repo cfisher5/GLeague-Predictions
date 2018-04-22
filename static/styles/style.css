@@ -69,7 +69,7 @@ h3{
     max-height:157px;
 }
 .container{
-    width:80% !important;
+    width:90% !important;
     padding-top:30px;
     padding-bottom:165px;
     height:100%;
@@ -152,7 +152,7 @@ hr{
 }
 
 .logo-mainpage{
-  width:80px;
+  width:60px;
   padding: 5px 10px;
   padding-left:0px !important;
 }
@@ -245,7 +245,7 @@ table{
 }
 
 .name{
-    padding-right:6px !important;
+    padding-right:9px !important;
     color:dimgrey !important;
     top:0 !important;
 }
@@ -555,7 +555,7 @@ table{
     margin:7px;
     padding:5px 15px;
     background:#ccc;
-    border:0 none;
+    border:thin black solid;
     cursor:pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -578,11 +578,68 @@ label{
     padding-right:10px;
 }
 
-svg path:hover {
-  stroke-opacity: 0.9 !important;
-  transition: all ease 0.3s;
+.equal_height_container{
+    padding-bottom: 1px;
+    border-bottom: thin grey dashed;
+    display: table; /* Make the container element behave like a table */
 }
 
-svg path {
-  transition: all ease 0.3s;
+.col {
+    display: table-cell; /* Make elements inside the container behave like table cells */
+    padding-left: 25px;
+    padding-right:25px;
+}
+
+@media (min-width: 701px) {
+    .border-right {
+        border-right: grey thin dashed;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .col {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 10px;
+        padding-right:10px;
+    }
+}
+.wrapper{
+    display:inline-block;
+}
+.wrapper-w{
+    display: inline-block;
+    width:70px;
+}
+
+.padding-left-right{
+    padding-left:15px;
+    padding-right:15px;
+}
+
+.inside-scoring-big{
+    color:rgb(105, 191, 139);
+}
+.high-usage-scoring-big{
+    color:rgb(105, 139, 191)
+}
+.left{
+    text-align: left;
+    padding:0;
+}
+@media only screen and (max-width: 700px) {
+    .left{
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .alluvial_label{
+        font-size:10px !important;
+    }
+}
+#checkall{
+    margin-right:16px;
+}
+.border-bottom{
+    border-bottom: thin grey dashed;
 }

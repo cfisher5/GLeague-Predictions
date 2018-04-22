@@ -29,7 +29,11 @@ def scrape():
     try:
         response = requests.get(url, headers=global_items.header, timeout=10)
         data = response.json()
-    except Exception:
+        print("grabbing nba player measurement/position data, and saving json for next time...")
+        with open(active_json, 'w') as outfile:
+            json.dump(data, outfile)
+            
+    except requests.ReadTimeout:
         print("unable to reach API so using old json")
         data = json.load(open(active_json))
 
