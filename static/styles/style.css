@@ -648,7 +648,7 @@ label{
     color: black;
     cursor: pointer;
     width: 100%;
-    text-align: center;
+    text-align: left;
     outline: none;
     font-size: 13px;
     padding:5px 15px;
@@ -668,6 +668,27 @@ label{
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: black;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.collapsible:hover:after {
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+
+.active:after {
+    content: "\2212";
+    color:white;
 }
 
 /*#gamelog_table th{
