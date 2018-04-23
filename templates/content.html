@@ -564,7 +564,6 @@
     <script>
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");
-        console.log(paths.length);
         for(i = 0; i < paths.length; i++) {
             var class_name = paths[i].className.baseVal;
             paths[i].style.strokeOpacity = ".25";
@@ -621,6 +620,7 @@
         }
 
         $(document).ready( function () {
+{#            $.noConflict();#}
             $('#gamelog_table').DataTable({
                 "scrollX": true,
                 "order": [[ 0, "desc" ]],
