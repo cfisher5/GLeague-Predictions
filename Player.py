@@ -4,8 +4,7 @@ from fake_useragent import UserAgent
 import requests
 import json
 from NBAComparison import *
-
-
+from datetime import datetime, date
 class Player:
 
     def __init__(self, id):
@@ -196,6 +195,8 @@ class Player:
             data = response.json()['resultSets'][0]['rowSet']
             try:
                 for i in range(0, len(data)):
+                    datetime_object = datetime.strptime(data[i][3], '%b %d, %Y').date()
+                    data[i][3] = datetime_object
                     log.append(data[i])
             except IndexError:
                 pass

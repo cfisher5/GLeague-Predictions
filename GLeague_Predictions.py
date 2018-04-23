@@ -28,8 +28,15 @@ def begin():
     random_nums = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
-        for i in range(0, 3):
-            random_nums.append(randint(1, len(players) - 1))
+        last = None
+        i = 0
+        while i < 3:
+            random = randint(1, len(players) - 1)
+            if random != last:
+                random_nums.append(random)
+                last = random
+                i += 1
+
         for num in random_nums:
             row = players[num]
             player_id = row[1]
@@ -49,8 +56,14 @@ def page_not_found(e):
     prospects = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
-        for i in range(0, 3):
-            random_nums.append(randint(1, len(players) - 1))
+        last = None
+        i = 0
+        while i < 3:
+            random = randint(1, len(players) - 1)
+            if random != last:
+                random_nums.append(random)
+                last = random
+                i += 1
         for num in random_nums:
             row = players[num]
             player_id = row[1]

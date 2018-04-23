@@ -670,12 +670,13 @@ label{
     background-color: #f1f1f1;
 }
 
-#gamelog_table th{
+/*#gamelog_table th{
     padding:2px 3px;
+    position:fixed;
 }
 #gamelog_table td{
     padding:2px 3px;
-}
+}*/
 
 @media only screen and (max-width: 767px) {
     .explanation{
