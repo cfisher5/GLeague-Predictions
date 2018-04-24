@@ -188,7 +188,7 @@
         </div>
 
 
-        <div class="row padding-top-bottom" style="text-align: center;" >
+        <div class="row padding-top-bottom border-bottom" style="text-align: center;padding-bottom:50px;" >
         {% if player.gamelog != None %}
             <div class="col-sm-12 col-md-7" style="padding:0;">
                 <h3>Game Log</h3>
@@ -250,7 +250,7 @@
             {% endif %}
             <div class="col-sm-12 col-md-5" style="padding:0">
                 <h3 id="shotchart-title">2017-18 Shot Chart</h3>
-                <div id="iframe-container" style="height:385px;overflow-x:scroll;">
+                <div id="iframe-container" style="height:385px;">
                     <iframe height="100%" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
                 </div>
                 <input class="button-style" style="margin-top:30px !important ;width:230px;margin:0;text-align:center" id="changeShotChart" type="button" onclick="changeShotChart(this)" value="View Shot Chart for Last 10 Games Only">
@@ -566,7 +566,7 @@
         var paths = $("svg g path");
         for(i = 0; i < paths.length; i++) {
             var class_name = paths[i].className.baseVal;
-            paths[i].style.strokeOpacity = ".25";
+            paths[i].style.strokeOpacity = "0.25";
             if (class_name === "f link" && cluster === "Facilitator") {
                 paths[i].style.strokeOpacity = "1";
             }
