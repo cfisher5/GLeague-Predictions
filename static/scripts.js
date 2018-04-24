@@ -31,6 +31,7 @@ setTimeout(function() {
 
 function usePlaceholder(img){
     img.src = "../static/default-headshot.png";
+    img.style.opacity = "0.5";
     if(img.className === "neighbor-headshot"){
          img.style.width = "100px";
     }
@@ -48,5 +49,16 @@ function check_uncheck_all(btn){
     d.checked = !d.checked; // set the new 'checked' opposite value to the button's data object
 }
 
+$(document).ready( function () {
+    $('#gamelog_table').DataTable({
+        "scrollX": true,
+        "order": [[ 0, "desc" ]],
+        "pagingType": "numbers",
+        "lengthChange": false,
+        fixedColumns: {
+            leftColumns: 2
+        }
 
+    });
+});
 

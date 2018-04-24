@@ -619,19 +619,5 @@
             });
         }
 
-        $(document).ready( function () {
-{#            $.noConflict();#}
-            $('#gamelog_table').DataTable({
-                "scrollX": true,
-                "order": [[ 0, "desc" ]],
-                "pagingType": "numbers",
-                "lengthChange": false,
-                fixedColumns: {
-                    leftColumns: 2
-                }
-
-            });
-        });
-
     </script>
 {% endblock %}

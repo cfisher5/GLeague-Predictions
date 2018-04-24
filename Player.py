@@ -4,7 +4,8 @@ from fake_useragent import UserAgent
 import requests
 import json
 from NBAComparison import *
-from datetime import datetime, date
+from datetime import datetime
+import global_items
 class Player:
 
     def __init__(self, id):
@@ -162,16 +163,32 @@ class Player:
             self.weight = obj[11]
             self.position = obj[14]
 
-            if self.height == "":
-                with open("data/nba_player_data.csv", "r") as nba_data:
-                    players = csv.reader(nba_data)
-                    next(players, None)
-                    for player in players:
-                        if self.id == player[0]:
-                            self.height = player[1]
-                            self.weight = player[3]
-                            self.position = player[4]
-                            break
+        if self.height == "":
+            with open("data/nba_player_data.csv", "r") as nba_data:
+                players = csv.reader(nba_data)
+                next(players, None)
+                for player in players:
+                    if self.id == player[0]:
+                        self.height = player[1]
+                        self.weight = player[3]
+                        self.position = player[4]
+                        return
+
+        url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2017/players/playercard_" + str(self.id) + "_02.json"
+        jsondata = None
+        try:
+            ua = UserAgent()
+            response = requests.get(url_json, headers=global_items.header)
+            jsondata = response.json()['pl']
+        except json.JSONDecodeError:
+            print("unable to reach s.data.nba API")
+            return
+
+        height = jsondata['ht']
+        self.height = height
+        weight = jsondata['wt']
+        self.weight = weight
+        self.position = jsondata['pos']
 
     def convert_height(self):
         height = self.height
