@@ -244,6 +244,10 @@ table{
 	margin-left: 3px;
 }
 
+.player_stat_name{
+    color:dimgrey !important;
+    top:0 !important;
+}
 .name{
     padding-right:9px !important;
     color:dimgrey !important;
@@ -573,9 +577,8 @@ label{
     font-weight:bold;
 }
 .logo{
-    max-width: 50px;
+    max-width: 40px;
     padding-left:10px;
-    padding-right:10px;
 }
 
 .equal_height_container{
@@ -611,6 +614,7 @@ label{
     display: inline-block;
     width:70px;
     text-align: left;
+    padding: 5px 7px
 }
 
 .padding-left-right{
@@ -704,3 +708,20 @@ label{
         padding-top: 0 !important;
     }
 }
+.right-center{
+    text-align: right;
+}
+
+.left-center{
+    text-align: left;
+}
+
+@media only screen and (max-width: 767px) {
+    .right-center{
+        text-align: center;
+    }
+    .left-center{
+        text-align: center;
+    }
+}
+

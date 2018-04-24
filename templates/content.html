@@ -85,23 +85,23 @@
 
             <div class="col" style="padding:10px 0px">
                 <strong style="padding:0 10px;">2017-2018 G League Stats per 36 Min:</strong>
-                <div class="row" style="font-size: 13px;padding:15px 0;margin-left:0;margin-right:0;">
-                    <div class="col-xs-12 col-sm-6 center">
-                        <div class="wrapper-w"><p><sup class="name">GP &nbsp;</sup>{{ player.gp }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">PTS</sup>{{ player.pts }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">REB</sup>{{ player.reb }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">AST</sup>{{ player.ast }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">STL&nbsp;</sup>{{ player.stl }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">BLK&nbsp;&nbsp;&nbsp;</sup>{{ player.blk }}</p></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 center">
-                        <div class="wrapper-w"><p><sup class="name">FGM</sup>{{ player.fgm }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">FG%&nbsp;</sup> {{ player.fgper }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">3FG&nbsp;</sup>{{ player.threepm }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">3FG%</sup>{{ player.threeper }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">TOV&nbsp;</sup>{{ player.tov }}</p></div>
-                        <div class="wrapper-w"><p><sup class="name">FT%&nbsp;</sup> {{ player.ftper }}</p></div>
-                    </div>
+                <div class="row" style="font-size: 13px;padding:15px 0 0;margin-left:0;margin-right:0;">
+                    <ul class="col-xs-12 col-sm-6 right-center" style="margin-bottom:0;">
+                        <li class="wrapper-w"><sup class="player_stat_name">GP</sup><span style="float:right;">{{ player.gp }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">PTS</sup><span style="float:right;">{{ player.pts }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">REB</sup><span style="float:right;">{{ player.reb }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">AST</sup><span style="float:right;">{{ player.ast }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">STL</sup><span style="float:right;">{{ player.stl }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">BLK</sup><span style="float:right;">{{ player.blk }}</span></li>
+                    </ul>
+                    <ul class="col-xs-12 col-sm-6 left-center" style="margin-bottom:0;">
+                        <li class="wrapper-w"><sup class="player_stat_name">FGM</sup><span style="float:right;">{{ player.fgm }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">FG</sup><span style="float:right;">{{ player.fgper }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">3PM</sup><span style="float:right;">{{ player.threepm }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">3P%</sup><span style="float:right;">{{ player.threeper }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">TOV</sup><span style="float:right;">{{ player.tov }}</span></li>
+                        <li class="wrapper-w"><sup class="player_stat_name">FT%</sup><span style="float:right;">{{ player.ftper }}</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -203,9 +203,9 @@
                             <th>FGM</th>
                             <th>FGA</th>
                             <th>FG%</th>
-                            <th>3FGM</th>
-                            <th>3FGA</th>
-                            <th>3FG%</th>
+                            <th>3PM</th>
+                            <th>3PA</th>
+                            <th>3P%</th>
                             <th>FTM</th>
                             <th>FTA</th>
                             <th>PTS</th>

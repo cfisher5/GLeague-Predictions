@@ -174,21 +174,22 @@ class Player:
                         self.position = player[4]
                         return
 
-        url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2017/players/playercard_" + str(self.id) + "_02.json"
-        jsondata = None
-        try:
-            ua = UserAgent()
-            response = requests.get(url_json, headers=global_items.header)
-            jsondata = response.json()['pl']
-        except json.JSONDecodeError:
-            print("unable to reach s.data.nba API")
-            return
+        if self.height == "":
+            url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2017/players/playercard_" + str(self.id) + "_02.json"
+            jsondata = None
+            try:
+                ua = UserAgent()
+                response = requests.get(url_json, headers=global_items.header)
+                jsondata = response.json()['pl']
+            except json.JSONDecodeError:
+                print("unable to reach s.data.nba API")
+                return
 
-        height = jsondata['ht']
-        self.height = height
-        weight = jsondata['wt']
-        self.weight = weight
-        self.position = jsondata['pos']
+            height = jsondata['ht']
+            self.height = height
+            weight = jsondata['wt']
+            self.weight = weight
+            self.position = jsondata['pos']
 
     def convert_height(self):
         height = self.height
