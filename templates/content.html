@@ -5,6 +5,13 @@
     $(function() {
         var nbaCompsReset = false;
         var submit_form = function(e) {
+            document.getElementById("comp-content").style.display = "none";
+            document.getElementById("loader").style.display = "block";
+            setTimeout(function(){
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("comp-content").style.display = "block";
+            }, 1500);
+
             var data_items = [];
             $("input:checkbox[class=pad]:checked").each(function () {
                 data_items.push($(this).val());
@@ -392,34 +399,39 @@
             {% endif %}
             <input class="button-style" id="getCompsButton" type="submit" value="Find NBA Comparisons">
         </div>
-        <div class="row padding-20">
-            <div class="col-xs-12 col-sm-4">
-                <div class="row center">
-                    <img id="img1" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
-                    <div class="row center">
-                        <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span>
-                    </div>
-                    <div class="row center padding-top" style="font-size: 12px; width:60%; margin:0 auto;">
-                        <div class="col-xs-6">
-                            <p id="gp1" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[0].nba_g }}</p>
-                            <p id="min1"><sup class="name">MIN</sup>{{ player.nba_comps[0].nba_min }}</p>
-                            <p id="fgper1"><sup class="name">FG%</sup>{{ player.nba_comps[0].nba_fgper }}</p>
-                            <p id="threeper1"><sup class="name">3P%</sup>{{ player.nba_comps[0].nba_threeper }}</p>
-                            <p id="ftper1"><sup class="name">FT%</sup>{{ player.nba_comps[0].nba_ftper }}</p>
 
+        <div class="row padding-20">
+            <div id="loader" style="display:none;padding-top: 100px;padding-bottom:200px;" class="row center">
+                <div style="position:relative;" class="loader"></div>
+            </div>
+            <div class="row" id="comp-content">
+                <div class="col-xs-12 col-sm-4">
+                    <div  class="row center">
+                        <img id="img1" class="nba-comp-headshot center comparisons"
+                             src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
+                        <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
+                        <div class="row center">
+                            <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span>
                         </div>
-                        <div class="col-xs-6">
-                            <p id="pts1" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[0].nba_pts }}</p>
-                            <p id="reb1"><sup class="name">REB</sup>{{ player.nba_comps[0].nba_reb }}</p>
-                            <p id="ast1"><sup class="name">AST</sup>{{ player.nba_comps[0].nba_ast }}</p>
-                            <p id="stl1"><sup class="name">STL</sup>{{ player.nba_comps[0].nba_stl }}</p>
-                            <p id="blk1"><sup class="name">BLK</sup>{{ player.nba_comps[0].nba_blk }}</p>
+                        <div class="row center padding-top" style="font-size: 12px; width:60%; margin:0 auto;">
+                            <div class="col-xs-6">
+                                <p id="gp1" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[0].nba_g }}</p>
+                                <p id="min1"><sup class="name">MIN</sup>{{ player.nba_comps[0].nba_min }}</p>
+                                <p id="fgper1"><sup class="name">FG%</sup>{{ player.nba_comps[0].nba_fgper }}</p>
+                                <p id="threeper1"><sup class="name">3P%</sup>{{ player.nba_comps[0].nba_threeper }}</p>
+                                <p id="ftper1"><sup class="name">FT%</sup>{{ player.nba_comps[0].nba_ftper }}</p>
+
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="pts1" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[0].nba_pts }}</p>
+                                <p id="reb1"><sup class="name">REB</sup>{{ player.nba_comps[0].nba_reb }}</p>
+                                <p id="ast1"><sup class="name">AST</sup>{{ player.nba_comps[0].nba_ast }}</p>
+                                <p id="stl1"><sup class="name">STL</sup>{{ player.nba_comps[0].nba_stl }}</p>
+                                <p id="blk1"><sup class="name">BLK</sup>{{ player.nba_comps[0].nba_blk }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="row center">
                     <img id="img2" class="nba-comp-headshot center comparisons"
@@ -555,7 +567,7 @@
 {#                        </tbody>#}
 {#                    </table>#}
 {#                </div>#}
-
+            </div>
     </div>
     {% endif %}
 </div>
