@@ -30,7 +30,7 @@ def begin():
         players = list(csv.reader(all_players, delimiter=','))
         last = None
         i = 0
-        while i < 3:
+        while i < 4:
             random = randint(1, len(players) - 1)
             if random != last:
                 random_nums.append(random)
@@ -58,7 +58,7 @@ def page_not_found(e):
         players = list(csv.reader(all_players, delimiter=','))
         last = None
         i = 0
-        while i < 3:
+        while i < 4:
             random = randint(1, len(players) - 1)
             if random != last:
                 random_nums.append(random)

@@ -176,9 +176,7 @@ class Player:
 
         if self.height == "":
             url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2017/players/playercard_" + str(self.id) + "_02.json"
-            jsondata = None
             try:
-                ua = UserAgent()
                 response = requests.get(url_json, headers=global_items.header)
                 jsondata = response.json()['pl']
             except json.JSONDecodeError:

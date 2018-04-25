@@ -34,12 +34,11 @@
                 <h4 style="color:red" class="center padding-top">{{ error_msg }}</h4>
             </div>
             <div class="row padding-20 center">
-                <h3>Welcome to the G League Player Predictor App!</h3>
                 <h4>Either type in a G League player of your choosing, or select one of the randomly chosen prospects below.</h4>
             </div>
             <div class="row padding-20">
                 {% for prospect in prospects %}
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="row center">
                         <a href="/get?player_list={{ prospect.name }}&player_id=%2Fplayer%2F%23%21%2F{{ prospect.pic_id }}%2Fstats%2F%3Fp%3D{{ prospect.name }}">
                             <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png" onerror="usePlaceholder(this)">
