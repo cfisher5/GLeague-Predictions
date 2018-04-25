@@ -5,6 +5,10 @@
     $(function() {
         var nbaCompsReset = false;
         var submit_form = function(e) {
+            var comp_content_height = document.getElementById("comp-content").clientHeight;
+            console.log(comp_content_height);
+            var padding_bottom = comp_content_height - 268 + 83;
+            document.getElementById("loader").style.paddingBottom = padding_bottom + "px";
             document.getElementById("comp-content").style.display = "none";
             document.getElementById("loader").style.display = "block";
             setTimeout(function(){
@@ -401,7 +405,7 @@
         </div>
 
         <div class="row padding-20">
-            <div id="loader" style="display:none;padding-top: 100px;padding-bottom:200px;" class="row center">
+            <div id="loader" style="display:none;padding-top:150px;" class="row center">
                 <div style="position:relative;" class="loader"></div>
             </div>
             <div class="row" id="comp-content">
