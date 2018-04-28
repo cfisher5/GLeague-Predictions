@@ -7,6 +7,7 @@ import global_items
 wd = os.getcwd()
 
 if wd == "/home/cfisher5":
+    print("here we are")
     csv_filename = "GLeague-Predictions/data/nba_player_data.csv"
     per_36 = "GLeague-Predictions/data/nba36.csv"
     merge_filename = "GLeague-Predictions/data/nba_merge.csv"
