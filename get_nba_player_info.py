@@ -54,9 +54,7 @@ def scrape():
 
 
 done = scrape()
-print(per_36)
 data = pd.read_csv(open(per_36, "r"), sep=",")
-print(data.head())
 data = data[['ID', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'FGper', 'threeper', 'FTper']]
 height_weight_data = pd.read_csv(nba_data, sep=",")
 height_weight_data = height_weight_data[['ID', 'height_inches', 'weight']]
