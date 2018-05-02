@@ -75,7 +75,7 @@ def page_not_found(e):
     return render_template('index.html', players_json=players_json, error_msg=error_msg, prospects=prospects), 500
 
 
-@app.route('/get', methods=['get'])
+@app.route('/get')
 def show_info():
 
     with open('data/players_json.txt', 'r') as infile:
@@ -88,8 +88,8 @@ def show_info():
         player_id = player_id.split("/")[3]
     player_obj = Player(player_id)
 
-
     return render_template('content.html', player=player_obj, players_json=players_json)
+
 
 @app.route('/_getComps')
 def getNBAComps():
