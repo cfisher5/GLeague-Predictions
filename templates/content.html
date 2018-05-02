@@ -6,7 +6,6 @@
         var nbaCompsReset = false;
         var submit_form = function(e) {
             var comp_content_height = document.getElementById("comp-content").clientHeight;
-            console.log(comp_content_height);
             var padding_bottom = comp_content_height - 268 + 83;
             document.getElementById("loader").style.paddingBottom = padding_bottom + "px";
             document.getElementById("comp-content").style.display = "none";
@@ -32,7 +31,7 @@
                     var q = i + 1;
                     $("#img" + q.toString()).attr("src", "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + player['id'] + ".png");
                     $("#name" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['name']);
-                    $("#logo" + q.toString()).attr("src", "http://stats.nba.com/media/img/teams/logos/" + player['team'] + "_logo.svg");
+                    $("#logo" + q.toString()).attr("src", "https://stats.nba.com/media/img/teams/logos/" + player['team'] + "_logo.svg");
                     $("#hwpos" + q.toString()).text(player['height'] + " | " + player['weight'] +" lbs | " + player['position']);
                     $("#gp" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_g']);
 
@@ -137,7 +136,7 @@
                 </div>
             </div>
             <div id="alluvial" class="row" style="text-align:center !important;">
-                <svg viewbox="0 0 650 420" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"  xmlns="http://www.w3.org/2000/svg" version="1.1"><g transform="translate(0,10)">
+                <svg viewbox="0 0 650 420" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"  xmlns="https://www.w3.org/2000/svg" version="1.1"><g transform="translate(0,10)">
                     <g>
                         <path class="isb link" d="M327.5,34.50704225352115C486.25,34.50704225352115 486.25,39.50704225352112 645,39.50704225352112" style="stroke-width: 69.0141; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"><title>28</title></path>
                         <path class="link" d="M5,362.88732394366195C163.75,362.88732394366195 163.75,372.887323943662 322.5,372.887323943662" style="stroke-width: 54.2254; fill: none; stroke: rgb(174, 191, 105); stroke-opacity: 0.4;"><title>22</title></path>
@@ -374,7 +373,7 @@
 {#    </div>#}
     {% if player.nba_comps != None %}
     <div class="row padding-top-bottom">
-        <h3>NBA player comparisons using the <a href="http://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
+        <h3>NBA player comparisons using the <a href="https://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
         <h4>These NBA comparisons are based on <strong> pace-adjusted per 36 minute boxscore stats </strong> and each player is required to have played at least 300 min.</h4>
         <h4>Use the checkboxes below to narrow your NBA comparison search.</h4>
     </div>
@@ -413,7 +412,7 @@
                     <div  class="row center">
                         <img id="img1" class="nba-comp-headshot center comparisons"
                              src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
-                        <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
+                        <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
                         <div class="row center">
                             <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} | {{ player.nba_comps[0].weight }} lbs | {{ player.nba_comps[0].position }}</span>
                         </div>
@@ -440,7 +439,7 @@
                 <div class="row center">
                     <img id="img2" class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 style="margin-bottom:0;" id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> </h4>
+                    <h4 style="margin-bottom:0;" id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> </h4>
                     <div class="row center">
                          <span style="font-size:12px;" id="hwpos2" class="center">{{ player.nba_comps[1].height }} | {{ player.nba_comps[1].weight }} lbs | {{ player.nba_comps[1].position }}</span>
                     </div>
@@ -467,7 +466,7 @@
                 <div class="row center">
                     <img id="img3" class="nba-comp-headshot center comparisons"
                          src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 style="margin-bottom:0;" id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="http://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> </h4>
+                    <h4 style="margin-bottom:0;" id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> </h4>
                     <div class="row center">
                          <span style="font-size:12px;" id="hwpos3" class="center">{{ player.nba_comps[2].height }} | {{ player.nba_comps[2].weight }} lbs | {{ player.nba_comps[2].position }}</span>
                     </div>
@@ -607,7 +606,7 @@
             if(btn.value === "View Shot Chart for Last 10 Games Only") {
                 $("#iframe-container").empty();
                 $("#shotchart-title").html("Last 10 Games Shot Chart");
-                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+                var url = "https://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
                 $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
                 btn.value = "View Full Season Shot Chart";
             }
