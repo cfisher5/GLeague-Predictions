@@ -40,12 +40,12 @@
                 {% for prospect in prospects %}
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="row center">
-                        <a href="/get?name={{ prospect.name }}&player_id={{ prospect.id }}&from=index">
+                        <a href="/get?player_id={{ prospect.id }}&from=index">
                             <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png" onerror="usePlaceholder(this)">
                         </a>
                     </div>
                     <div class="row center padding-top-bottom">
-                        <a href="/get?name={{ prospect.name }}&player_id={{ prospect.id }}&from=index">
+                        <a href="/get?player_id={{ prospect.id }}&from=index">
                             <h4 style="display:inline;color:black;" class="center">{{ prospect.name }}</h4>
                         </a>
                         <h4 style="display:inline;"><img class="logo-mainpage" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ prospect.team }}.svg">Age: {{ prospect.age }}</h4>
@@ -89,7 +89,7 @@
 
             </ul>
 
-            <h4 style="text-align: center;padding:20px;">View Cole Fisher's UWO undergraduate thesis: <a href="../static/ColeFisher_4490_FinalReport.pdf" target="_blank"> "Regress, Cluster, Classify: A Framework for Domain-to-Domain Prediction"</a> </h4>
+            <h4 style="text-align: center;padding:20px;">View Cole Fisher's Western University undergraduate thesis: <a href="../static/ColeFisher_4490_FinalReport.pdf" target="_blank"> "Regress, Cluster, Classify: A Framework for Domain-to-Domain Prediction"</a> </h4>
         
         </div>
     {% endblock %}
