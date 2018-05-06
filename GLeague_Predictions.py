@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from Player import *
 import csv
-import requests
 import json
 from random import randint
 app = Flask(__name__)
+import random
 
 
 @app.route('/')
@@ -25,21 +25,12 @@ def begin():
     #         player = Player(player_id, player_name)
     #         prospects.append(player)
     prospects = []
-    random_nums = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
-        last = None
-        i = 0
-        while i < 4:
-            random = randint(1, len(players) - 1)
-            if random != last:
-                random_nums.append(random)
-                last = random
-                i += 1
+        random_players = random.sample(players, 4)
 
-        for num in random_nums:
-            row = players[num]
-            player_id = row[1]
+        for p in random_players:
+            player_id = p[1]
             print(player_id)
             player = Player(player_id)
             prospects.append(player)
@@ -52,21 +43,14 @@ def page_not_found(e):
 
     with open('data/players_json.txt', 'r') as infile:
         players_json = infile.read()
-    random_nums = []
+
     prospects = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
-        last = None
-        i = 0
-        while i < 4:
-            random = randint(1, len(players) - 1)
-            if random != last:
-                random_nums.append(random)
-                last = random
-                i += 1
-        for num in random_nums:
-            row = players[num]
-            player_id = row[1]
+        random_players = random.sample(players, 4)
+
+        for p in random_players:
+            player_id = p[1]
             print(player_id)
             player = Player(player_id)
             prospects.append(player)

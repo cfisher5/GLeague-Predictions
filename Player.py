@@ -144,7 +144,7 @@ class Player:
                     self.stl = p[19]
                     self.blk = p[20]
                     return gleague_id
-        print("Unable to find " + self.name)
+        print("Unable to find " + str(self.name))
 
     def get_misc_data(self):
         url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(self.id) + "&SeasonType=Regular+Season"
