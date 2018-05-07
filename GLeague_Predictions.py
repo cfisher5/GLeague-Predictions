@@ -2,10 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from Player import *
 import csv
 import json
-from random import randint
-app = Flask(__name__)
 import random
 
+app = Flask(__name__)
 
 @app.route('/')
 def begin():
@@ -110,9 +109,6 @@ def getNBAComps():
     return jsonify(result=neighbors_json)
 
 
-if __name__ == '__main__':
-    app.run()
-
 gleague_preds = {'fgper': 7,
                  'threeper': 8,
                  'ftper': 9,
@@ -121,6 +117,7 @@ gleague_preds = {'fgper': 7,
                  'ast': 3,
                  'stl': 4,
                  'blk': 5}
+
 
 def get_gleague_index(data):
     return gleague_preds[data]
@@ -137,5 +134,10 @@ nba_stats = {    'fgper': 'FGper',
                  'height': 'height_inches',
                  'weight': 'weight'}
 
+
 def get_nba_index(data):
     return nba_stats[data]
+
+
+if __name__ == '__main__':
+    app.run()
