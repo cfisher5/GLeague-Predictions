@@ -30,9 +30,11 @@ def begin():
         random_players = random.sample(players, 4)
 
         for p in random_players:
+            player_name = p[0]
             player_id = p[1]
-            print(player_id)
-            player = Player(player_id)
+            player_team = p[2]
+            player_age = p[3]
+            player = (player_id, player_name, player_team, player_age)
             prospects.append(player)
 
     return render_template('index.html', players_json=players_json, prospects=prospects)
@@ -50,9 +52,11 @@ def page_not_found(e):
         random_players = random.sample(players, 4)
 
         for p in random_players:
+            player_name = p[0]
             player_id = p[1]
-            print(player_id)
-            player = Player(player_id)
+            player_team = p[2]
+            player_age = p[3]
+            player = (player_id, player_name, player_team, player_age)
             prospects.append(player)
 
     error_msg = "Please make sure you select a valid player!"

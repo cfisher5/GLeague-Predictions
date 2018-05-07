@@ -40,15 +40,15 @@
                 {% for prospect in prospects %}
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="row center">
-                        <a href="/get?player_id={{ prospect.id }}&from=index">
-                            <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect.pic_id }}.png" onerror="usePlaceholder(this)">
+                        <a href="/get?player_id={{ prospect[0] }}&from=index">
+                            <img class="index-headshot" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/dleague/{{ prospect[0] }}.png" onerror="usePlaceholder(this)">
                         </a>
                     </div>
                     <div class="row center padding-top-bottom">
-                        <a href="/get?player_id={{ prospect.id }}&from=index">
-                            <h4 style="display:inline;color:black;" class="center">{{ prospect.name }}</h4>
+                        <a href="/get?player_id={{ prospect[0] }}&from=index">
+                            <h4 style="display:inline;color:black;" class="center">{{ prospect[1] }}</h4>
                         </a>
-                        <h4 style="display:inline;"><img class="logo-mainpage" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ prospect.team }}.svg">Age: {{ prospect.age }}</h4>
+                        <h4 style="display:inline;"><img class="logo-mainpage" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ prospect[2] }}.svg">Age: {{ prospect[3] }}</h4>
                     </div>
                 </div>
                 {% endfor %}

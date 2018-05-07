@@ -6,6 +6,8 @@ import json
 from NBAComparison import *
 from datetime import datetime
 import global_items
+
+
 class Player:
 
     def __init__(self, id):
@@ -43,9 +45,9 @@ class Player:
         self.height_inches = self.convert_height()
         self.gamelog = self.get_game_log()
         self.predicted_nba_stats = self.get_predictions()
-        self.nba_comps = self.getNBANeighbors()
+        self.nba_comps = self.get_nba_neighbors()
         self.get_analytics()
-        self.cluster_color = self.getColor()
+        self.cluster_color = self.get_color()
 
     def get_analytics(self):
         if self.height != "":
@@ -65,7 +67,6 @@ class Player:
                     if str(neighbor) == str(p[0]):
                         neigh = Neighbor(p[2],p[1])
                         self.neighbors.append(neigh)
-
 
     def get_predictions(self, data_given=None, height=None, weight=None):
         with open('data/gleague_projections.csv', 'r') as predictions:
@@ -93,7 +94,7 @@ class Player:
                         return [data]
         return None
 
-    def getNBANeighbors(self, data_given=None):
+    def get_nba_neighbors(self, data_given=None):
         if self.predicted_nba_stats is None:
             return None
 
@@ -222,7 +223,7 @@ class Player:
             log = None
         return log
 
-    def getColor(self):
+    def get_color(self):
         if self.gnb_cluster == "Facilitator":
             color = "#7a69bf"
         elif self.gnb_cluster == "Inside Scoring Big":
