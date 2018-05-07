@@ -103,7 +103,7 @@ def getNBAComps():
 
     player.get_predictions(data_given=gleague_indexes, height=height, weight=weight)
     neighbors_json = []
-    neighbors = player.getNBANeighbors(data_given=nba_indexes)
+    neighbors = player.get_nba_neighbors(data_given=nba_indexes)
     for x in neighbors:
         attrs = x.__dict__
         neighbors_json.append(attrs)
