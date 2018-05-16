@@ -17,6 +17,8 @@ class Player:
         self.height = None
         self.weight = None
         self.position = None
+        self.nba_team = None
+        self.two_way = self.check_two_way()
         self.bg = None
         self.age = None
         self.gp = None
@@ -48,6 +50,7 @@ class Player:
         self.nba_comps = self.get_nba_neighbors()
         self.get_analytics()
         self.cluster_color = self.get_color()
+        self.fix_position()
 
     def get_analytics(self):
         if self.height != "":
@@ -237,3 +240,35 @@ class Player:
         else:
             color = "#69bfbf"
         return color
+
+    def check_two_way(self):
+        with open("data/two_ways.csv", "r") as two_ways:
+            players = csv.reader(two_ways)
+            next(players, None)
+            for player in players:
+                if self.id == player[0]:
+                    if player[1] == "1":
+                        nba_team = player[2]
+                        with open("data/nba_teams.csv", "r") as nba_teams:
+                            teams = csv.reader(nba_teams)
+                            next(teams, None)
+                            for team in teams:
+                                if nba_team == team[0]:
+                                    self.nba_team = team[1]
+                                    break
+                        return True
+                    else:
+                        self.nba_team = None
+                        return False
+
+    def fix_position(self):
+        if self.position == "Guard":
+            self.position = "G"
+        if self.position == "Forward":
+            self.position = "F"
+        if self.position == "Guard-Forward":
+            self.position = "G-F"
+        if self.position == "Center":
+            self.position = "C"
+        if self.position == "Forward-Center":
+            self.position = "F-C"

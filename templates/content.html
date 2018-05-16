@@ -63,7 +63,11 @@
                         <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
                             <h3 style="display:inline;color:black;" class="center">{{ player.name }}</h3>
                         </a>
-                        <h4 style="display:inline;"><img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">Age: {{ player.age }}</h4>
+                        {% if player.two_way == True %}
+                            <h4 style="display:inline;"><img style='padding-right:12px;border-right:3px double;' class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg"><img class="logo-gleague" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_team }}_logo.svg"> Age: {{ player.age }}</h4>
+                        {% else %}
+                            <h4 style="display:inline;"><img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg"> Age: {{ player.age }}</h4>
+                        {% endif %}
                     </div>
                     <div class="row" style="padding-bottom:20px;padding-left:10px;padding-right:10px;">
                         {% if player.height != "" %}
