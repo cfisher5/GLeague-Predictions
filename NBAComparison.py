@@ -24,6 +24,7 @@ class NBAComparison:
         self.height = None
         self.weight = None
         self.position = None
+        self.populate()
         self.percentile_color_array = None
         self.stats = self.gather_stats()
         self.percentile_array = self.get_percentiles()
@@ -70,7 +71,7 @@ class NBAComparison:
 
         # get query
         if 'G' in self.position:
-            query_string = "\"pos == 'G' or pos == 'G-F' or pos == 'F-G'\""
+            query_string = "pos == 'G' or pos == 'G-F' or pos == 'F-G'"
         elif 'F' in self.position:
             query_string = "pos == 'F' or pos == 'G-F' or pos == 'F-G' or pos =='F-C' or pos =='C-F'"
         else:
@@ -83,7 +84,7 @@ class NBAComparison:
         arr.append(stats.percentileofscore(subset_pos['AST'], float(self.nba_ast)))
         arr.append(stats.percentileofscore(subset_pos['FGper'], float(self.nba_fgper)/100.0))
         arr.append(stats.percentileofscore(subset_pos['threeper'], float(self.nba_threeper)/100.0))
-        arr.append(stats.percentileofscore(subset_pos['FTPper'], float(self.nba_ftper)/100.0))
+        arr.append(stats.percentileofscore(subset_pos['FTper'], float(self.nba_ftper)/100.0))
         arr.append(stats.percentileofscore(subset_pos['STL'], float(self.nba_stl)))
         arr.append(stats.percentileofscore(subset_pos['BLK'], float(self.nba_blk)))
         arr.append(100.0 - stats.percentileofscore(subset_pos['TOV'], float(self.nba_tov)))

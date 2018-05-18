@@ -119,7 +119,6 @@ class Player:
                         if row[1] != self.id and num_appended < 3:
                             num_appended += 1
                             nba_comp = NBAComparison(row[1])
-                            nba_comp.populate()
                             players.append(nba_comp)
                             break
         return players

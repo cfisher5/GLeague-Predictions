@@ -602,6 +602,20 @@
 
     <script>
 
+        function ordinal_suffix_of(i) {
+            var j = i % 10,
+                k = i % 100;
+            if (j == 1 && k != 11) {
+                return i + "st";
+            }
+            if (j == 2 && k != 12) {
+                return i + "nd";
+            }
+            if (j == 3 && k != 13) {
+                return i + "rd";
+            }
+            return i + "th";
+        }
         //Create horizontalBar plug-in for ChartJS
         var originalLineDraw = Chart.controllers.horizontalBar.prototype.draw;
         Chart.helpers.extend(Chart.controllers.horizontalBar.prototype, {
@@ -691,8 +705,8 @@
                         var stats = data.datasets[0].stats;
                         var percentiles = data.datasets[0].percentiles;
                         var string = stats[x].toString() + " per 36 (";
-                        var string2 = Math.round(percentiles[x]).toString();
-                        var s = string + string2 + " percentile)";
+                        var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                        var s = string + suffix.toString() + " " + "percentile)";
                         return(s);
                     }
             }
