@@ -62,3 +62,12 @@ $(document).ready( function () {
     });
 });
 
+function equal_div_heights(){
+    console.log("hello");
+  var player_info_height = document.getElementById("player_bio").clientHeight;
+  console.log(player_info_height);
+  document.getElementById("stats").style.minHeight = (player_info_height + 1) + "px";
+}
+
+setInterval(equal_div_heights, 300);
+

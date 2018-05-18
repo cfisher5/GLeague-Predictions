@@ -43,7 +43,7 @@ def scrape():
         try:
             height_inches = int(row['heightFeet']) * 12 + int(row['heightInches'])
             weight = str(row['weightPounds'])
-            pos = row['posExpanded']
+            pos = row['pos']
             nba_data.write(id + "," + height + "," + str(height_inches) + "," + weight + "," + pos + "\n")
         except ValueError:
             print("player " + id + " does not have height listed. excluding him.")

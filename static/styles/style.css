@@ -52,7 +52,7 @@ h3{
 }
 
 .main-headshot {
-    max-width:230px;
+    max-width:262px;
 }
 
 .index-headshot{
@@ -141,8 +141,8 @@ h3{
 }
 
 .logo-gleague{
-  height:55px;
-  padding: 5px 10px;
+  height:45px;
+  /*padding: 5px 10px;*/
 }
 
 hr{
@@ -159,6 +159,14 @@ hr{
 .stats{
   width:70%;
   margin:0 auto;
+}
+.vl{
+    height: 34px;
+    width: 2px;
+    background-color: darkslategray;
+    vertical-align: middle;
+    display: inline-block;
+    bottom: 10px;
 }
 
 #shotchart {
@@ -597,8 +605,13 @@ label{
     padding-right:25px;
 }
 
-@media (min-width: 701px) {
+@media (min-width: 768px) {
     .border-right {
+        border-right: grey thin dashed;
+    }
+}
+@media (min-width: 992px) {
+    .border-right-special {
         border-right: grey thin dashed;
     }
 }
@@ -649,9 +662,7 @@ label{
 #checkall{
     margin-right:16px;
 }
-.border-bottom{
-    border-bottom: thin grey dashed;
-}
+
 .collapsible {
     color: black;
     cursor: pointer;
@@ -727,6 +738,29 @@ label{
     }
     .left-center{
         text-align: center;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .pad-when-small {
+        padding-top:10px;
+        padding-bottom:10px;
+        border-bottom: grey thin dashed;
+    }
+    .margin-when-small {
+        padding-top:10px;
+        margin-bottom:10px;
+        border-bottom: grey thin dashed;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .border-bottom{
+        border-bottom: thin grey dashed;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {
+    .border-bottom-special{
+        border-bottom: thin grey dashed;
     }
 }
 

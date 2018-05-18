@@ -56,20 +56,31 @@
     </script>
 
     <div class="container" id="page_data">
-        <div class="row center equal_height_container">
-            <div class="col border-right" style="width:35%;padding-left:10px !important;">
+        <div class="row center border-bottom">
+            <div id="player_bio" class="border-bottom-special margin-when-small col-xs-12 col-sm-6 col-md-4 border-right">
                 <div class="row center">
-                    <div class="row">
+                    <div class="row" style="padding-bottom:10px;">
                         <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
                             <h3 style="display:inline;color:black;" class="center">{{ player.name }}</h3>
                         </a>
                         {% if player.two_way == True %}
-                            <h4 style="display:inline;"><img style='padding-right:12px;border-right:3px double;' class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg"><img class="logo-gleague" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_team }}_logo.svg"> Age: {{ player.age }}</h4>
+                            <div style="display:inline;">
+                                <img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">
+{#                                <div class="vl"></div>#}
+                                <div style="display:inline-block;padding:0 20px;">
+                                    <div class="row" style="font-size:8px;">
+                                        <span style="font-size:8px;font-weight:bold;">TWO-WAY</span>
+                                    </div>
+                                    <div class="row">
+                                        <img class="logo-gleague" style="padding-top:0;" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_team }}_logo.svg">
+                                    </div>
+                                </div>
+                            </div>
                         {% else %}
-                            <h4 style="display:inline;"><img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg"> Age: {{ player.age }}</h4>
+                            <div style="display:inline;"><img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg"></div>
                         {% endif %}
                     </div>
-                    <div class="row" style="padding-bottom:20px;padding-left:10px;padding-right:10px;">
+                    <div class="row" style="padding-bottom:20px;padding-left:25px;padding-right:25px;">
                         {% if player.height != "" %}
                             <h4 style="display:inline;"> {{ player.height }} • </h4>
                         {% endif %}
@@ -82,6 +93,7 @@
                         {% if player.position != "" %}
                             <h4 style="display:inline;">• {{ player.position }} </h4>
                         {% endif %}
+                            <h4 style="display:inline;">• Age: {{ player.age }} </h4>
                     </div>
                 </div>
                 <div class="row" style="text-align:center;">
@@ -89,7 +101,35 @@
                 </div>
 
             </div>
-            <div class="col border-right" style="width:35%;padding-top:10px;">
+            <div id="stats" class="border-bottom-special col-sm-6 col-md-4 border-right-special pad-when-small">
+                <strong style="padding:0 10px;">2017-2018 G League Stats per 36 Min:</strong>
+{#                <div class="row" style="font-size: 13px;padding:15px 0 0;margin-left:0;margin-right:0;">#}
+{#                    <ul class="col-xs-12 col-sm-6 right-center" style="margin-bottom:0;">#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">GP</sup><span style="float:right;">{{ player.gp }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">PTS</sup><span style="float:right;">{{ player.pts }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">REB</sup><span style="float:right;">{{ player.reb }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">AST</sup><span style="float:right;">{{ player.ast }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">STL</sup><span style="float:right;">{{ player.stl }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">BLK</sup><span style="float:right;">{{ player.blk }}</span></li>#}
+{#                    </ul>#}
+{#                    <ul class="col-xs-12 col-sm-6 left-center" style="margin-bottom:0;">#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">FGM</sup><span style="float:right;">{{ player.fgm }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">FG%</sup><span style="float:right;">{{ player.fgper }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">3PM</sup><span style="float:right;">{{ player.threepm }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">3P%</sup><span style="float:right;">{{ player.threeper }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">TOV</sup><span style="float:right;">{{ player.tov }}</span></li>#}
+{#                        <li class="wrapper-w"><sup class="player_stat_name">FT%</sup><span style="float:right;">{{ player.ftper }}</span></li>#}
+{#                    </ul>#}
+{#                </div>#}
+                    <div style="position: relative;max-width:400px;margin:0 auto;">
+                        <p style="padding-top:5px;font-size:11px;margin:0;">GP: {{player.gp}} • Min/G: {{ player.mpg }}</p>
+                        <canvas id="player_stats"></canvas>
+                        <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                        <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                    </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 pad-when-small" style="padding-top:20px;">
                 <div class="row" style="padding-left:15px;padding-right:15px;">
                     <strong>G League Cluster:</strong><br>
                     <strong style="color:{{ player.cluster_color }};">{{ player.gnb_cluster }}</strong>
@@ -97,27 +137,7 @@
                 </div>
             </div>
 
-            <div class="col" style="padding:10px 0px">
-                <strong style="padding:0 10px;">2017-2018 G League Stats per 36 Min:</strong>
-                <div class="row" style="font-size: 13px;padding:15px 0 0;margin-left:0;margin-right:0;">
-                    <ul class="col-xs-12 col-sm-6 right-center" style="margin-bottom:0;">
-                        <li class="wrapper-w"><sup class="player_stat_name">GP</sup><span style="float:right;">{{ player.gp }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">PTS</sup><span style="float:right;">{{ player.pts }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">REB</sup><span style="float:right;">{{ player.reb }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">AST</sup><span style="float:right;">{{ player.ast }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">STL</sup><span style="float:right;">{{ player.stl }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">BLK</sup><span style="float:right;">{{ player.blk }}</span></li>
-                    </ul>
-                    <ul class="col-xs-12 col-sm-6 left-center" style="margin-bottom:0;">
-                        <li class="wrapper-w"><sup class="player_stat_name">FGM</sup><span style="float:right;">{{ player.fgm }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">FG%</sup><span style="float:right;">{{ player.fgper }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">3PM</sup><span style="float:right;">{{ player.threepm }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">3P%</sup><span style="float:right;">{{ player.threeper }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">TOV</sup><span style="float:right;">{{ player.tov }}</span></li>
-                        <li class="wrapper-w"><sup class="player_stat_name">FT%</sup><span style="float:right;">{{ player.ftper }}</span></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
         <div class="row border-bottom explanation" style="padding-top: 40px;padding-bottom:25px;">
         <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:30px;padding-left:30px;text-align:justify">
@@ -581,6 +601,103 @@
 </div>
 
     <script>
+
+        //Create horizontalBar plug-in for ChartJS
+        var originalLineDraw = Chart.controllers.horizontalBar.prototype.draw;
+        Chart.helpers.extend(Chart.controllers.horizontalBar.prototype, {
+
+          draw: function () {
+              originalLineDraw.apply(this, arguments);
+
+              var chart = this.chart;
+              var ctx = chart.chart.ctx;
+
+              var index = chart.config.options.lineAtIndex;
+              if (index) {
+
+                  var xaxis = chart.scales['x-axis-0'];
+                  var yaxis = chart.scales['y-axis-0'];
+
+                  var x1 = xaxis.getPixelForValue(index);
+                  var y1 = 10;
+
+                  var x2 = xaxis.getPixelForValue(index);
+                  var y2 = yaxis.height + 15;
+
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(x1, y1);
+                  ctx.strokeStyle = 'black';
+                  ctx.lineTo(x2, y2);
+                  ctx.stroke();
+
+                  ctx.restore();
+              }
+          }
+        });
+        var ctx = document.getElementById("player_stats");
+        var player_stats = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: {{ player.stats[0] | safe }},
+                datasets: [{
+                    data: {{ player.percentile_array }},
+                    backgroundColor: {{ player.percentile_color_array | safe }},
+                    stats: {{ player.stats[1] | safe }},
+                    borderColor: '#000000',
+                    borderWidth:0,
+                }]
+
+            },
+            options: {
+                lineAtIndex: 0.01,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            reverse: true
+                        },
+                        gridLines: {
+                            display:true
+                        },
+                        categoryPercentage: 1,
+                        barPercentage: 0.9
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display:false
+                        },
+                        ticks: {
+                            display: false,
+                            min: -50,
+                            max: 50,
+                            stepSize: 10
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                    label: function(tooltipItem, data ) {
+                        var x = tooltipItem.index;
+                        var stats = data.datasets[0].stats;
+                        return(stats[x]);
+                    }
+            }
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");
         for(i = 0; i < paths.length; i++) {

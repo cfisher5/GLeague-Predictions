@@ -3,7 +3,6 @@ import os
 import json
 import global_items
 
-
 def scrape():
     wd = os.getcwd()
 
