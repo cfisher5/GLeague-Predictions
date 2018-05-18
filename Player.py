@@ -8,6 +8,8 @@ from datetime import datetime
 import global_items
 import pandas as pd
 from scipy import stats
+
+
 class Player:
 
     def __init__(self, id):
@@ -305,6 +307,7 @@ class Player:
         arr.append(stats.percentileofscore(subset_pos['BLK'], float(self.blk)))
         arr.append(100.0 - stats.percentileofscore(subset_pos['TOV'], float(self.tov)))
 
+
         self.get_percentiles_colors(arr)
 
         normalized_arr = list()
@@ -317,7 +320,7 @@ class Player:
 
             normalized_arr.append(norm)
 
-        return normalized_arr
+        return arr, normalized_arr
 
     def gather_stats(self):
 

@@ -52,7 +52,7 @@ h3{
 }
 
 .main-headshot {
-    max-width:262px;
+    max-width:267px;
 }
 
 .index-headshot{
@@ -748,7 +748,7 @@ label{
     }
     .margin-when-small {
         padding-top:10px;
-        margin-bottom:10px;
+        margin-bottom:20px;
         border-bottom: grey thin dashed;
     }
 }
@@ -761,6 +761,15 @@ label{
 @media only screen and (min-width: 768px) and (max-width:991px) {
     .border-bottom-special{
         border-bottom: thin grey dashed;
+    }
+}
+@media only screen and (max-width: 991px) {
+    #stats > strong{
+        padding-top:20px;
+    }
+
+    #cluster-div{
+        padding-top:20px;
     }
 }
 

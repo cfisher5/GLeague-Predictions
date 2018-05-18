@@ -101,7 +101,7 @@
                 </div>
 
             </div>
-            <div id="stats" class="border-bottom-special col-sm-6 col-md-4 border-right-special pad-when-small">
+            <div id="stats" class="border-bottom-special col-sm-6 col-md-5 border-right-special pad-when-small">
                 <strong style="padding:0 10px;">2017-2018 G League Stats per 36 Min:</strong>
 {#                <div class="row" style="font-size: 13px;padding:15px 0 0;margin-left:0;margin-right:0;">#}
 {#                    <ul class="col-xs-12 col-sm-6 right-center" style="margin-bottom:0;">#}
@@ -129,7 +129,7 @@
                     </div>
             </div>
 
-            <div class="col-sm-12 col-md-4 pad-when-small" style="padding-top:20px;">
+            <div class="col-sm-12 col-md-3 pad-when-small" id="cluster-div">
                 <div class="row" style="padding-left:15px;padding-right:15px;">
                     <strong>G League Cluster:</strong><br>
                     <strong style="color:{{ player.cluster_color }};">{{ player.gnb_cluster }}</strong>
@@ -641,7 +641,8 @@
             data: {
                 labels: {{ player.stats[0] | safe }},
                 datasets: [{
-                    data: {{ player.percentile_array }},
+                    data: {{ player.percentile_array[1] }},
+                    percentiles: {{ player.percentile_array[0] }},
                     backgroundColor: {{ player.percentile_color_array | safe }},
                     stats: {{ player.stats[1] | safe }},
                     borderColor: '#000000',
@@ -688,7 +689,11 @@
                     label: function(tooltipItem, data ) {
                         var x = tooltipItem.index;
                         var stats = data.datasets[0].stats;
-                        return(stats[x]);
+                        var percentiles = data.datasets[0].percentiles;
+                        var string = stats[x].toString() + " per 36 (";
+                        var string2 = Math.round(percentiles[x]).toString();
+                        var s = string + string2 + " percentile)";
+                        return(s);
                     }
             }
                 },
