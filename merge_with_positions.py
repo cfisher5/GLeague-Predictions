@@ -1,10 +1,10 @@
 from fake_useragent import UserAgent
 import requests
 import json
-from NBAComparison import *
 import global_items
 import pandas as pd
 import csv
+
 
 def scrape_positions():
     csv_file = open("data/positions.csv", "w")
@@ -13,7 +13,6 @@ def scrape_positions():
         player_id = player['value']
         url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(
             player_id) + "&SeasonType=Regular+Season"
-        data = None
         position = None
         try:
             ua = UserAgent()
@@ -66,7 +65,7 @@ def scrape_positions():
     csv_file.close()
 
 
-# scrape_positions()
+scrape_positions()
 data = pd.read_csv(open("data/positions.csv", "r"), sep=",")
 
 

@@ -24,7 +24,7 @@ setTimeout(function() {
         var height = elems[i].clientHeight;
         if(height <= 1){
             elems[i].src = "../static/placeholder.png";
-            elems[i].style.width = "126.6px";
+            elems[i].style.maxWidth = "267px";
         }
     }
 }, 6000);
@@ -39,8 +39,7 @@ function usePlaceholder(img){
         img.style.height = "167px";
     }
     else{
-        img.style.height = "157px";
-        // img.style.width = "125px";
+        img.style.height = "183px";
     }
 }
 function check_uncheck_all(btn){

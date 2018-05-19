@@ -122,7 +122,7 @@
 {#                    </ul>#}
 {#                </div>#}
                     <div style="position: relative;max-width:400px;margin:0 auto;">
-                        <p style="padding-top:5px;font-size:11px;margin:0;">GP: {{player.gp}} • Min/G: {{ player.mpg }}</p>
+                        <p style="padding-top:5px;font-size:11px;margin:0;">{{player.gp}} Games Played • {{ player.mpg }} min/G</p>
                         <canvas id="player_stats"></canvas>
                         <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
                         <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
@@ -140,7 +140,7 @@
 
         </div>
         <div class="row border-bottom explanation" style="padding-top: 40px;padding-bottom:25px;">
-        <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:30px;padding-left:30px;text-align:justify">
+        <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:30px;text-align:justify">
             <strong>Use the role-transformation diagram to trace the different paths players take when they go from the G League to the NBA.</strong><br><br>
             <strong>Since the two leagues are so different from a talent standpoint, G League players must adapt and settle into a different role.</strong><br><br>
             <strong> {{ player.name }} is a G League <strong style="color:{{ player.cluster_color }};"> {{ player.gnb_cluster }} </strong> so trace the paths {{ player.gnb_cluster }}s usually take when going from the G League to the NBA.</strong><br><br>

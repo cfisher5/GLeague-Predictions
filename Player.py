@@ -168,6 +168,9 @@ class Player:
 
         for obj in data:
             self.bg = obj[9]
+            bg1, bg2 = self.bg.split("/")
+            if bg1 == bg2:
+                self.bg = bg1
             self.height = obj[10]
             self.weight = obj[11]
             self.position = obj[14]
@@ -343,7 +346,7 @@ class Player:
                 color_arr.append("#CD5C5C")
 
             elif data < 40.0:
-                color_arr.append("#F08080")
+                color_arr.append("#FF8080")
 
             elif data < 60.0:
                 color_arr.append("#94948f")

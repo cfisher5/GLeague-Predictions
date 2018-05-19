@@ -69,7 +69,7 @@ class NBAComparison:
         per_36_data = per_36_data.query("TotalMin > 300.0")
         merged_df = pd.merge(left=per_36_data, right=positions, how='inner', on='ID')
 
-        # get query
+        # get subset
         if 'G' in self.position:
             query_string = "pos == 'G' or pos == 'G-F' or pos == 'F-G'"
         elif 'F' in self.position:
@@ -125,7 +125,7 @@ class NBAComparison:
                 color_arr.append("#CD5C5C")
 
             elif data < 40.0:
-                color_arr.append("#F08080")
+                color_arr.append("#FF8080")
 
             elif data < 60.0:
                 color_arr.append("#94948f")

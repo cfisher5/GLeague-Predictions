@@ -26,6 +26,7 @@ def begin():
     prospects = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
+        players.pop(0)
         random_players = random.sample(players, 4)
 
         for p in random_players:
@@ -48,6 +49,7 @@ def page_not_found(e):
     prospects = []
     with open('data/gleague_data.csv', 'r') as all_players:
         players = list(csv.reader(all_players, delimiter=','))
+        players.pop(0)
         random_players = random.sample(players, 4)
 
         for p in random_players:
