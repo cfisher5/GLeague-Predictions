@@ -135,16 +135,16 @@ def get_gleague_index(data):
     return gleague_preds[data]
 
 
-nba_stats = {    'fgper': 'FGper',
-                 'threeper': 'threeper',
-                 'ftper': 'FTper',
-                 'pts': 'PTS',
-                 'reb': 'REB',
-                 'ast': 'AST',
-                 'stl': 'STL',
-                 'blk': 'BLK',
-                 'height': 'height_inches',
-                 'weight': 'weight'}
+nba_stats = {'fgper': 'FGper',
+             'threeper': 'threeper',
+             'ftper': 'FTper',
+             'pts': 'PTS',
+             'reb': 'REB',
+             'ast': 'AST',
+             'stl': 'STL',
+             'blk': 'BLK',
+             'height': 'height_inches',
+             'weight': 'weight'}
 
 
 def get_nba_index(data):

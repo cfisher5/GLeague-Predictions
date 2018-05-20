@@ -42,7 +42,7 @@
 
                     var div_container = "div." + chart_id;
                     $(div_container).children().eq(1).append('<canvas id=\"' + chart_id + '\"></canvas>');
-                    create_bar_chart(chart_id, json, i);
+                    create_bar_chart(chart_id, player);
 {#                    $("#min" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_min']);#}
 {#                    $("#fgper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_fgper']);#}
 {#                    $("#threeper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_threeper']);#}
@@ -695,18 +695,17 @@
             });
         });
 
-        //nba comp 1 stats
-        function create_bar_chart(chart_id, neighbors_json, index){
+        function create_bar_chart(chart_id, neighbors_json){
             var ctx = document.getElementById(chart_id);
             var chart = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
-                    labels: neighbors_json[index].stats[0],
+                    labels: neighbors_json.stats[0],
                     datasets: [{
-                        data: neighbors_json[index].percentile_array[1],
-                        percentiles: neighbors_json[index].percentile_array[0],
-                        backgroundColor: neighbors_json[index].percentile_color_array,
-                        stats: neighbors_json[index].stats[1],
+                        data: neighbors_json.percentile_array[1],
+                        percentiles: neighbors_json.percentile_array[0],
+                        backgroundColor: neighbors_json.percentile_color_array,
+                        stats: neighbors_json.stats[1],
                         borderColor: '#000000',
                         borderWidth:0
                     }]
@@ -767,9 +766,9 @@
         }
 
         data = {{ neighbors_json | safe }}
-        create_bar_chart("comp1_stats", data, 0);
-        create_bar_chart("comp2_stats", data, 1);
-        create_bar_chart("comp3_stats", data, 2);
+        create_bar_chart("comp1_stats", data[0]);
+        create_bar_chart("comp2_stats", data[1]);
+        create_bar_chart("comp3_stats", data[2]);
 
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");
