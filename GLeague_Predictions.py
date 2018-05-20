@@ -77,7 +77,16 @@ def show_info():
         player_id = player_id.split("/")[3]
     player_obj = Player(player_id)
 
-    return render_template('content.html', player=player_obj, players_json=players_json)
+    neighbors = player_obj.get_nba_neighbors()
+    neighbors_json = list()
+    if neighbors is not None:
+        for x in neighbors:
+            attrs = x.__dict__
+            neighbors_json.append(attrs)
+    else:
+        neighbors_json = None
+
+    return render_template('content.html', player=player_obj, players_json=players_json, neighbors_json=neighbors_json)
 
 
 @app.route('/_getComps')
@@ -108,6 +117,7 @@ def getNBAComps():
     for x in neighbors:
         attrs = x.__dict__
         neighbors_json.append(attrs)
+
     return jsonify(result=neighbors_json)
 
 

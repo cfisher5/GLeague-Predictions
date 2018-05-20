@@ -32,18 +32,26 @@
                     $("#img" + q.toString()).attr("src", "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + player['id'] + ".png");
                     $("#name" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['name']);
                     $("#logo" + q.toString()).attr("src", "https://stats.nba.com/media/img/teams/logos/" + player['team'] + "_logo.svg");
-                    $("#hwpos" + q.toString()).text(player['height'] + " | " + player['weight'] +" lbs | " + player['position']);
-                    $("#gp" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_g']);
+                    $("#hwpos" + q.toString()).text(player['height'] + " • " + player['weight'] +" lbs • " + player['position']);
+                    $("#g_mpg" + q.toString()).text(player['nba_g'] + " Games Played • " + player['mpg'] + " min/G");
 
-                    $("#min" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_min']);
-                    $("#fgper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_fgper']);
-                    $("#threeper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_threeper']);
-                    $("#ftper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ftper']);
-                    $("#pts" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_pts']);
-                    $("#reb" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_reb']);
-                    $("#ast" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ast']);
-                    $("#stl" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_stl']);
-                    $("#blk" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_blk']);
+                    var chart_id = "comp" + q.toString() + "_stats";
+                    var old_chart = "canvas#" + chart_id;
+                    console.log(old_chart);
+                    $(old_chart).remove();
+
+                    var div_container = "div." + chart_id;
+                    $(div_container).children().eq(1).append('<canvas id=\"' + chart_id + '\"></canvas>');
+                    create_bar_chart(chart_id, json, i);
+{#                    $("#min" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_min']);#}
+{#                    $("#fgper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_fgper']);#}
+{#                    $("#threeper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_threeper']);#}
+{#                    $("#ftper" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ftper']);#}
+{#                    $("#pts" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_pts']);#}
+{#                    $("#reb" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_reb']);#}
+{#                    $("#ast" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_ast']);#}
+{#                    $("#stl" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_stl']);#}
+{#                    $("#blk" + q.toString()).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(player['nba_blk']);#}
 
                 }
             });
@@ -66,7 +74,6 @@
                         {% if player.two_way == True %}
                             <div style="display:inline;">
                                 <img class="logo-gleague" src="http://stats.gleague.nba.com/media/img/teams/logos/{{ player.team }}.svg">
-{#                                <div class="vl"></div>#}
                                 <div style="display:inline-block;padding:0 20px;">
                                     <div class="row" style="font-size:8px;">
                                         <span style="font-size:8px;font-weight:bold;">TWO-WAY</span>
@@ -432,86 +439,53 @@
                 <div style="position:relative;" class="loader"></div>
             </div>
             <div class="row" id="comp-content">
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-4 padding-bottom">
                     <div  class="row center">
                         <img id="img1" class="nba-comp-headshot center comparisons"
-                             src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[0].id }}.png" onerror="usePlaceholder(this)">
-                        <h4 style="margin-bottom:0;" id="name1" class="center">{{ player.nba_comps[0].name }}<img id="logo1" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[0].team }}_logo.svg"> </h4>
+                             src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ neighbors_json[0].id }}.png" onerror="usePlaceholder(this)">
+                        <h4 style="margin-bottom:0;" id="name1" class="center">{{ neighbors_json[0].name }}<img id="logo1" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ neighbors_json[0].team }}_logo.svg"> </h4>
                         <div class="row center">
-                            <span style="font-size:12px;" id="hwpos1" class="center">{{ player.nba_comps[0].height }} • {{ player.nba_comps[0].weight }} lbs • {{ player.nba_comps[0].position }}</span>
+                            <span style="font-size:12px;" id="hwpos1" class="center">{{ neighbors_json[0].height }} • {{ neighbors_json[0].weight }} lbs • {{ neighbors_json[0].position }}</span>
                         </div>
-                        <div class="row center padding-top" style="font-size: 12px; width:60%; margin:0 auto;">
-                            <div class="col-xs-6">
-                                <p id="gp1" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[0].nba_g }}</p>
-                                <p id="min1"><sup class="name">MIN</sup>{{ player.nba_comps[0].nba_min }}</p>
-                                <p id="fgper1"><sup class="name">FG%</sup>{{ player.nba_comps[0].nba_fgper }}</p>
-                                <p id="threeper1"><sup class="name">3P%</sup>{{ player.nba_comps[0].nba_threeper }}</p>
-                                <p id="ftper1"><sup class="name">FT%</sup>{{ player.nba_comps[0].nba_ftper }}</p>
+                        <div class='comp1_stats' style="position: relative;max-width:90%;margin:0 auto;">
+                            <p id='g_mpg1' style="padding-top:5px;font-size:11px;margin:0;">{{neighbors_json[0].nba_g }} Games Played • {{ neighbors_json[0].mpg }} min/G</p>
+                            <canvas id="comp1_stats"></canvas>
+                            <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 padding-bottom">
+                    <div  class="row center">
+                        <img id="img2" class="nba-comp-headshot center comparisons"
+                             src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ neighbors_json[1].id }}.png" onerror="usePlaceholder(this)">
+                        <h4 style="margin-bottom:0;" id="name2" class="center">{{ neighbors_json[1].name }}<img id="logo2" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ neighbors_json[1].team }}_logo.svg"> </h4>
+                        <div class="row center">
+                            <span style="font-size:12px;" id="hwpos2" class="center">{{ neighbors_json[1].height }} • {{ neighbors_json[1].weight }} lbs • {{ neighbors_json[1].position }}</span>
+                        </div>
+                        <div class='comp2_stats' style="position: relative;max-width:90%;margin:0 auto;">
+                            <p id='g_mpg2' style="padding-top:5px;font-size:11px;margin:0;">{{neighbors_json[1].nba_g }} Games Played • {{ neighbors_json[1].mpg }} min/G</p>
+                            <canvas id="comp2_stats"></canvas>
+                            <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 padding-bottom">
+                    <div  class="row center">
+                        <img id="img3" class="nba-comp-headshot center comparisons"
+                             src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ neighbors_json[2].id }}.png" onerror="usePlaceholder(this)">
+                        <h4 style="margin-bottom:0;" id="name3" class="center">{{ neighbors_json[2].name }}<img id="logo3" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ neighbors_json[2].team }}_logo.svg"> </h4>
+                        <div class="row center">
+                            <span style="font-size:12px;" id="hwpos3" class="center">{{ neighbors_json[2].height }} • {{ neighbors_json[2].weight }} lbs • {{ neighbors_json[2].position }}</span>
+                        </div>
+                        <div class='comp3_stats' style="position: relative;max-width:90%;margin:0 auto;">
+                            <p id='g_mpg3' style="padding-top:5px;font-size:11px;margin:0;">{{neighbors_json[2].nba_g }} Games Played • {{ neighbors_json[2].mpg }} min/G</p>
+                            <canvas id="comp3_stats"></canvas>
+                            <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                        </div>
+                    </div>
+                </div>
+                <h5 style="font-size:10px;margin:8px;">Percentiles relative to all qualified NBA Players (over 300 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
 
-                            </div>
-                            <div class="col-xs-6">
-                                <p id="pts1" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[0].nba_pts }}</p>
-                                <p id="reb1"><sup class="name">REB</sup>{{ player.nba_comps[0].nba_reb }}</p>
-                                <p id="ast1"><sup class="name">AST</sup>{{ player.nba_comps[0].nba_ast }}</p>
-                                <p id="stl1"><sup class="name">STL</sup>{{ player.nba_comps[0].nba_stl }}</p>
-                                <p id="blk1"><sup class="name">BLK</sup>{{ player.nba_comps[0].nba_blk }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="row center">
-                    <img id="img2" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[1].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 style="margin-bottom:0;" id="name2" class="center">{{ player.nba_comps[1].name }}<img id="logo2" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[1].team }}_logo.svg"> </h4>
-                    <div class="row center">
-                         <span style="font-size:12px;" id="hwpos2" class="center">{{ player.nba_comps[1].height }} • {{ player.nba_comps[1].weight }} lbs • {{ player.nba_comps[1].position }}</span>
-                    </div>
-                        <div class="row center padding-top" style="font-size: 12px; width:60%; margin:0 auto;">
-                        <div class="col-xs-6">
-                            <p id="gp2" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[1].nba_g }}</p>
-                            <p id="min2"><sup class="name">MIN</sup>{{ player.nba_comps[1].nba_min }}</p>
-                            <p id="fgper2"><sup class="name">FG%</sup>{{ player.nba_comps[1].nba_fgper }}</p>
-                            <p id="threeper2"><sup class="name">3P%</sup>{{ player.nba_comps[1].nba_threeper }}</p>
-                            <p id="ftper2"><sup class="name">FT%</sup>{{ player.nba_comps[1].nba_ftper }}</p>
-
-                        </div>
-                        <div class="col-xs-6">
-                            <p id="pts2" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[1].nba_pts }}</p>
-                            <p id="reb2"><sup class="name">REB</sup>{{ player.nba_comps[1].nba_reb }}</p>
-                            <p id="ast2"><sup class="name">AST</sup>{{ player.nba_comps[1].nba_ast }}</p>
-                            <p id="stl2"><sup class="name">STL</sup>{{ player.nba_comps[1].nba_stl }}</p>
-                            <p id="blk2"><sup class="name">BLK</sup>{{ player.nba_comps[1].nba_blk }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="row center">
-                    <img id="img3" class="nba-comp-headshot center comparisons"
-                         src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player.nba_comps[2].id }}.png" onerror="usePlaceholder(this)">
-                    <h4 style="margin-bottom:0;" id="name3" class="center">{{ player.nba_comps[2].name }}<img id="logo3" class="logo" src="https://stats.nba.com/media/img/teams/logos/{{ player.nba_comps[2].team }}_logo.svg"> </h4>
-                    <div class="row center">
-                         <span style="font-size:12px;" id="hwpos3" class="center">{{ player.nba_comps[2].height }} • {{ player.nba_comps[2].weight }} lbs • {{ player.nba_comps[2].position }}</span>
-                    </div>
-                    <div class="row center padding-top" style="font-size: 12px; width:60%; margin:0 auto;">
-                        <div class="col-xs-6">
-                            <p id="gp3" style="padding-top:10px;"><sup class="name">GP</sup>{{ player.nba_comps[2].nba_g }}</p>
-                            <p id="min3"><sup class="name">MIN</sup>{{ player.nba_comps[2].nba_min }}</p>
-                            <p id="fgper3"><sup class="name">FG%</sup>{{ player.nba_comps[2].nba_fgper }}</p>
-                            <p id="threeper3"><sup class="name">3P%</sup>{{ player.nba_comps[2].nba_threeper }}</p>
-                            <p id="ftper3"><sup class="name">FT%</sup>{{ player.nba_comps[2].nba_ftper }}</p>
-                        </div>
-                        <div class="col-xs-6">
-                            <p id="pts3" style="padding-top:10px;"><sup class="name">PTS</sup>{{ player.nba_comps[2].nba_pts }}</p>
-                            <p id="reb3"><sup class="name">REB</sup>{{ player.nba_comps[2].nba_reb }}</p>
-                            <p id="ast3"><sup class="name">AST</sup>{{ player.nba_comps[2].nba_ast }}</p>
-                            <p id="stl3"><sup class="name">STL</sup>{{ player.nba_comps[2].nba_stl }}</p>
-                            <p id="blk3"><sup class="name">BLK</sup>{{ player.nba_comps[2].nba_blk }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 {#                <div class="row padding-20">#}
 {##}
 {#                    <table class="table table-striped table-bordered table-hover table-responsive stats">#}
@@ -649,73 +623,153 @@
               }
           }
         });
-        var ctx = document.getElementById("player_stats");
-        var player_stats = new Chart(ctx, {
-            type: 'horizontalBar',
-            data: {
-                labels: {{ player.stats[0] | safe }},
-                datasets: [{
-                    data: {{ player.percentile_array[1] }},
-                    percentiles: {{ player.percentile_array[0] }},
-                    backgroundColor: {{ player.percentile_color_array | safe }},
-                    stats: {{ player.stats[1] | safe }},
-                    borderColor: '#000000',
-                    borderWidth:0,
-                }]
 
-            },
-            options: {
-                lineAtIndex: 0.01,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 10,
-                        top: 10,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            reverse: true
-                        },
-                        gridLines: {
-                            display:true
-                        },
-                        categoryPercentage: 1,
-                        barPercentage: 0.9
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            display:false
-                        },
-                        ticks: {
-                            display: false,
-                            min: -50,
-                            max: 50,
-                            stepSize: 10
-                        }
+        // main stats bar chart
+        $(document).ready( function () {
+            var ctx = document.getElementById("player_stats");
+            var player_stats = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: {{ player.stats[0] | safe }},
+                    datasets: [{
+                        data: {{ player.percentile_array[1] }},
+                        percentiles: {{ player.percentile_array[0] }},
+                        backgroundColor: {{ player.percentile_color_array | safe }},
+                        stats: {{ player.stats[1] | safe }},
+                        borderColor: '#000000',
+                        borderWidth:0,
                     }]
+
                 },
-                tooltips: {
-                    callbacks: {
-                    label: function(tooltipItem, data ) {
-                        var x = tooltipItem.index;
-                        var stats = data.datasets[0].stats;
-                        var percentiles = data.datasets[0].percentiles;
-                        var string = stats[x].toString() + " per 36 (";
-                        var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
-                        var s = string + suffix.toString() + " " + "percentile)";
-                        return(s);
-                    }
-            }
-                },
-                legend: {
-                    display: false
+                options: {
+                    lineAtIndex: 0.01,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                reverse: true
+                            },
+                            gridLines: {
+                                display:true
+                            },
+                            categoryPercentage: 1,
+                            barPercentage: 0.9
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display:false
+                            },
+                            ticks: {
+                                display: false,
+                                min: -50,
+                                max: 50,
+                                stepSize: 10
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                        label: function(tooltipItem, data ) {
+                            var x = tooltipItem.index;
+                            var stats = data.datasets[0].stats;
+                            var percentiles = data.datasets[0].percentiles;
+                            var string = stats[x].toString() + " per 36 (";
+                            var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                            var s = string + suffix.toString() + " " + "percentile)";
+                            return(s);
+                        }
                 }
-            }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
         });
+
+        //nba comp 1 stats
+        function create_bar_chart(chart_id, neighbors_json, index){
+            var ctx = document.getElementById(chart_id);
+            var chart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: neighbors_json[index].stats[0],
+                    datasets: [{
+                        data: neighbors_json[index].percentile_array[1],
+                        percentiles: neighbors_json[index].percentile_array[0],
+                        backgroundColor: neighbors_json[index].percentile_color_array,
+                        stats: neighbors_json[index].stats[1],
+                        borderColor: '#000000',
+                        borderWidth:0
+                    }]
+
+                },
+                options: {
+                    lineAtIndex: 0.01,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                reverse: true
+                            },
+                            gridLines: {
+                                display:true
+                            },
+                            categoryPercentage: 1,
+                            barPercentage: 0.9
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display:false
+                            },
+                            ticks: {
+                                display: false,
+                                min: -50,
+                                max: 50,
+                                stepSize: 10
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                        label: function(tooltipItem, data ) {
+                            var x = tooltipItem.index;
+                            var stats = data.datasets[0].stats;
+                            var percentiles = data.datasets[0].percentiles;
+                            var string = stats[x].toString() + " per 36 (";
+                            var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                            var s = string + suffix.toString() + " " + "percentile)";
+                            return(s);
+                        }
+                }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        }
+
+        data = {{ neighbors_json | safe }}
+        create_bar_chart("comp1_stats", data, 0);
+        create_bar_chart("comp2_stats", data, 1);
+        create_bar_chart("comp3_stats", data, 2);
 
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");

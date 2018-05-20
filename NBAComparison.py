@@ -101,7 +101,7 @@ class NBAComparison:
 
             normalized_arr.append(norm)
 
-        return arr, normalized_arr
+        return [arr, normalized_arr]
 
     def gather_stats(self):
 
@@ -110,7 +110,7 @@ class NBAComparison:
         stats = [str(self.nba_pts), str(self.nba_reb), str(self.nba_ast),str(self.nba_fgper)+"%", str(self.nba_threeper)+"%",
                  str(self.nba_ftper)+"%", str(self.nba_stl), str(self.nba_blk), str(self.nba_tov)]
 
-        return stats_headers, stats
+        return [stats_headers, stats]
 
     def get_percentiles_colors(self, array):
         color_arr = list()
