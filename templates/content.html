@@ -821,11 +821,6 @@
             });
         }
 
-        data = {{ neighbors_json | safe }}
-        create_bar_chart("comp1_stats", data[0]);
-        create_bar_chart("comp2_stats", data[1]);
-        create_bar_chart("comp3_stats", data[2]);
-
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");
         for(i = 0; i < paths.length; i++) {
@@ -882,6 +877,14 @@
                 }
             });
         }
+
+        data = {{ neighbors_json | safe }};
+        if(data != null) {
+            create_bar_chart("comp1_stats", data[0]);
+            create_bar_chart("comp2_stats", data[1]);
+            create_bar_chart("comp3_stats", data[2]);
+        }
+
 
     </script>
 {% endblock %}
