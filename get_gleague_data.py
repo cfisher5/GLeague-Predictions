@@ -17,6 +17,7 @@ def scrape():
         gleague_projections_csv = "GLeague-Predictions/data/gleague_projections.csv"
         pace_json = "GLeague-Predictions/data/pace.json"
         pace_csv = "GLeague-Predictions/data/pace.csv"
+        advanced_csv = "GLeague-Predictions/data/gleague_advanced.csv"
     else:
         csv_filename = "data/gleague_data_new.csv"
         json_filename = "data/players_json_new.txt"
@@ -25,8 +26,9 @@ def scrape():
         gleague_projections_csv = "data/gleague_projections.csv"
         pace_csv = "data/pace.csv"
         pace_json = "data/pace.json"
+        advanced_csv = "data/gleague_advanced.csv"
 
-
+    # gleague box score data
     gleague_ids = open(csv_filename, 'w')
     gleague_ids.write('Name,ID,Team,Age,GP,FGA,3PM,REB,AST,PTS,MIN,FGM,FGP,3PA,3PPER,FTM,FTA,FTPER,TOV,STL,BLK\n')
     url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Per36&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
@@ -76,12 +78,45 @@ def scrape():
 
         gleague_ids.write(name + "," + href + "," + team + "," + age + "," + gp + "," + fga + "," + threepm + "," + reb + "," + ast + "," + pts + ',' + minutes + "," + fgm + "," + fgper + "," + threepa + "," + threeper + "," + ftm + "," + fta + "," + ftper + "," + tov + "," + stl + "," + blk + "\n")
 
+    gleague_ids.close()
     players_file = open(json_filename, 'w')
     players_file.write(str(player_json))
     players_file.close()
 
+    # gleague advanced stats
+    gleague_adv = open(advanced_csv, 'w')
+    gleague_adv.write('ID,GP,ORTG,DRTG,NRTG,ASTPER,OREBPER,DREBPER,eFG,TS,USG\n')
+    url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Advanced&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+
+    try:
+        response = requests.get(url, headers=global_items.header, timeout=1000)
+        data = response.json()['resultSets'][0]['rowSet']
+    except json.JSONDecodeError:
+        print("unable to reach API")
+        return False
+
+    print("grabbing g league advanced data")
+    for player in data:
+        player_id = player[0]
+        gp = player[5]
+        ortg = player[10]
+        drtg = player[11]
+        nrtg = player[12]
+        astper = player[13]
+        orebper = player[16]
+        drebper = player[17]
+        efg = player[20]
+        ts = player[21]
+        usg = player[22]
+
+        gleague_adv.write(str(player_id) + "," + str(gp) + "," + str(ortg)+ "," + str(drtg)+ "," + str(nrtg) + ","
+                          + str(astper) + "," + str(orebper) + "," +str(drebper) +
+                          "," + str(efg) + "," + str(ts) + "," + str(usg) + "\n")
+
+    gleague_adv.close()
     time.sleep(5)
 
+    # gleague nba projections
     gleague_projections = open(gleague_projections_csv, 'w')
     gleague_projections.write('ID,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
     proj_url = "http://stats.gleague.nba.com/stats/dleaguepredictor?DLeagueTeamID=0&LeagueID=20&NBATeamID=0&Season=2017-18"
@@ -108,8 +143,8 @@ def scrape():
         gleague_projections.write(id + "," + PTS + "," + REB + "," + AST + "," + STL + "," + BLK + "," + TOV + "," + FGper + "," + threepper + "," + ftper + "\n" )
 
     gleague_projections.close()
-    # time.sleep(120)
-    # get pace info
+
+    # NBA pace info
     pace_file = open(pace_csv, 'w')
     pace_file.write("TeamID,pace\n")
     total_pace = 0.0

@@ -608,12 +608,12 @@ label{
     padding-right:25px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .border-right {
         border-right: grey thin dashed;
     }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     .border-right-special {
         border-right: grey thin dashed;
     }
@@ -634,7 +634,7 @@ label{
     display: inline-block;
     width:70px;
     text-align: left;
-    padding: 5px 7px
+    padding: 5px 7px;
 }
 
 .padding-left-right{
@@ -743,16 +743,15 @@ label{
         text-align: center;
     }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
     .pad-when-small {
         padding-top:10px;
         padding-bottom:10px;
-        border-bottom: grey thin dashed;
+        /*border-bottom: grey thin dashed;*/
     }
     .margin-when-small {
         padding-top:10px;
         margin-bottom:20px;
-        border-bottom: grey thin dashed;
     }
 }
 @media only screen and (min-width: 768px) {
@@ -761,7 +760,7 @@ label{
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width:991px) {
+@media only screen and (max-width:991px) {
     .border-bottom-special{
         border-bottom: thin grey dashed;
     }
@@ -775,4 +774,9 @@ label{
         padding-top:20px;
     }
 }
-
+@media only screen and (max-width: 767px) {
+    .border-pad-bottom{
+        border-bottom: thin grey dashed;
+        padding-bottom:20px;
+    }
+}

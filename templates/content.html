@@ -65,7 +65,7 @@
 
     <div class="container" id="page_data">
         <div class="row center border-bottom">
-            <div id="player_bio" class="border-bottom-special margin-when-small col-xs-12 col-sm-6 col-md-4 border-right">
+            <div id="player_bio" class="border-bottom-special margin-when-small col-xs-12 col-sm-12 col-md-4 border-right">
                 <div class="row center">
                     <div class="row" style="padding-bottom:10px;">
                         <a href="http://stats.gleague.nba.com/player/#!/{{ player.gleague_id }}" target="_blank">
@@ -108,43 +108,28 @@
                 </div>
 
             </div>
-            <div id="stats" class="border-bottom-special col-sm-6 col-md-5 border-right-special pad-when-small">
-                <strong style="padding:0 10px;">2017-2018 G League Stats per 36 Min:</strong>
-{#                <div class="row" style="font-size: 13px;padding:15px 0 0;margin-left:0;margin-right:0;">#}
-{#                    <ul class="col-xs-12 col-sm-6 right-center" style="margin-bottom:0;">#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">GP</sup><span style="float:right;">{{ player.gp }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">PTS</sup><span style="float:right;">{{ player.pts }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">REB</sup><span style="float:right;">{{ player.reb }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">AST</sup><span style="float:right;">{{ player.ast }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">STL</sup><span style="float:right;">{{ player.stl }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">BLK</sup><span style="float:right;">{{ player.blk }}</span></li>#}
-{#                    </ul>#}
-{#                    <ul class="col-xs-12 col-sm-6 left-center" style="margin-bottom:0;">#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">FGM</sup><span style="float:right;">{{ player.fgm }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">FG%</sup><span style="float:right;">{{ player.fgper }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">3PM</sup><span style="float:right;">{{ player.threepm }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">3P%</sup><span style="float:right;">{{ player.threeper }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">TOV</sup><span style="float:right;">{{ player.tov }}</span></li>#}
-{#                        <li class="wrapper-w"><sup class="player_stat_name">FT%</sup><span style="float:right;">{{ player.ftper }}</span></li>#}
-{#                    </ul>#}
-{#                </div>#}
-                    <div style="position: relative;max-width:400px;margin:0 auto;">
-                        <p style="padding-top:5px;font-size:11px;margin:0;">{{player.gp}} Games Played • {{ player.mpg }} min/G</p>
-                        <canvas id="player_stats"></canvas>
-                        <p style="text-align: center;padding-left:40px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
-                        <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+            <div class="margin-when-small col-xs-12 col-sm-12 col-md-8">
+                <div class="row">
+                    <strong style="padding:0 5px;">2017-2018 G League Stats Profile (Box Score per 36 Stats & Advanced Stats)</strong>
+                    <p style="padding-top:5px;font-size:11px;margin:0;">{{player.gp}} Games Played • {{ player.mpg }} min/G</p>
+                </div>
+                <div class="row border-pad-bottom" style="padding-top:15px;">
+                    <div class="col-xs-12 col-sm-6 border-right-special pad-when-small">
+                        <div id='stats' style="position: relative;max-width:400px;margin:0 auto;">
+                            <canvas id="player_stats"></canvas>
+                            <p style="text-align: center;padding-left:75px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                        </div>
                     </div>
-            </div>
-
-            <div class="col-sm-12 col-md-3 pad-when-small" id="cluster-div">
-                <div class="row" style="padding-left:15px;padding-right:15px;">
-                    <strong>G League Cluster:</strong><br>
-                    <strong style="color:{{ player.cluster_color }};">{{ player.gnb_cluster }}</strong>
-                    <p class="padding-top">Based on the RCC framework which uses a Gaussian Naive Bayes model for classification. Refer to the diagram below to discover the role-transformations {{ player.gnb_cluster }}s typically make once they get to the NBA. </p>
+                    <div class="col-xs-12 col-sm-6 pad-when-small">
+                        <div style="position: relative;max-width:400px;margin:0 auto;">
+                            <canvas id="player_adv_stats"></canvas>
+                            <p style="text-align: center;padding-left:75px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 7 GP) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
         <div class="row border-bottom explanation" style="padding-top: 40px;padding-bottom:25px;">
         <div class="col-xs-12 col-sm-5" style="padding-bottom:20px;padding-top:40px;padding-right:30px;text-align:justify">
@@ -630,11 +615,11 @@
             var player_stats = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
-                    labels: {{ player.stats[0] | safe }},
+                    labels: {{ player.stats[2] | safe }},
                     datasets: [{
-                        data: {{ player.percentile_array[1] }},
-                        percentiles: {{ player.percentile_array[0] }},
-                        backgroundColor: {{ player.percentile_color_array | safe }},
+                        data: {{ player.percentile_array[0][1] }},
+                        percentiles: {{ player.percentile_array[0][0] }},
+                        backgroundColor: {{ player.percentile_array[0][2] | safe }},
                         stats: {{ player.stats[1] | safe }},
                         borderColor: '#000000',
                         borderWidth:0,
@@ -677,16 +662,87 @@
                     },
                     tooltips: {
                         callbacks: {
-                        label: function(tooltipItem, data ) {
-                            var x = tooltipItem.index;
-                            var stats = data.datasets[0].stats;
-                            var percentiles = data.datasets[0].percentiles;
-                            var string = stats[x].toString() + " per 36 (";
-                            var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
-                            var s = string + suffix.toString() + " " + "percentile)";
-                            return(s);
+                            label: function(tooltipItem, data ) {
+                                var x = tooltipItem.index;
+                                var stats = data.datasets[0].stats;
+                                var percentiles = data.datasets[0].percentiles;
+                                var string = stats[x].toString() + " per 36 (";
+                                var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                                var s = string + suffix.toString() + " " + "percentile)";
+                                return(s);
+                            }
                         }
+                    },
+                    legend: {
+                        display: false
+                    }
                 }
+            });
+        });
+
+        //advanced stats
+        $(document).ready( function () {
+            var ctx_2 = document.getElementById("player_adv_stats");
+            var adv_stats = new Chart(ctx_2, {
+                type: 'horizontalBar',
+                data: {
+                    labels: {{ player.advanced_stats[0] | safe }},
+                    datasets: [{
+                        data: {{ player.percentile_array[1][1] | safe }},
+                        percentiles: {{ player.percentile_array[1][0] | safe }},
+                        backgroundColor: {{ player.percentile_array[1][2] | safe }},
+                        stats: {{ player.advanced_stats[2] | safe }},
+{#                        borderColor: '#000000',#}
+                        borderWidth:0
+                    }]
+
+                },
+                options: {
+                    lineAtIndex: 0.01,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                reverse: true
+                            },
+                            gridLines: {
+                                display:true
+                            },
+                            categoryPercentage: 1,
+                            barPercentage: 0.9
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display:false
+                            },
+                            ticks: {
+                                display: false,
+                                min: -50,
+                                max: 50,
+                                stepSize: 10
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data ) {
+                                var x = tooltipItem.index;
+                                var stats = data.datasets[0].stats;
+                                var percentiles = data.datasets[0].percentiles;
+                                var string = parseFloat(stats[x]).toFixed(1).toString() + " (";
+                                var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                                var s = string + suffix.toString() + " " + "percentile)";
+                                return(s);
+                            }
+                        }
                     },
                     legend: {
                         display: false

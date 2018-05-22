@@ -53,9 +53,9 @@ class Player:
         self.get_analytics()
         self.cluster_color = self.get_color()
         self.fix_position()
-        self.percentile_color_array = None
         self.stats = self.gather_stats()
-        self.percentile_array = self.get_percentiles()
+        self.advanced_stats = self.get_advanced_stats()
+        self.percentile_array = [self.get_percentiles('box'), self.get_percentiles('advanced')]
         self.mpg = str(round(float(self.min) / float(self.gp),1))
 
     def get_analytics(self):
@@ -281,57 +281,137 @@ class Player:
         if self.position == "Forward-Center":
             self.position = "F-C"
 
-    def get_percentiles(self):
+    def get_advanced_stats(self):
+        stats = {}
+        stats_array = []
+        with open("data/gleague_advanced.csv", "r") as two_ways:
+            players = csv.reader(two_ways)
+            next(players, None)
+            for player in players:
+                if self.id == player[0]:
+                    stats['ORTG'] = player[2]
+                    stats_array.append(player[2])
+                    stats['DRTG'] = player[3]
+                    stats_array.append(player[3])
+                    stats['NRTG'] = player[4]
+                    stats_array.append(player[4])
+                    stats['ASTPER'] = player[5]
+                    stats_array.append(float(player[5]) * 100.0)
+                    stats['OREBPER'] = player[6]
+                    stats_array.append(float(player[6]) * 100.0)
+                    stats['DREBPER'] = player[7]
+                    stats_array.append(float(player[7]) * 100.0)
+                    stats['eFG'] = player[8]
+                    stats_array.append(float(player[8]) * 100.0)
+                    stats['TS'] = player[9]
+                    stats_array.append(float(player[9]) * 100.0)
+                    stats['USG'] = player[10]
+                    stats_array.append(float(player[10]) * 100.0)
+                    break
 
-        per_36_data = pd.read_csv(open("data/gleague_data.csv", "r"), sep=",")
-        positions = pd.read_csv(open("data/positions.csv", "r"), sep=",")
-        per_36_data = per_36_data.query("MIN > 200.0")
-        merged_df = pd.merge(left=per_36_data, right=positions, how='inner', on='ID')
+        stat_labels = ["ORtg","DRtg","Net Rating","AST%","OREB%","DREB%","eFG%","TS%","USG%"]
+        return [stat_labels, stats, stats_array]
 
-        # get query
-        if 'G' in self.position:
-            query_string = "POS == 'G' or POS == 'G-F' or POS == 'F-G'"
-        elif 'F' in self.position:
-            query_string = "POS == 'F' or POS == 'G-F' or POS == 'F-G' or POS=='F-C' or POS=='C-F'"
-        else:
-            query_string = "POS == 'C' or POS == 'F-C' or POS == 'C-F'"
-        subset_pos = merged_df.query(query_string)
-        arr = list()
-        arr.append(stats.percentileofscore(subset_pos['FGM'], float(self.fgm)))
-        arr.append(stats.percentileofscore(subset_pos['FGP'], float(self.fgper)/100.0))
-        arr.append(stats.percentileofscore(subset_pos['3PM'], float(self.threepm)))
-        arr.append(stats.percentileofscore(subset_pos['3PPER'], float(self.threeper)/100.0))
-        arr.append(stats.percentileofscore(subset_pos['PTS'], float(self.pts)))
-        arr.append(stats.percentileofscore(subset_pos['REB'], float(self.reb)))
-        arr.append(stats.percentileofscore(subset_pos['AST'], float(self.ast)))
-        arr.append(stats.percentileofscore(subset_pos['FTPER'], float(self.ftper)/100.0))
-        arr.append(stats.percentileofscore(subset_pos['STL'], float(self.stl)))
-        arr.append(stats.percentileofscore(subset_pos['BLK'], float(self.blk)))
-        arr.append(100.0 - stats.percentileofscore(subset_pos['TOV'], float(self.tov)))
+    def get_percentiles(self, stat_type):
 
+        if stat_type == "box":
+            # Box score percentiles
+            data = pd.read_csv(open("data/gleague_data.csv", "r"), sep=",")
+            positions = pd.read_csv(open("data/positions.csv", "r"), sep=",")
+            data = data.query("MIN > 200.0")
+            merged_df = pd.merge(left=data, right=positions, how='inner', on='ID')
 
-        self.get_percentiles_colors(arr)
+            # get query
+            if 'G' in self.position:
+                query_string = "POS == 'G' or POS == 'G-F' or POS == 'F-G'"
+            elif 'F' in self.position:
+                query_string = "POS == 'F' or POS == 'G-F' or POS == 'F-G' or POS=='F-C' or POS=='C-F'"
+            else:
+                query_string = "POS == 'C' or POS == 'F-C' or POS == 'C-F'"
 
-        normalized_arr = list()
-        for element in arr:
-            norm = element - 50.0
-            if norm > 50.0:
-                norm = 50.0
-            elif norm < -50.0:
-                norm = -50.0
+            subset_pos = merged_df.query(query_string)
+            arr = list()
+            arr.append(stats.percentileofscore(subset_pos['FGA'], float(self.fga)))
+            arr.append(stats.percentileofscore(subset_pos['FGP'], float(self.fgper)/100.0))
+            arr.append(stats.percentileofscore(subset_pos['3PA'], float(self.threepa)))
+            arr.append(stats.percentileofscore(subset_pos['3PPER'], float(self.threeper)/100.0))
+            arr.append(stats.percentileofscore(subset_pos['PTS'], float(self.pts)))
+            arr.append(stats.percentileofscore(subset_pos['REB'], float(self.reb)))
+            arr.append(stats.percentileofscore(subset_pos['AST'], float(self.ast)))
+            arr.append(stats.percentileofscore(subset_pos['FTPER'], float(self.ftper)/100.0))
+            arr.append(stats.percentileofscore(subset_pos['STL'], float(self.stl)))
+            arr.append(stats.percentileofscore(subset_pos['BLK'], float(self.blk)))
+            arr.append(100.0 - stats.percentileofscore(subset_pos['TOV'], float(self.tov)))
 
-            normalized_arr.append(norm)
+            percentile_colors = self.get_percentiles_colors(arr)
 
-        return arr, normalized_arr
+            normalized_arr = list()
+            for element in arr:
+                norm = element - 50.0
+                if norm > 50.0:
+                    norm = 50.0
+                elif norm < -50.0:
+                    norm = -50.0
+
+                normalized_arr.append(norm)
+
+            return [arr, normalized_arr, percentile_colors]
+
+        # advanced percentiles
+        elif stat_type == "advanced":
+
+            adv_stats = self.advanced_stats[1]
+            data = pd.read_csv(open("data/gleague_advanced.csv", "r"), sep=",")
+            positions = pd.read_csv(open("data/positions.csv", "r"), sep=",")
+            data = data.query("GP > 6")
+            merged_df = pd.merge(left=data, right=positions, how='inner', on='ID')
+
+            # get query
+            if 'G' in self.position:
+                query_string = "POS == 'G' or POS == 'G-F' or POS == 'F-G'"
+            elif 'F' in self.position:
+                query_string = "POS == 'F' or POS == 'G-F' or POS == 'F-G' or POS=='F-C' or POS=='C-F'"
+            else:
+                query_string = "POS == 'C' or POS == 'F-C' or POS == 'C-F'"
+
+            subset_pos = merged_df.query(query_string)
+            arr = list()
+            arr.append(stats.percentileofscore(subset_pos['ORTG'], float(adv_stats['ORTG'])))
+            arr.append(100.0 - stats.percentileofscore(subset_pos['DRTG'], float(adv_stats['DRTG'])))
+            arr.append(stats.percentileofscore(subset_pos['NRTG'], float(adv_stats['NRTG'])))
+            arr.append(stats.percentileofscore(subset_pos['ASTPER'], float(adv_stats['ASTPER'])))
+            arr.append(stats.percentileofscore(subset_pos['OREBPER'], float(adv_stats['OREBPER'])))
+            arr.append(stats.percentileofscore(subset_pos['DREBPER'], float(adv_stats['DREBPER'])))
+            arr.append(stats.percentileofscore(subset_pos['eFG'], float(adv_stats['eFG'])))
+            arr.append(stats.percentileofscore(subset_pos['TS'], float(adv_stats['TS'])))
+            arr.append(stats.percentileofscore(subset_pos['USG'], float(adv_stats['USG'])))
+
+            percentile_colors = self.get_percentiles_colors(arr)
+
+            normalized_arr = list()
+            for element in arr:
+                norm = element - 50.0
+                if norm > 50.0:
+                    norm = 50.0
+                elif norm < -50.0:
+                    norm = -50.0
+
+                normalized_arr.append(norm)
+
+            return [arr, normalized_arr, percentile_colors]
 
     def gather_stats(self):
 
-        stats_headers = ["FGM","FG%","3PM","3P%","PTS","REB","AST","FT%","STL","BLK","TOV"]
+        stats_headers = ["FGA","FG%","3PA","3P%","PTS","REB","AST","FT%","STL","BLK","TOV"]
 
-        stats = [str(self.fgm), str(self.fgper)+"%", str(self.threepm), str(self.threeper)+"%", str(self.pts), str(self.reb), str(self.ast),
-                 str(self.ftper)+"%", str(self.stl), str(self.blk), str(self.tov)]
+        stats = [str(self.fga), str(self.fgper), str(self.threepa), str(self.threeper), str(self.pts), str(self.reb), str(self.ast),
+                 str(self.ftper), str(self.stl), str(self.blk), str(self.tov)]
 
-        return stats_headers, stats
+        labels_mixed = []
+        for header, stat in zip(stats_headers, stats):
+            labels_mixed.append(stat + "\t\t\t\t" + header)
+
+        return [stats_headers, stats, labels_mixed]
 
     def get_percentiles_colors(self, array):
         color_arr = list()
@@ -363,4 +443,4 @@ class Player:
             else:
                 color_arr.append("#006400")
 
-        self.percentile_color_array = color_arr
+        return color_arr

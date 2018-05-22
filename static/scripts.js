@@ -42,6 +42,7 @@ function usePlaceholder(img){
         img.style.height = "183px";
     }
 }
+
 function check_uncheck_all(btn){
     var d = $(btn).data(); // access the data object of the button
     $(':checkbox').prop('checked', d.checked); // set all checkboxes 'checked' property using '.prop()'
@@ -63,8 +64,8 @@ $(document).ready( function () {
 
 function equal_div_heights(){
   var player_info_height = document.getElementById("player_bio").clientHeight;
-  document.getElementById("stats").style.minHeight = (player_info_height + 1) + "px";
+  document.getElementById("stats").style.minHeight = (player_info_height + 2) + "px";
 }
 
-setInterval(equal_div_heights, 300);
+// setInterval(equal_div_heights, 300);
 
