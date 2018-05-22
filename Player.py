@@ -169,7 +169,7 @@ class Player:
         for obj in data:
             self.bg = obj[9]
             bg1, bg2 = self.bg.split("/")
-            if bg1 == bg2:
+            if bg1.strip() == bg2.strip():
                 self.bg = bg1
             self.height = obj[10]
             self.weight = obj[11]
