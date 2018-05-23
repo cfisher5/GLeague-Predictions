@@ -171,6 +171,8 @@ class Player:
             bg1, bg2 = self.bg.split("/")
             if bg1.strip() == bg2.strip():
                 self.bg = bg1
+            else:
+                self.bg = bg1.strip() + "/" + bg2.strip()
             self.height = obj[10]
             self.weight = obj[11]
             self.position = obj[14]
@@ -404,14 +406,10 @@ class Player:
 
         stats_headers = ["FGA","FG%","3PA","3P%","PTS","REB","AST","FT%","STL","BLK","TOV"]
 
-        stats = [str(self.fga), str(self.fgper), str(self.threepa), str(self.threeper), str(self.pts), str(self.reb), str(self.ast),
-                 str(self.ftper), str(self.stl), str(self.blk), str(self.tov)]
+        stats = [str(self.fga), str(self.fgper)+"%", str(self.threepa), str(self.threeper)+"%", str(self.pts), str(self.reb), str(self.ast),
+                 str(self.ftper)+"%", str(self.stl), str(self.blk), str(self.tov)]
 
-        labels_mixed = []
-        for header, stat in zip(stats_headers, stats):
-            labels_mixed.append(stat + "\t\t\t\t" + header)
-
-        return [stats_headers, stats, labels_mixed]
+        return [stats_headers, stats]
 
     def get_percentiles_colors(self, array):
         color_arr = list()

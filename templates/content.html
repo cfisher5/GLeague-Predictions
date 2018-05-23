@@ -117,7 +117,7 @@
                     <div class="col-xs-12 col-sm-6 border-right-special pad-when-small">
                         <div id='stats' style="position: relative;max-width:400px;margin:0 auto;">
                             <canvas id="player_stats"></canvas>
-                            <p style="text-align: center;padding-left:75px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
+                            <p style="text-align: center;padding-left:45px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
                             <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
                         </div>
                     </div>
@@ -615,7 +615,7 @@
             var player_stats = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
-                    labels: {{ player.stats[2] | safe }},
+                    labels: {{ player.stats[0] | safe }},
                     datasets: [{
                         data: {{ player.percentile_array[0][1] }},
                         percentiles: {{ player.percentile_array[0][0] }},
@@ -636,6 +636,21 @@
                             bottom: 0
                         }
                     },
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                return context.chart.data.datasets[0].stats[context.dataIndex];
+
+                            },
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 5,
+                            color: 'black',
+                            font:{
+                                size: '10'
+                            }
+                        }
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -654,8 +669,8 @@
                             },
                             ticks: {
                                 display: false,
-                                min: -50,
-                                max: 50,
+                                min: -60,
+                                max: 60,
                                 stepSize: 10
                             }
                         }]
@@ -692,7 +707,6 @@
                         percentiles: {{ player.percentile_array[1][0] | safe }},
                         backgroundColor: {{ player.percentile_array[1][2] | safe }},
                         stats: {{ player.advanced_stats[2] | safe }},
-{#                        borderColor: '#000000',#}
                         borderWidth:0
                     }]
 
@@ -705,6 +719,21 @@
                             right: 5,
                             top: 10,
                             bottom: 0
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                return parseFloat(context.chart.data.datasets[0].stats[context.dataIndex]).toFixed(1).toString();
+
+                            },
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 5,
+                            color: 'black',
+                            font:{
+                                size: '10'
+                            }
                         }
                     },
                     scales: {
@@ -725,8 +754,8 @@
                             },
                             ticks: {
                                 display: false,
-                                min: -50,
-                                max: 50,
+                                min: -60,
+                                max: 60,
                                 stepSize: 10
                             }
                         }]
@@ -777,6 +806,22 @@
                             bottom: 0
                         }
                     },
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                return context.chart.data.datasets[0].stats[context.dataIndex];
+
+                            },
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 5,
+                            color: 'black',
+                            font:{
+                                size: '10'
+                            }
+
+                        },
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -795,8 +840,8 @@
                             },
                             ticks: {
                                 display: false,
-                                min: -50,
-                                max: 50,
+                                min: -60,
+                                max: 60,
                                 stepSize: 10
                             }
                         }]

@@ -54,7 +54,8 @@ $(document).ready( function () {
         "scrollX": true,
         "order": [[ 0, "desc" ]],
         "pagingType": "numbers",
-        "lengthChange": false,
+        "pageLength": 10,
+        "lengthChange": true,
         fixedColumns: {
             leftColumns: 2
         }
