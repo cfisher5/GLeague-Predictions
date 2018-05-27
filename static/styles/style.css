@@ -68,7 +68,8 @@ h3{
     max-height:157px;
 }
 .container{
-    width:90% !important;
+    max-width:1200px;
+    width:90%;
     padding-top:30px;
     padding-bottom:165px;
     height:100%;
@@ -779,4 +780,26 @@ label{
         border-bottom: thin grey dashed;
         padding-bottom:20px;
     }
+}
+
+@media only screen and (max-width:991px) {
+    #game_log_div{
+        padding-right:0 !important;
+    }
+}
+
+.ui-widget-content{
+    background: dimgrey !important;
+}
+.ui-widget-header{
+    background: black !important;
+}
+@media only screen and (max-width: 329px){
+    #amount{
+        text-align: center !important;
+    }
+}
+
+.border-bottom-always{
+    border-bottom:thin grey dashed;
 }

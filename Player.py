@@ -217,6 +217,7 @@ class Player:
 
     def get_game_log(self):
         log = []
+        game_dates = []
         try:
             ua = UserAgent()
             header = {"User-Agent": str(ua.random)}
@@ -225,7 +226,10 @@ class Player:
             data = response.json()['resultSets'][0]['rowSet']
             try:
                 for i in range(0, len(data)):
-                    datetime_object = datetime.strptime(data[i][3], '%b %d, %Y').date()
+                    date_string = data[i][3]
+                    datetime_object = datetime.strptime(date_string, '%b %d, %Y').date()
+                    shotchart_date = datetime_object.strftime("%m-%d-%Y")
+                    game_dates.append(shotchart_date)
                     data[i][3] = datetime_object
                     log.append(data[i])
             except IndexError:
@@ -234,7 +238,11 @@ class Player:
         except json.JSONDecodeError:
             print("couldnt access api")
             log = None
-        return log
+            return log
+
+        game_dates = game_dates[::-1]
+        return [log, game_dates]
+
 
     def get_color(self):
         if self.gnb_cluster == "Facilitator":

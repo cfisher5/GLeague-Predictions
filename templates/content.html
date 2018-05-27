@@ -214,17 +214,17 @@
         </div>
 
 
-        <div class="row padding-top-bottom border-bottom" style="text-align: center;padding-bottom:50px;" >
-        {% if player.gamelog != None %}
-            <div class="col-sm-12 col-md-7" style="padding:0;">
-                <h3>Game Log</h3>
+        <div class="row padding-top-bottom border-bottom-always" style="text-align: center;padding-bottom:50px;" >
+        {% if player.gamelog[0] != None %}
+            <div id="game_log_div" class="col-sm-12 col-md-8" style="padding:0;padding-right:20px;">
+                <h3>2017-18 Game Log</h3>
                 <div>
-                    <table id="gamelog_table" class="display compact" style="width:100%;">
+                    <table id="gamelog_table" class="display compact" style="width:100%;white-space:nowrap;">
                         <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Matchup</th>
-                            <th>Result</th>
+                            <th>Game</th>
+                            <th>W/L</th>
                             <th>MIN</th>
                             <th>FGM</th>
                             <th>FGA</th>
@@ -241,14 +241,14 @@
                             <th>BLK</th>
                             <th>TOV</th>
                             <th>+/-</th>
-
+                            <th>Shot<br>Chart</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for game in player.gamelog %}
+                        {% for game in player.gamelog[0] %}
                             <tr>
                                 <td>{{ game[3] }}</td>
-                                <td>{{ game[4] }}</td>
+                                <td style="border-right:1px lightgrey solid">{{ game[4] }}</td>
                                 <td>{{ game[5] }}</td>
                                 <td>{{ game[6] }}</td>
                                 <td>{{ game[7] }}</td>
@@ -266,6 +266,7 @@
                                 <td>{{ game[21] }}</td>
                                 <td>{{ game[22] }}</td>
                                 <td>{{ game[25] }}</td>
+                                <td style="border-left:1px lightgrey solid"><input name="games" value="{{ game[2] }}" id="{{ game[4] }}" type="radio" onclick="changeShotChart()" /></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -274,125 +275,28 @@
 
             </div>
             {% endif %}
-            <div class="col-sm-12 col-md-5" style="padding:0">
+
+            <div class="col-sm-12 col-md-4" style="padding:0">
                 <h3 id="shotchart-title">2017-18 Shot Chart</h3>
                 <div id="iframe-container" style="height:385px;">
                     <iframe height="100%" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
                 </div>
-                <input class="button-style" style="margin-top:30px !important ;width:230px;margin:0;text-align:center" id="changeShotChart" type="button" onclick="changeShotChart(this)" value="View Shot Chart for Last 10 Games Only">
-
+                <input class="button-style" style="margin-top:30px !important ;width:230px;margin:0;text-align:center" id="changeShotChart" type="button" onclick="getFullSeasonSC(this)" value="View Full Season Shot Chart">
+                <p style="padding-top:20px;text-align:center;max-width:350px;margin:0 auto;">
+                  <label style='text-align: right;' for="amount">Shot Chart Game Range:</label>
+                  <input type="text" id="amount" readonly style="border:0; color:rgba(91,89,92,1); font-weight:bold;width:135px;text-align:right">
+                </p>
+                <div style="text-align:center;margin:0 auto;max-width:300px;" id="slider-range"></div>
             </div>
         </div>
 
     <div class="row center padding-20">
-{#    <div class="row padding-top-bottom">#}
-{#        <h3>G League Player Comparisons:</h3>#}
-{#    </div>#}
-{#    <div class="row padding-20">#}
-{#        {% for n in player.neighbors %}#}
-{#            <div class="col-sm-12 col-md-4">#}
-{#                <div class="row center">#}
-{#                    <img class="neighbor-headshot center comparisons"#}
-{#                         src="https://d2cwpp38twqe55.cloudfront.net/req/201712064/images/players/{{ n.pic_id }}.jpg" onerror="usePlaceholder(this)">#}
-{#                    <h4 class="center">{{ n.name }}</h4>#}
-{#                    <h5 class="center">{{ n.height }} | {{ n.weight }} lbs</h5>#}
-{#                </div>#}
-{#                <div class="row">#}
-{#                    <strong>G League Cluster: {{ n.gleague_cluster }}</strong><br>#}
-{#                    <strong>NBA Cluster: {{ n.nba_cluster }}</strong>#}
-{#                </div>#}
-{#                <div class="row padding-20">#}
-{##}
-{#                    <table class="table table-striped table-bordered table-hover table-responsive stats">#}
-{#                        <thead>#}
-{#                        <tr>#}
-{#                            <th></th>#}
-{#                            <th>G League</th>#}
-{#                            <th>NBA</th>#}
-{#                        </tr>#}
-{#                        </thead>#}
-{#                        <tbody>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                GP#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_g }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_g }}#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                PTS#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_pts }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_pts}}#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                FGA#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_fga }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_fga }}#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                3PM#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_threepm }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_threepm }}#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                REB#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_reb }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_reb }}#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                AST#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.gl_ast }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ n.nba_ast }}#}
-{#                            </td>#}
-{#                        </tr>#}
-{##}
-{##}
-{#                        </tbody>#}
-{#                    </table>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-    {% if player.nba_comps != None %}
-    <div class="row padding-top-bottom">
-        <h3>NBA player comparisons using the <a href="https://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
-        <h4>These NBA comparisons are based on <strong> pace-adjusted per 36 minute boxscore stats </strong> and each player is required to have played at least 300 min.</h4>
-        <h4>Use the checkboxes below to narrow your NBA comparison search.</h4>
-    </div>
+        {% if player.nba_comps != None %}
+        <div class="row padding-top-bottom">
+            <h3>NBA player comparisons using the <a href="https://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
+            <h4>These NBA comparisons are based on <strong> pace-adjusted per 36 minute boxscore stats </strong> and each player is required to have played at least 300 min.</h4>
+            <h4>Use the checkboxes below to narrow your NBA comparison search.</h4>
+        </div>
         <div class="row">
             <button class='button-style' onclick="check_uncheck_all(this)" id='checkall' data-checked='false'>Check/Uncheck All</button>
             <div class="wrapper">
@@ -621,7 +525,6 @@
                         percentiles: {{ player.percentile_array[0][0] }},
                         backgroundColor: {{ player.percentile_array[0][2] | safe }},
                         stats: {{ player.stats[1] | safe }},
-                        borderColor: '#000000',
                         borderWidth:0,
                     }]
 
@@ -891,21 +794,103 @@
             }
         }
 
-        function changeShotChart(btn){
-            if(btn.value === "View Shot Chart for Last 10 Games Only") {
+        function getFullSeasonSC(btn){
+            $("input[type='radio'][name='games']:checked").prop("checked", false);
+            $("#iframe-container").empty();
+            $("#shotchart-title").html("2017-18 Shot Chart");
+            var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+            $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
+            slide();
+        }
+
+        function slide() {
+            var num_games = {{ player.gp }};
+            var game_dates = {{ player.gamelog[1] | safe }}
+
+            $( "#slider-range" ).slider({
+              range: true,
+              min: 1,
+              max: num_games,
+              values: [ 1, num_games ],
+              slide: function( event, ui ) {
+                $( "#amount" ).val( "Game " + ui.values[ 0 ] + " - Game " + ui.values[ 1 ] );
+                var start =  game_dates[ui.values[0] - 1];
+                var end = game_dates[ui.values[1] - 1];
+                $("input[type='radio'][name='games']:checked").prop("checked", false);
                 $("#iframe-container").empty();
-                $("#shotchart-title").html("Last 10 Games Shot Chart");
-                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+                $("#shotchart-title").html("Game " + ui.values[0] + " - Game " + ui.values[1] +  " Shot Chart");
+                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=" + start + "&DateTo=" + end + "&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
                 $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
-                btn.value = "View Full Season Shot Chart";
-            }
-            else{
+
+              }
+            });
+            $( "#amount" ).val( "Game " + $( "#slider-range" ).slider( "values", 0 ) +
+              " - Game " + $( "#slider-range" ).slider( "values", 1 ) );
+        }
+        slide();
+
+
+        function changeShotChart(){
+{#            if(btn.value === "View Shot Chart for Last 10 Games Only") {#}
+{#                $("#iframe-container").empty();#}
+{#                $("#shotchart-title").html("Last 10 Games Shot Chart");#}
+{#                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";#}
+{#                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");#}
+{#                btn.value = "View Full Season Shot Chart";#}
+{#            }#}
+{#            else{#}
+{#                $("#iframe-container").empty();#}
+{#                $("#shotchart-title").html("2017-18 Shot Chart");#}
+{#                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";#}
+{#                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");#}
+{#                btn.value = "View Shot Chart for Last 10 Games Only";#}
+{#            }#}
+            var count = 0;
+            var start_date, end_date;
+            var gameID = $("input[type='radio'][name='games']:checked").val();
+            var game = $("input[type='radio'][name='games']:checked").attr('id');
+            if(gameID === null){
                 $("#iframe-container").empty();
                 $("#shotchart-title").html("2017-18 Shot Chart");
                 var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
                 $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
-                btn.value = "View Shot Chart for Last 10 Games Only";
             }
+            else{
+                $("#iframe-container").empty();
+                $("#shotchart-title").html(game +" Shot Chart");
+                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=" + gameID + "&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
+                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
+            }
+{#            $("input:checkbox[class=games]:checked").each(function () {#}
+{#                count += 1;#}
+{#                if(count === 1){#}
+{#                    date = $(this).val().split("-");#}
+{#                    gameID = $(this).attr('id');#}
+{#                    end_date = date[1] + "/" + date[2] + "/" + date[0]#}
+{#                }#}
+{#                if(count > 1){#}
+{#                    date = $(this).val().split("-");#}
+{#                    start_date = date[1] + "/" + date[2] + "/" + date[0]#}
+{#                }#}
+{#            });#}
+{#            if(count === 0){#}
+{#                $("#iframe-container").empty();#}
+{#                $("#shotchart-title").html("2017-18 Shot Chart");#}
+{#                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";#}
+{#                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");#}
+{#                //btn.value = "View Shot Chart for Last 10 Games Only";#}
+{#            }#}
+{#            else if(count === 1){#}
+{#                $("#iframe-container").empty();#}
+{#                $("#shotchart-title").html(start_date +" Shot Chart");#}
+{#                var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=" + gameID + "&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=10&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";#}
+{#                $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");#}
+{#                //btn.value = "View Full Season Shot Chart";#}
+{#            }#}
+{#            else{#}
+{#                console.log(start_date + " --- " + end_date);#}
+{#            }#}
+
         }
 
         var coll = document.getElementsByClassName("collapsible");
