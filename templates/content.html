@@ -110,7 +110,7 @@
             </div>
             <div class="margin-when-small col-xs-12 col-sm-12 col-md-8">
                 <div class="row">
-                    <strong style="padding:0 5px;">2017-2018 G League Stats Profile (Box Score per 36 Stats & Advanced Stats)</strong>
+                    <strong style="padding:0 5px;">2017-2018 G League Stats Profile (Box Score per 36 min & Advanced)</strong>
                     <p style="padding-top:5px;font-size:11px;margin:0;">{{player.gp}} Games Played • {{ player.mpg }} min/G</p>
                 </div>
                 <div class="row border-pad-bottom" style="padding-top:15px;">
@@ -143,8 +143,8 @@
         </div>
         <div class="col-xs-12 col-sm-7" style="display:inline-block">
             <div class="row">
-                <div class="col-xs-5"></div>
-                <div class="col-xs-4" style="padding:0;">
+                <div class="col-xs-6"></div>
+                <div class="col-xs-3" style="padding:0;">
                     <span class="alluvial_label" style="font-size:11px;">G League Role</span>
                 </div>
                 <div class="col-xs-3" style="text-align:right;padding:0;">
@@ -282,7 +282,7 @@
                 <input class="button-style" style="margin-top:30px !important ;width:230px;margin:0;text-align:center" id="changeShotChart" type="button" onclick="getFullSeasonSC(this)" value="View Full Season Shot Chart">
                 <p style="padding-top:20px;text-align:center;max-width:350px;margin:0 auto;">
                   <label style='text-align: right;' for="amount">Shot Chart Game Range:</label>
-                  <input type="text" id="amount" readonly style="border:0; color:rgba(91,89,92,1); font-weight:bold;width:135px;text-align:right">
+                  <input type="text" id="amount" readonly style="border:0; color:rgb(0,0,0); font-weight:bold;width:135px;text-align:right">
                 </p>
                 <div style="text-align:center;margin:0 auto;max-width:300px;" id="slider-range"></div>
             </div>
@@ -816,7 +816,7 @@
                 var end = game_dates[ui.values[1] - 1];
                 $("input[type='radio'][name='games']:checked").prop("checked", false);
                 $("#iframe-container").empty();
-                $("#shotchart-title").html("Game " + ui.values[0] + " - Game " + ui.values[1] +  " Shot Chart");
+                $("#shotchart-title").html(start.replace("-2018", "").replace("-2017", "") + " - " + end.replace("-2018", "").replace("-2017", "") +  " Shot Chart");
                 var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=" + start + "&DateTo=" + end + "&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
                 $("#iframe-container").append("<iframe height=\"100%\" src='" + url + "' />");
 

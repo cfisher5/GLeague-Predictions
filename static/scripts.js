@@ -59,6 +59,7 @@ $(document).ready( function () {
         "pagingType": "numbers",
         "pageLength": 20,
         "lengthChange": true,
+        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
         fixedColumns: {
             leftColumns: 1,
             rightColumns: 1

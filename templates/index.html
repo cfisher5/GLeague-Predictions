@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css">
     <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
 {#    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
     <script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -100,14 +101,16 @@
 
     <footer class="footer-distributed index-footer" id="footer_index">
         <div class="footer-right">
-            <a class="blue_hover" href="https://www.linkedin.com/in/cole-fisher/" target="_blank"><i class="fa fa-linkedin"></i></a>
-            <a class="blue_hover" href="https://github.com/cfisher5" target="_blank"><i class="fa fa-github"></i></a>
+            <a title="LinkedIn" class="blue_hover" href="https://www.linkedin.com/in/cole-fisher/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a title="GitHub" class="blue_hover" href="https://github.com/cfisher5" target="_blank"><i class="fab fa-github"></i></a>
+            <a title="email" class="blue_hover" href="mailto:colef@rogers.com" target="_top"><i class="fa fa-envelope"></i></a>
+            <a title="resume" class="blue_hover" href="../static/colefisher_resume.pdf" target="_blank"><i class="fas fa-file-alt"></i></a>
         </div>
 
         <div class="footer-left">
-            <p class="footer-links">Cole Fisher • Western University Computer Science • <a class="blue_hover" href="mailto:colef@rogers.com" target="_top">colef@rogers.com</a></p>
-            <p>Created 2017</p>
+            <p style="margin-top:27px;">© Cole Fisher 2017</p>
         </div>
+
     </footer>
 </div>
 </body>

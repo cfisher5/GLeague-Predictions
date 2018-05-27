@@ -43,6 +43,8 @@ h3{
     overflow-y: auto;
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
+    width:190px;
+    background: #19202c !important;
   }
   /* IE 6 doesn't support max-height
    * we use height instead, but this forces the menu to always be this tall
@@ -213,7 +215,7 @@ table{
 
 .footer-distributed .footer-left p{
 	color:  #8f9296;
-	font-size: 12px;
+	font-size: 11px;
 	margin: 0;
 }
 
@@ -789,7 +791,7 @@ label{
 }
 
 .ui-widget-content{
-    background: dimgrey !important;
+    background: #949494 !important;
 }
 .ui-widget-header{
     background: black !important;
