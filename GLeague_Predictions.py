@@ -41,7 +41,7 @@ def begin():
 
 
 @app.errorhandler(500)
-def page_not_found(e):
+def page_not_found():
 
     with open('data/players_json.txt', 'r') as infile:
         players_json = infile.read()

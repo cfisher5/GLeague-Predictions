@@ -88,7 +88,7 @@ h3{
 
 .header{
   vertical-align: middle;
-  padding:0px 30px;
+  padding:0 30px;
   background-color: rgb(0, 0, 0);
 }
 
@@ -159,7 +159,7 @@ hr{
 .logo-mainpage{
   width:60px;
   padding: 5px 10px;
-  padding-left:0px !important;
+  padding-left:0 !important;
 }
 
 .stats{

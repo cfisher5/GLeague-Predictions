@@ -54,8 +54,8 @@ def get_nba_comps(p, test, data_given=None):
     neigh.fit(X_train)
     comps = None
     for player in X_test:
-        comps = neigh.kneighbors([player], 4)
-    return comps[1][0]
+        comps = neigh.kneighbors([player], 4)[1][0]
+    return comps
 
 
 def svm(X_train, y_train, test):
