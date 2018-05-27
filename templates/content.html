@@ -37,7 +37,6 @@
 
                     var chart_id = "comp" + q.toString() + "_stats";
                     var old_chart = "canvas#" + chart_id;
-                    console.log(old_chart);
                     $(old_chart).remove();
 
                     var div_container = "div." + chart_id;
@@ -89,18 +88,18 @@
                     </div>
                     <div class="row" style="padding-bottom:20px;padding-left:25px;padding-right:25px;">
                         {% if player.height != "" %}
-                            <h4 style="display:inline;"> {{ player.height }} • </h4>
+                            <h5 style="display:inline;font-size:13px;"> {{ player.height }} • </h5>
                         {% endif %}
                         {% if player.weight != "" %}
-                            <h4 style="display:inline;"> {{ player.weight }} lbs • </h4>
-                        {% endif %}
-                        {% if player.bg != "" %}
-                            <h4 style="display:inline;"> {{ player.bg }}</h4>
+                            <h5 style="display:inline;font-size:13px;"> {{ player.weight }} lbs • </h5>
                         {% endif %}
                         {% if player.position != "" %}
-                            <h4 style="display:inline;">• {{ player.position }} </h4>
+                            <h5 style="display:inline;font-size:13px;">{{ player.position }} • </h5>
                         {% endif %}
-                            <h4 style="display:inline;">• Age: {{ player.age }} </h4>
+                        {% if player.bg != "" and player.bg != None %}
+                            <h5 style="font-size:13px;display:inline;">{{ player.bg }} • </h5>
+                        {% endif %}
+                        <h5 style="display:inline;font-size:13px;">Age: {{ player.age }} </h5>
                     </div>
                 </div>
                 <div class="row" style="text-align:center;">

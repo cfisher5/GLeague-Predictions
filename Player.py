@@ -168,11 +168,12 @@ class Player:
 
         for obj in data:
             self.bg = obj[9]
-            bg1, bg2 = self.bg.split("/")
-            if bg1.strip() == bg2.strip():
-                self.bg = bg1
-            else:
-                self.bg = bg1.strip() + "/" + bg2.strip()
+            if self.bg is not None:
+                bg1, bg2 = self.bg.split("/")
+                if bg1.strip() == bg2.strip():
+                    self.bg = bg1
+                else:
+                    self.bg = bg1.strip() + "/" + bg2.strip()
             self.height = obj[10]
             self.weight = obj[11]
             self.position = obj[14]
