@@ -52,7 +52,7 @@ function check_uncheck_all(btn){
 $(document).ready( function () {
     $('#gamelog_table').DataTable({
         "columnDefs": [
-            { "orderable": false, "targets": 19 }
+            { "orderable": false, "targets": 18 }
         ],
         "scrollX": true,
         "order": [[ 0, "desc" ]],
@@ -60,7 +60,7 @@ $(document).ready( function () {
         "pageLength": 20,
         "lengthChange": true,
         fixedColumns: {
-            leftColumns: 2,
+            leftColumns: 1,
             rightColumns: 1
         }
 
