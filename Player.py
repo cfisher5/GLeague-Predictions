@@ -226,8 +226,7 @@ class Player:
             data = response.json()['resultSets'][0]['rowSet']
             try:
                 for i in range(0, len(data)):
-                    date_string = data[i][3]
-                    datetime_object = datetime.strptime(date_string, '%b %d, %Y').date()
+                    datetime_object = datetime.strptime(data[i][3], '%b %d, %Y').date()
                     shotchart_date = datetime_object.strftime("%m-%d-%Y")
                     game_dates.append(shotchart_date)
                     data[i][3] = datetime_object
