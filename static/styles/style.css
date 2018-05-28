@@ -790,12 +790,6 @@ label{
     }
 }
 
-.ui-widget-content{
-    background: #949494 !important;
-}
-.ui-widget-header{
-    background: black !important;
-}
 @media only screen and (max-width: 329px){
     #amount{
         text-align: center !important;
@@ -804,4 +798,8 @@ label{
 
 .border-bottom-always{
     border-bottom:thin grey dashed;
+}
+
+.noUi-connect{
+    background: #585757 !important;
 }
