@@ -803,3 +803,8 @@ label{
 .noUi-connect{
     background: #585757 !important;
 }
+@media only screen and (max-width: 320px){
+    #iframe-container{
+        margin-left:-8px;
+    }
+}
