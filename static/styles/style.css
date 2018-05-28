@@ -793,6 +793,7 @@ label{
 @media only screen and (max-width: 329px){
     #amount{
         text-align: center !important;
+        display:block !important;
     }
 }
 

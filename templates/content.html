@@ -279,11 +279,11 @@
                     <iframe height="100%" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
                 </div>
                 <input class="button-style" style="margin-top:30px !important ;width:230px;margin:0;text-align:center" id="changeShotChart" type="button" onclick="getFullSeasonSC()" value="View Full Season Shot Chart">
-                <p style="padding-top:20px;text-align:center;max-width:350px;margin:0 auto;">
-                  <label style='text-align: right;' for="amount">Shot Chart Game Range:</label>
-                    <input id="amount" disabled style="border:0; color:rgb(0,0,0); font-weight:bold;text-align:right">
+                <p style="padding: 10px 0;text-align:center;max-width:350px;margin:0 auto;">
+                    <span style='display:inline;text-align: right;'>Shot Chart Game Range:</span>
+                    <span id="amount" style="display:inline;border:0; color:rgb(0,0,0); font-weight:bold;text-align:right"></span>
                 </p>
-                <div style='text-align:center;margin:0 auto;max-width:300px;' id="slider"></div>
+                <div style='text-align:center;margin:0 auto;max-width:280px;' id="slider"></div>
             </div>
         </div>
 
@@ -794,7 +794,7 @@
         function getFullSeasonSC(){
             $("input[type='radio'][name='games']:checked").prop("checked", false);
             document.getElementById('slider').noUiSlider.reset();
-             $( "#amount" ).val( "Game 1" + " - Game " + {{ player.gp }} );
+             $( "#amount" ).text( "Game 1" + " - Game " + {{ player.gp }} );
             $("#iframe-container").empty();
             $("#shotchart-title").html("2017-18 Shot Chart");
             var url = "http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1";
@@ -815,12 +815,12 @@
             step: 1
         });
 
-        $( "#amount" ).val( "Game 1" + " - Game " + Math.round(num_games) );
+        $( "#amount" ).text( "Game 1" + " - Game " + Math.round(num_games) );
 
         slider.noUiSlider.on('slide', function(){
             start = slider.noUiSlider.get()[0];
             end = slider.noUiSlider.get()[1];
-            $( "#amount" ).val( "Game " + Math.round(start) + " - Game " + Math.round(end) );
+            $( "#amount" ).text( "Game " + Math.round(start) + " - Game " + Math.round(end) );
             start_date =  game_dates[start - 1];
             end_date = game_dates[end  - 1];
             $("input[type='radio'][name='games']:checked").prop("checked", false);
