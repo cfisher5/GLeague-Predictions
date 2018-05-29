@@ -63,7 +63,7 @@
     </script>
 
     <div class="container" id="page_data">
-        <div class="row center border-bottom">
+        <div id="player_info_row" class="row center border-bottom">
             <div id="player_bio" class="border-bottom-special margin-when-small col-xs-12 col-sm-12 col-md-4 border-right">
                 <div class="row center">
                     <div class="row" style="padding-bottom:10px;">
@@ -107,7 +107,7 @@
                 </div>
 
             </div>
-            <div class="margin-when-small col-xs-12 col-sm-12 col-md-8">
+            <div id='stats_div' class="margin-when-small col-xs-12 col-sm-12 col-md-8">
                 <div class="row">
                     <strong style="padding:0 5px;">2017-2018 G League Stats Profile (Box Score per 36 min & Advanced)</strong>
                     <p style="padding-top:5px;font-size:11px;margin:0;">{{player.gp}} Games Played • {{ player.mpg }} min/G</p>
@@ -117,14 +117,14 @@
                         <div id='stats' style="position: relative;max-width:400px;margin:0 auto;">
                             <canvas id="player_stats"></canvas>
                             <p style="text-align: center;padding-left:45px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
-                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the bar to see the percentile.</h5>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 pad-when-small">
                         <div style="position: relative;max-width:400px;margin:0 auto;">
                             <canvas id="player_adv_stats"></canvas>
                             <p style="text-align: center;padding-left:75px;padding-bottom:5px;margin:0;font-size:9px;font-style:italic;">50th percentile</p>
-                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 7 GP) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                            <h5 style="font-size:10px;margin:0;">Percentiles relative to all qualified G League Players (over 7 GP) <strong>of the same position.</strong> Hover over the bar to see the percentile.</h5>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
             <strong> {{ player.name }} is a G League <strong style="color:{{ player.cluster_color }};"> {{ player.gnb_cluster }} </strong> so trace the paths {{ player.gnb_cluster }}s usually take when going from the G League to the NBA.</strong><br><br>
             <button class="collapsible">Learn More</button>
             <div class="collapsible-content">
-                <span>The path thickness represents the number of G League players with that G League role from 2010-2017 who have gone on to the NBA and played that NBA role.</span>
+                <span>The path thickness represents the number of G League players with that G League role from 2010-2017 who have gone on to the NBA and played that NBA role. Hover over the path to see the number of players in the dataset with that role.</span>
             </div>
         </div>
         <div class="col-xs-12 col-sm-7" style="display:inline-block">
@@ -292,9 +292,9 @@
         <div class="row padding-top-bottom">
             <h3>NBA player comparisons using the <a href="https://gleague.nba.com/news/introducing-nba-projections/">G League's NBA Projections tool:</a></h3>
             <h4>These NBA comparisons are based on <strong> pace-adjusted per 36 minute boxscore stats </strong> and each player is required to have played at least 300 min.</h4>
-            <h4>Use the checkboxes below to narrow your NBA comparison search.</h4>
         </div>
         <div class="row">
+            <h3 style="color:green">Use the checkboxes below to narrow your NBA comparison search:</h3>
             <button class='button-style' onclick="check_uncheck_all(this)" id='checkall' data-checked='false'>Check/Uncheck All</button>
             <div class="wrapper">
                 <input class="pad" type="checkbox" id="pts" value="pts" checked/><label for="pts" class="pad">PTS</label>
@@ -370,7 +370,7 @@
                         </div>
                     </div>
                 </div>
-                <h5 style="font-size:10px;margin:8px;">Percentiles relative to all qualified NBA Players (over 300 min) <strong>of the same position.</strong> Hover over the bar to see the value of the stat per 36 minutes.</h5>
+                <h5 style="font-size:10px;margin:8px;">Percentiles relative to all qualified NBA Players (over 300 min) <strong>of the same position.</strong> Hover over the bar to see the percentile.</h5>
 
 {#                <div class="row padding-20">#}
 {##}

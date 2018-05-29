@@ -70,7 +70,7 @@ h3{
     max-height:157px;
 }
 .container{
-    max-width:1200px;
+    max-width:1300px;
     width:90%;
     padding-top:30px;
     padding-bottom:165px;
@@ -807,5 +807,27 @@ label{
 @media only screen and (max-width: 320px){
     #iframe-container{
         margin-left:-8px;
+    }
+}
+
+#player_bio{
+    display:table-cell;
+    float: none;
+    vertical-align: bottom;
+}
+#stats_div{
+    display:table-cell;
+    float: none;
+    vertical-align: bottom;
+    padding-bottom:10px;
+}
+
+#player_info_row{
+    display: table;
+}
+
+@media only screen and (max-width: 991px){
+    #player_info_row{
+        display: grid;
     }
 }
