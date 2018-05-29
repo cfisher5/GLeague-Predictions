@@ -70,7 +70,7 @@ h3{
     max-height:157px;
 }
 .container{
-    max-width:1300px;
+    max-width: 1350px;
     width:90%;
     padding-top:30px;
     padding-bottom:165px;
@@ -830,4 +830,12 @@ label{
     #player_info_row{
         display: grid;
     }
+}
+
+@media only screen and (min-width: 1400px) {
+    #alluvial, #alluvial_roles{
+        float: right;
+        width:90%;
+    }
+
 }
