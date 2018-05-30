@@ -168,7 +168,7 @@ class Player:
 
         for obj in data:
             self.bg = obj[9]
-            if self.bg is not None:
+            if self.bg is not None and len(self.bg.split("/")) == 2:
                 bg1, bg2 = self.bg.split("/")
                 if bg1.strip() == bg2.strip():
                     self.bg = bg1
