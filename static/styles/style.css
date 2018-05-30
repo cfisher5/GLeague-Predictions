@@ -828,7 +828,11 @@ label{
 
 @media only screen and (max-width: 991px){
     #player_info_row{
-        display: grid;
+        display: block;
+    }
+    #stats_div, #player_bio{
+        float:left;
+        display:block;
     }
 }
 
