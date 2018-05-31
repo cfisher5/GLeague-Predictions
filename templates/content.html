@@ -215,7 +215,6 @@
 
         <div class="row padding-top-bottom border-bottom-always" style="text-align: center;padding-bottom:50px;" >
         {% if player.gamelog[0] != None %}
-            <div id="game_log_div" class="col-sm-12 col-md-8" style="padding:0;padding-right:20px;">
                 <h3>2017-18 Game Log</h3>
                 <div>
                     <table id="gamelog_table" class="display compact" style="width:100%;white-space:nowrap;">
@@ -269,12 +268,24 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
             {% endif %}
 
-            <div class="col-sm-12 col-md-4" style="padding:0">
-                <h3 id="shotchart-title">2017-18 Shot Chart</h3>
+            <div class="row border-bottom-always" style="padding-bottom:40px;padding-top:20px;">
+                <div class="col-xs-12 col-sm-6 col-md-7" style="text-align:center;">
+                    <div class="row" style="padding-bottom:10px;">
+                        <h3>2017-18 Shot Profile</h3>
+                    </div>
+                     <div class="row" style="padding:15px;">
+                        <h4>The size of the slice represents the percentage of shots taken from that location (shot frequency).</h4>
+                        <h4>The color of the slice represents FG% in that location relative to all G League players of the same position (shot accuracy).</h4>
+                    </div>
+                    <canvas id="shooting"></canvas>
+
+                    <h5 style="font-size:12px;margin:0 auto;padding:20px;">Percentiles are calculatde relative to all qualified G League Players (over 200 min) <strong>of the same position.</strong> Hover over the shot location to see {{ player.name }}'s FG% at that location as well as the percentage of total FGA that came from there.</h5>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-5" style="text-align:center">
+                    <h3 id="shotchart-title">2017-18 Shot Chart</h3>
                 <div id="iframe-container" style="height:385px;">
                     <iframe height="100%" src="http://stats.gleague.nba.com/shotchart/#!/?CFID=33&CFPARAMS=2017-18&PlayerID={{ player.id }}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2017-18&SeasonType=Regular%20Season&MeasureType=Base&LeagueID=20&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&DateFrom=&DateTo=&PORound=0&ShotClockRange=&mtype=&mtitle=&mode=Advanced&showZones=0&showDetails=0&showShots=1"></iframe>
                 </div>
@@ -284,8 +295,8 @@
                     <span id="amount" style="display:inline;border:0; color:rgb(0,0,0); font-weight:bold;text-align:right"></span>
                 </p>
                 <div style='text-align:center;margin:0 auto;max-width:280px;' id="slider"></div>
+                </div>
             </div>
-        </div>
 
     <div class="row center padding-20">
         {% if player.nba_comps != None %}
@@ -748,16 +759,16 @@
                     },
                     tooltips: {
                         callbacks: {
-                        label: function(tooltipItem, data ) {
-                            var x = tooltipItem.index;
-                            var stats = data.datasets[0].stats;
-                            var percentiles = data.datasets[0].percentiles;
-                            var string = stats[x].toString() + " per 36 (";
-                            var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
-                            var s = string + suffix.toString() + " " + "percentile)";
-                            return(s);
+                            label: function(tooltipItem, data ) {
+                                var x = tooltipItem.index;
+                                var stats = data.datasets[0].stats;
+                                var percentiles = data.datasets[0].percentiles;
+                                var string = stats[x].toString() + " per 36 (";
+                                var suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                                var s = string + suffix.toString() + " " + "percentile)";
+                                return(s);
+                            }
                         }
-                }
                     },
                     legend: {
                         display: false
@@ -765,6 +776,80 @@
                 }
             });
         }
+
+        // create shooting radar chart
+        $(document).ready( function () {
+            var ctx_2 = document.getElementById("shooting");
+            var shooting = new Chart(ctx_2, {
+                type: 'doughnut',
+                data: {
+                    labels: {{ player.shooting_stats[0] | safe }},
+                    datasets: [{
+                        data: {{ player.shooting_stats[1] | safe }},
+                        fgper: {{ player.shooting_stats[2] | safe }},
+                        percentiles: {{ player.percentile_array[2][0] | safe }},
+                        backgroundColor: {{ player.percentile_array[2][2] | safe }},
+                        stats: {{ player.shooting_stats[3] | safe }},
+                        borderWidth:1,
+                        borderColor:'black'
+                    }]
+
+                },
+                options: {
+                    layout: {
+                        padding: {
+                            left: 5,
+                            right: 5,
+                            top: 15,
+                            bottom: 15
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                if(context.chart.data.datasets[0].data[context.dataIndex] !== 0.0)
+                                    return context.chart.data.labels[context.dataIndex];
+                                else
+                                    return "";
+
+                            },
+                            anchor: 'start',
+                            align: 'end',
+                            offset: 10,
+                            rotation: 20,
+                            color: 'black',
+                            font:{
+                                size: '10'
+                            }
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data){
+                                return data.labels[tooltipItem.index]
+                            },
+                            afterLabel: function(tooltipItem, data ) {
+                                x = tooltipItem.index;
+                                stat_type = data.labels;
+                                freq = data.datasets[0].data;
+                                freq_per = Math.round(freq[x]* 100);
+                                freq_line = freq_per.toString() + "% of all FGA";
+                                stats = data.datasets[0].stats;
+                                fgper = data.datasets[0].fgper;
+                                fgper_str = Math.round(fgper[x] * 100).toString() + "%";
+                                percentiles = data.datasets[0].percentiles;
+                                suffix = ordinal_suffix_of(Math.round(percentiles[x]));
+                                s = stats[x] + " = " + fgper_str + " FG% (" + suffix.toString() + " " + "percentile)";
+                                return([s, freq_line]);
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        });
 
         var cluster = '{{ player.gnb_cluster }}';
         var paths = $("svg g path");

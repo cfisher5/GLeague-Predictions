@@ -3,6 +3,7 @@ import os
 import json
 import time
 import global_items
+import pandas as pd
 
 
 def scrape():
@@ -18,6 +19,9 @@ def scrape():
         pace_json = "GLeague-Predictions/data/pace.json"
         pace_csv = "GLeague-Predictions/data/pace.csv"
         advanced_csv = "GLeague-Predictions/data/gleague_advanced.csv"
+        shooting_csv = "GLeague-Predictions/data/shooting.csv"
+        min_csv = "GLeague-Predictions/data/min.csv"
+
     else:
         csv_filename = "data/gleague_data_new.csv"
         json_filename = "data/players_json_new.txt"
@@ -27,6 +31,25 @@ def scrape():
         pace_csv = "data/pace.csv"
         pace_json = "data/pace.json"
         advanced_csv = "data/gleague_advanced.csv"
+        shooting_csv = "data/shooting.csv"
+        min_csv = "data/min.csv"
+
+
+    #gleague total min
+    print("grabbing total min")
+    totals_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+
+    try:
+        response = requests.get(totals_url, headers=global_items.header, timeout=1000)
+        totals_data = response.json()['resultSets'][0]['rowSet']
+        headers = response.json()['resultSets'][0]['headers']
+    except json.JSONDecodeError:
+        print("unable to reach API")
+        return False
+
+    df = pd.DataFrame(totals_data, columns=headers)
+    df = df[['PLAYER_ID', 'MIN']]
+    df.to_csv(min_csv, index=False)
 
     # gleague box score data
     gleague_ids = open(csv_filename, 'w')
@@ -115,6 +138,23 @@ def scrape():
 
     gleague_adv.close()
     time.sleep(5)
+
+
+    #getting shots
+    print("grabbing shot location data")
+    shots_url = "http://stats.gleague.nba.com/stats/leaguedashplayershotlocations?College=&Conference=&Country=&DateFrom=&DateTo=&DistanceRange=By+Zone&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    headers = ["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","RA_FGM","RA_FGA","RA_FG_PCT","Paint_FGM","Paint_FGA","Paint_FG_PCT","Mid-Range_FGM","Mid-Range_FGA","Mid-Range_FG_PCT","Left_Corner_FGM","Left_Corner_FGA","Left_Corner_FG_PCT","Right_Corner_FGM","Right_Corner_FGA","Right_Corner_FG_PCT","Above_Break_FGM","Above_Break_FGA","Above_Break_FG_PCT","Backcourt_FGM","Backcourt_FGA","Backcourt_FG_PCT"]
+
+    try:
+        response = requests.get(shots_url, headers=global_items.header, timeout=1000)
+        shot_data = response.json()['resultSets']['rowSet']
+    except json.JSONDecodeError:
+        print("unable to reach API")
+        return False
+
+    df = pd.DataFrame(shot_data, columns=headers)
+    df.to_csv(shooting_csv, index=False)
+
 
     # gleague nba projections
     gleague_projections = open(gleague_projections_csv, 'w')
