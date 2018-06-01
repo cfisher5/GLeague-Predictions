@@ -21,6 +21,7 @@ def scrape():
         advanced_csv = "GLeague-Predictions/data/gleague_advanced.csv"
         shooting_csv = "GLeague-Predictions/data/shooting.csv"
         min_csv = "GLeague-Predictions/data/min.csv"
+        usage_csv = "GLeague-Predictions/data/usage.csv"
 
     else:
         csv_filename = "data/gleague_data_new.csv"
@@ -33,7 +34,7 @@ def scrape():
         advanced_csv = "data/gleague_advanced.csv"
         shooting_csv = "data/shooting.csv"
         min_csv = "data/min.csv"
-
+        usage_csv = "data/usage.csv"
 
     #gleague total min
     print("grabbing total min")
@@ -155,6 +156,19 @@ def scrape():
     df = pd.DataFrame(shot_data, columns=headers)
     df.to_csv(shooting_csv, index=False)
 
+    # getting usage stats
+    print("grabbing usage data")
+    usg_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Usage&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    try:
+        response = requests.get(usg_url, headers=global_items.header, timeout=1000)
+        headers = response.json()['resultSets'][0]['headers']
+        usg_data = response.json()['resultSets'][0]['rowSet']
+    except json.JSONDecodeError:
+        print("unable to reach API")
+        return False
+
+    df = pd.DataFrame(usg_data, columns=headers)
+    df.to_csv(usage_csv, index=False)
 
     # gleague nba projections
     gleague_projections = open(gleague_projections_csv, 'w')

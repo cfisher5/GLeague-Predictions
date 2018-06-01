@@ -56,6 +56,7 @@ class Player:
         self.stats = self.gather_stats()
         self.advanced_stats = self.get_advanced_stats()
         self.shooting_stats = self.get_shooting_stats()
+        self.usage_stats = self.get_usage_stats()
         self.percentile_array = [self.get_percentiles('box'), self.get_percentiles('advanced'), self.get_percentiles('shooting')]
         self.mpg = str(round(float(self.min) / float(self.gp),1))
 
@@ -325,7 +326,7 @@ class Player:
 
     def get_shooting_stats(self):
 
-        locations = ['Right Corner 3', 'Restricted Area (RA)', 'Paint (Non RA)', 'Mid-Range', 'Left Corner 3', 'Above the Break 3']
+        locations = ['Restricted Area (RA)', 'Paint (Non RA)', 'Mid-Range','Right Corner 3', 'Left Corner 3', 'Above the Break 3']
         accuracy = []
         frequency = []
         raw_shots = []
@@ -348,14 +349,14 @@ class Player:
             total_shot_attempts += player_row['Right_Corner_FGA'].get(i)
             total_shot_attempts += player_row['Above_Break_FGA'].get(i)
 
-            types = ["Right_Corner", "RA", "Paint", "Mid-Range", "Left_Corner", "Above_Break"]
+            types = ["RA", "Paint", "Mid-Range", "Right_Corner", "Left_Corner", "Above_Break"]
             index = 0
             for shot_type in types:
                 fgper = player_row[shot_type + '_FG_PCT'].get(i)
                 accuracy.append(float(fgper))
                 fga = player_row[shot_type + '_FGA'].get(i)
                 shot_freq = fga / total_shot_attempts
-                frequency.append(shot_freq)
+                frequency.append(shot_freq*100)
                 fgm = player_row[shot_type + '_FGM'].get(i)
                 raw_shots.append(str(fgm).replace(".0", "") + "/" + str(fga).replace(".0", ""))
                 index += 1
@@ -363,6 +364,37 @@ class Player:
 
         else:
             return None
+
+    def get_usage_stats(self):
+        usage_headers = ["% Team's 2FGM","% Team's 3PM","% Team's FTM","% Team's OREB","% Team's DREB","% Team's AST","% Team's TOV","% Team's STL","% Team's BLK"]
+        usage_stats = []
+        df = pd.read_csv("data/usage.csv")
+        min_df = pd.read_csv("data/min.csv")
+        merged_df = pd.merge(left=df, right=min_df, how='inner', on="PLAYER_ID")
+
+        query_str = "PLAYER_ID == " + str(self.id)
+        player_row = merged_df.query(query_str)
+        i = player_row.index[0]
+        two_fgm = float(player_row['PCT_FGM'].get(i)) - float(player_row['PCT_FG3M'].get(i))
+        usage_stats.append(two_fgm*100)
+        three_fgm = float(player_row['PCT_FG3M'].get(i)) * 100
+        usage_stats.append(three_fgm)
+        ft = float(player_row['PCT_FTM'].get(i)) * 100
+        usage_stats.append(ft)
+        oreb = float(player_row['PCT_OREB'].get(i)) * 100
+        usage_stats.append(oreb)
+        dreb = float(player_row['PCT_DREB'].get(i)) * 100
+        usage_stats.append(dreb)
+        ast = float(player_row['PCT_AST'].get(i)) * 100
+        usage_stats.append(ast)
+        tov = float(player_row['PCT_TOV'].get(i)) * 100
+        usage_stats.append(tov)
+        stl = float(player_row['PCT_STL'].get(i)) * 100
+        usage_stats.append(stl)
+        blk = float(player_row['PCT_BLK'].get(i)) * 100
+        usage_stats.append(blk)
+
+        return[usage_headers, usage_stats]
 
     def get_percentiles(self, stat_type):
 
@@ -470,10 +502,10 @@ class Player:
 
             subset_pos = merged_df.query(query_string)
             arr = list()
-            arr.append(stats.percentileofscore(subset_pos['Right_Corner_FG_PCT'], float(shooting_stats[0])))
-            arr.append(stats.percentileofscore(subset_pos['RA_FG_PCT'], float(shooting_stats[1])))
-            arr.append(stats.percentileofscore(subset_pos['Paint_FG_PCT'], float(shooting_stats[2])))
-            arr.append(stats.percentileofscore(subset_pos['Mid-Range_FG_PCT'], float(shooting_stats[3])))
+            arr.append(stats.percentileofscore(subset_pos['RA_FG_PCT'], float(shooting_stats[0])))
+            arr.append(stats.percentileofscore(subset_pos['Paint_FG_PCT'], float(shooting_stats[1])))
+            arr.append(stats.percentileofscore(subset_pos['Mid-Range_FG_PCT'], float(shooting_stats[2])))
+            arr.append(stats.percentileofscore(subset_pos['Right_Corner_FG_PCT'], float(shooting_stats[3])))
             arr.append(stats.percentileofscore(subset_pos['Left_Corner_FG_PCT'], float(shooting_stats[4])))
             arr.append(stats.percentileofscore(subset_pos['Above_Break_FG_PCT'], float(shooting_stats[5])))
 
@@ -490,6 +522,46 @@ class Player:
                 normalized_arr.append(norm)
 
             return [arr, normalized_arr, percentile_colors]
+
+        # elif stat_type == 'usage':
+        #     usage_stats = self.usage_stats[1]
+        #     data = pd.read_csv(open("data/usage.csv", "r"), sep=",")
+        #     positions = pd.read_csv(open("data/positions.csv", "r"), sep=",")
+        #     min = pd.read_csv(open("data/min.csv", "r"), sep=",")
+        #     merged_df = pd.merge(
+        #         left=pd.merge(left=data, right=positions, how='inner', left_on='PLAYER_ID', right_on='ID'), right=min,
+        #         on='PLAYER_ID', how='inner')
+        #     merged_df = merged_df.query("MIN > 200.0")
+        #     # get query
+        #     if 'G' in self.position:
+        #         query_string = "POS == 'G' or POS == 'G-F' or POS == 'F-G'"
+        #     elif 'F' in self.position:
+        #         query_string = "POS == 'F' or POS == 'G-F' or POS == 'F-G' or POS=='F-C' or POS=='C-F'"
+        #     else:
+        #         query_string = "POS == 'C' or POS == 'F-C' or POS == 'C-F'"
+        #
+        #     subset_pos = merged_df.query(query_string)
+        #     arr = list()
+        #     arr.append(stats.percentileofscore(subset_pos['Right_Corner_FG_PCT'], float(shooting_stats[0])))
+        #     arr.append(stats.percentileofscore(subset_pos['RA_FG_PCT'], float(shooting_stats[1])))
+        #     arr.append(stats.percentileofscore(subset_pos['Paint_FG_PCT'], float(shooting_stats[2])))
+        #     arr.append(stats.percentileofscore(subset_pos['Mid-Range_FG_PCT'], float(shooting_stats[3])))
+        #     arr.append(stats.percentileofscore(subset_pos['Left_Corner_FG_PCT'], float(shooting_stats[4])))
+        #     arr.append(stats.percentileofscore(subset_pos['Above_Break_FG_PCT'], float(shooting_stats[5])))
+        #
+        #     percentile_colors = self.get_percentiles_colors(arr)
+        #
+        #     normalized_arr = list()
+        #     for element in arr:
+        #         norm = element - 50.0
+        #         if norm > 50.0:
+        #             norm = 50.0
+        #         elif norm < -50.0:
+        #             norm = -50.0
+        #
+        #         normalized_arr.append(norm)
+        #
+        #     return [arr, normalized_arr, percentile_colors]
 
     def gather_stats(self):
 
