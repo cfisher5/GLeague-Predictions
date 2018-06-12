@@ -137,7 +137,7 @@ class Player:
                     self.team = p[2]
                     self.name = p[0]
                     self.age = p[3]
-                    self.gp = p[4]
+                    self.gp = int(p[4])
                     self.fga = p[5]
                     self.threepm = p[6]
                     self.reb = p[7]
