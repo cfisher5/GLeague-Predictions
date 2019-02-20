@@ -161,8 +161,8 @@ class Player:
         url = "http://stats.gleague.nba.com/stats/commonplayerinfo?LeagueID=20&PlayerID=" + str(self.id) + "&SeasonType=Regular+Season"
         data = None
         try:
-            ua = UserAgent()
-            header = {'User-Agent': str(ua.random)}
+            #ua = UserAgent()
+            header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'}
             response = requests.get(url, headers=header)
             data = response.json()['resultSets'][0]['rowSet']
         except json.JSONDecodeError:
@@ -222,8 +222,8 @@ class Player:
         log = []
         game_dates = []
         try:
-            ua = UserAgent()
-            header = {"User-Agent": str(ua.random)}
+            #ua = UserAgent()
+            header = {"User-Agent": 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'}
             response = requests.get("http://stats.gleague.nba.com/stats/playergamelog?LeagueID=20&PlayerID=" + str(
                 self.id) + "&Season=2017-18&SeasonType=Regular+Season", headers=header)
             data = response.json()['resultSets'][0]['rowSet']

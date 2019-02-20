@@ -38,7 +38,7 @@ def scrape_positions():
 
         if position == "" or position is None:
             print("trying nba json")
-            url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2017/players/playercard_" + str(
+            url_json = "https://data.nba.com/data/10s/v2015/json/mobile_teams/dleague/2018/players/playercard_" + str(
                 player_id) + "_02.json"
             try:
                 response = requests.get(url_json, headers=global_items.header)

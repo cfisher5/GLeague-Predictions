@@ -12,7 +12,8 @@ def scrape():
         two_ways = "data/two_ways.csv"
 
     two_ways_csv = open(two_ways, 'w')
-    url = "http://stats.gleague.nba.com/stats/commonallplayers?IsOnlyCurrentSeason=1&LeagueID=20&Season=" + global_items.season
+    url = "http://stats.gleague.nba.com/stats/commonallplayers?IsOnlyCurrentSeason=1&LeagueID=20&Season=" + \
+          global_items.season
     two_ways_csv.write('ID,Two_Way_Flag,NBA_Team\n')
 
     try:

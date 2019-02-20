@@ -38,7 +38,12 @@ def scrape():
 
     #gleague total min
     print("grabbing total min")
-    totals_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    totals_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=" \
+                 "&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=" \
+                 "&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0" \
+                 "&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=" + global_items.season + \
+                 "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0" \
+                 "&VsConference=&VsDivision=&Weight="
 
     try:
         response = requests.get(totals_url, headers=global_items.header, timeout=1000)
@@ -55,7 +60,11 @@ def scrape():
     # gleague box score data
     gleague_ids = open(csv_filename, 'w')
     gleague_ids.write('Name,ID,Team,Age,GP,FGA,3PM,REB,AST,PTS,MIN,FGM,FGP,3PA,3PPER,FTM,FTA,FTPER,TOV,STL,BLK\n')
-    url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Per36&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=" \
+          "&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base" \
+          "&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Per36&Period=0&PlayerExperience=" \
+          "&PlayerPosition=&PlusMinus=N&Rank=N&Season=" + global_items.season + "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=" \
+          "&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
 
     try:
         response = requests.get(url, headers=global_items.header, timeout=1000)
@@ -110,7 +119,11 @@ def scrape():
     # gleague advanced stats
     gleague_adv = open(advanced_csv, 'w')
     gleague_adv.write('ID,GP,ORTG,DRTG,NRTG,ASTPER,OREBPER,DREBPER,eFG,TS,USG\n')
-    url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Advanced&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=" \
+          "&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Advanced" \
+          "&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=" \
+          "&PlayerPosition=&PlusMinus=N&Rank=N&Season=" + global_items.season + "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=" \
+          "&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
 
     try:
         response = requests.get(url, headers=global_items.header, timeout=1000)
@@ -143,7 +156,12 @@ def scrape():
 
     #getting shots
     print("grabbing shot location data")
-    shots_url = "http://stats.gleague.nba.com/stats/leaguedashplayershotlocations?College=&Conference=&Country=&DateFrom=&DateTo=&DistanceRange=By+Zone&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    shots_url = "http://stats.gleague.nba.com/stats/leaguedashplayershotlocations?College=&Conference=&Country=&DateFrom=" \
+                "&DateTo=&DistanceRange=By+Zone&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0" \
+                "&LeagueID=20&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N" \
+                "&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=" + global_items.season +  \
+                "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+
     headers = ["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","RA_FGM","RA_FGA","RA_FG_PCT","Paint_FGM","Paint_FGA","Paint_FG_PCT","Mid-Range_FGM","Mid-Range_FGA","Mid-Range_FG_PCT","Left_Corner_FGM","Left_Corner_FGA","Left_Corner_FG_PCT","Right_Corner_FGM","Right_Corner_FGA","Right_Corner_FG_PCT","Above_Break_FGM","Above_Break_FGA","Above_Break_FG_PCT","Backcourt_FGM","Backcourt_FGA","Backcourt_FG_PCT"]
 
     try:
@@ -158,7 +176,11 @@ def scrape():
 
     # getting usage stats
     print("grabbing usage data")
-    usg_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Usage&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
+    usg_url = "http://stats.gleague.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=" \
+              "&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=20&Location=&MeasureType=Usage" \
+              "&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=Totals&Period=0&PlayerExperience=&PlayerPosition=" \
+              "&PlusMinus=N&Rank=N&Season=" + global_items.season + "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=" \
+              "&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight="
     try:
         response = requests.get(usg_url, headers=global_items.header, timeout=1000)
         headers = response.json()['resultSets'][0]['headers']
@@ -173,7 +195,7 @@ def scrape():
     # gleague nba projections
     gleague_projections = open(gleague_projections_csv, 'w')
     gleague_projections.write('ID,PTS,REB,AST,STL,BLK,TOV,FGper,threeper,FTper\n')
-    proj_url = "http://stats.gleague.nba.com/stats/dleaguepredictor?DLeagueTeamID=0&LeagueID=20&NBATeamID=0&Season=2017-18"
+    proj_url = "http://stats.gleague.nba.com/stats/dleaguepredictor?DLeagueTeamID=0&LeagueID=20&NBATeamID=0&Season=" + global_items.season
     try:
         response = requests.get(proj_url, headers=global_items.header, timeout=1000)
         proj_data = response.json()['resultSets'][0]['rowSet']
