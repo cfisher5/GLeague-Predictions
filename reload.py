@@ -1,6 +1,6 @@
 import requests
 
-my_domain = 'www.gleaguetonba.com'
+my_domain = 'cfisher5.pythonanywhere.com'
 username = 'cfisher5'
 token = 'a844de4d08ca51a979b47c54e80acea23a434b8e'
 
